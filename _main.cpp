@@ -4,10 +4,12 @@
 void __Image();
 void __Geometry();
 void __FilterTypes();
+void __Color();
 
 BOOST_PYTHON_MODULE(_pgmagick)
 {
     __Image();
     __Geometry();
     __FilterTypes();
+    __Color();
 }
