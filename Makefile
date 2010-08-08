@@ -14,6 +14,7 @@ test:
 	python -c "from pgmagick import *"
 	python $(TEST_DIR)/test_pgmagick_blob.py
 	python $(TEST_DIR)/test_pgmagick_color.py
+	python $(TEST_DIR)/test_pgmagick_image.py
 
 profile_pg:
 	cd example && python -m cProfile -o test.cprof pgmagick_prof.py
