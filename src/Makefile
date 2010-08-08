@@ -4,26 +4,26 @@ OBJS=_main.o _Blob.o _Color.o _Image.o _FilterTypes.o _Geometry.o
 
 all: $(OBJS)
 
-_main.o:
+_main.o: _main.cpp
 	g++ $(FLAGS) $(INCS) \
 		-o _main.o -c _main.cpp
 
-_Blob.o:
+_Blob.o: _Blob.cpp
 	g++ $(FLAGS) $(INCS) \
 		-o _Blob.o -c _Blob.cpp
 
-_Color.o:
+_Color.o: _Color.cpp
 	g++ $(FLAGS) $(INCS) \
 		-o _Color.o -c _Color.cpp
 
-_Image.o:
+_Image.o: _Image.cpp
 	g++ $(FLAGS) $(INCS) \
 		-o _Image.o -c _Image.cpp
 
-_FilterTypes.o:
+_FilterTypes.o: _FilterTypes.cpp
 	g++ $(FLAGS) $(INCS) \
 		-o _FilterTypes.o -c _FilterTypes.cpp
 
-_Geometry.o:
+_Geometry.o: _Geometry.cpp
 	g++ $(FLAGS) $(INCS) \
 		-o _Geometry.o -c _Geometry.cpp

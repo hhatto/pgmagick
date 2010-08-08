@@ -1,14 +1,10 @@
-
-// Boost Includes ==============================================================
 #include <boost/python.hpp>
 #include <boost/cstdint.hpp>
 
-// Includes ====================================================================
 #include <Magick++/Geometry.h>
 
-// Module ======================================================================
-void __Geometry()
 
+void __Geometry()
 {
 	boost::python::class_< Magick::Geometry >("Geometry", boost::python::init<  >())
         .def(boost::python::init< unsigned int, unsigned int, boost::python::optional< unsigned int, unsigned int, bool, bool > >())

@@ -6,7 +6,6 @@
 using namespace boost::python;
 
 namespace  {
-
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Blob_updateNoCopy_overloads_2_3, updateNoCopy, 2, 3)
 }
 

@@ -1,68 +1,35 @@
-
-// Boost Includes ==============================================================
 #include <boost/python.hpp>
 #include <boost/cstdint.hpp>
 
-// Includes ====================================================================
 #include <Magick++/Image.h>
 
-// Declarations ================================================================
 namespace  {
-
-// Using =======================================================================
-//using namespace boost::python;
-
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_adaptiveThreshold_overloads_2_3, adaptiveThreshold, 2, 3)
-
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_blur_overloads_0_2, blur, 0, 2)
-
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_border_overloads_0_1, border, 0, 1)
-
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_charcoal_overloads_0_2, charcoal, 0, 2)
-
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_composite_overloads_3_4, composite, 3, 4)
-
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_composite_overloads_2_3, composite, 2, 3)
-
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_edge_overloads_0_1, edge, 0, 1)
-
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_emboss_overloads_0_2, emboss, 0, 2)
-
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_frame_overloads_0_1, frame, 0, 1)
-
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_frame_overloads_2_4, frame, 2, 4)
-
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_map_overloads_1_2, map, 1, 2)
-
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_medianFilter_overloads_0_1, medianFilter, 0, 1)
-
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_negate_overloads_0_1, negate, 0, 1)
-
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_oilPaint_overloads_0_1, oilPaint, 0, 1)
-
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_quantize_overloads_0_1, quantize, 0, 1)
-
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_raise_overloads_0_2, raise, 0, 2)
-
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_segment_overloads_0_2, segment, 0, 2)
-
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_shade_overloads_0_3, shade, 0, 3)
-
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_sharpen_overloads_0_2, sharpen, 0, 2)
-
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_solarize_overloads_0_1, solarize, 0, 1)
-
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_spread_overloads_0_1, spread, 0, 1)
-
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_wave_overloads_0_2, wave, 0, 2)
-
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_signature_overloads_0_1, signature, 0, 1)
+}
 
 
-}// namespace 
-
-
-// Module ======================================================================
 void __Image()
 {
 	boost::python::class_< Magick::Image >("Image", boost::python::init<  >())
@@ -335,6 +302,4 @@ void __Image()
         .def( boost::python::self >= boost::python::self )
         .def( boost::python::self <= boost::python::self )
     ;
-
 }
-

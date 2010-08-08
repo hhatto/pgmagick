@@ -1,15 +1,11 @@
-
-// Boost Includes ==============================================================
 #include <boost/python.hpp>
 #include <boost/cstdint.hpp>
 
-// Includes ====================================================================
 #include <Magick++/Include.h>
 
-// Using =======================================================================
 using namespace boost::python;
 
-// Module ======================================================================
+
 void __FilterTypes()
 {
     enum_< Magick::FilterTypes >("FilterTypes")
@@ -30,6 +26,4 @@ void __FilterTypes()
         .value("HermiteFilter", Magick::HermiteFilter)
         .value("UndefinedFilter", Magick::UndefinedFilter)
     ;
-
 }
-
