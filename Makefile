@@ -1,12 +1,19 @@
-all:
-	g++ -Wall -lboost_python -lGraphicsMagick++ \
-		-I/usr/include/python2.6 -I/usr/include/GraphicsMagick \
-		-fPIC -shared -o _pgmagick.so \
-		_main.cpp _Image.cpp _Geometry.cpp _Color.cpp _FilterTypes.cpp
+LIBS=-lboost_python -lGraphicsMagick++
+SRC_DIR=src
 
+all:
+	cd $(SRC_DIR) && make
+	g++ $(LIBS) \
+		-fPIC -shared -o _pgmagick.so $(SRC_DIR)/*.o
+
+
+TEST_DIR=test
+.PHONY: test
 test:
 	python -c "import pgmagick"
 	python -c "from pgmagick import *"
+	python $(TEST_DIR)/test_pgmagick_blob.py
+	python $(TEST_DIR)/test_pgmagick_color.py
 
 profile_pg:
 	cd example && python -m cProfile -o test.cprof pgmagick_prof.py
@@ -21,3 +28,4 @@ profile_4:
 
 clean:
 	rm _pgmagick.so
+	rm $(SRC_DIR)/*.o
