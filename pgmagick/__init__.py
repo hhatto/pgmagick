@@ -9,8 +9,7 @@ class Image(_pgmagick.Image):
     pass
 
 
-class FilterTypes(_pgmagick.FilterTypes):
-    pass
+FilterTypes = _pgmagick.FilterTypes
 
 
 class Color(_pgmagick.Color):
