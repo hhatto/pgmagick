@@ -3,6 +3,8 @@
 
 #include <Magick++/Image.h>
 
+using namespace boost::python;
+
 namespace  {
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_adaptiveThreshold_overloads_2_3, adaptiveThreshold, 2, 3)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_blur_overloads_0_2, blur, 0, 2)
@@ -32,15 +34,15 @@ BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_signature_overloads_0_1, sig
 
 void __Image()
 {
-	boost::python::class_< Magick::Image >("Image", boost::python::init<  >())
-        .def(boost::python::init< const std::string& >())
-        .def(boost::python::init< const Magick::Geometry&, const Magick::Color& >())
-        .def(boost::python::init< const Magick::Blob& >())
-        .def(boost::python::init< const Magick::Blob&, const Magick::Geometry& >())
-        .def(boost::python::init< const Magick::Blob&, const Magick::Geometry&, const unsigned int >())
-        .def(boost::python::init< const Magick::Blob&, const Magick::Geometry&, const unsigned int, const std::string& >())
-        .def(boost::python::init< const Magick::Blob&, const Magick::Geometry&, const std::string& >())
-        .def(boost::python::init< const Magick::Image& >())
+	class_< Magick::Image >("Image", init<  >())
+        .def(init< const std::string& >())
+        .def(init< const Magick::Geometry&, const Magick::Color& >())
+        .def(init< const Magick::Blob& >())
+        .def(init< const Magick::Blob&, const Magick::Geometry& >())
+        .def(init< const Magick::Blob&, const Magick::Geometry&, const unsigned int >())
+        .def(init< const Magick::Blob&, const Magick::Geometry&, const unsigned int, const std::string& >())
+        .def(init< const Magick::Blob&, const Magick::Geometry&, const std::string& >())
+        .def(init< const Magick::Image& >())
         .def("adaptiveThreshold", &Magick::Image::adaptiveThreshold, Magick_Image_adaptiveThreshold_overloads_2_3())
         .def("addNoise", &Magick::Image::addNoise)
         .def("affineTransform", &Magick::Image::affineTransform)
@@ -75,7 +77,10 @@ void __Image()
         .def("floodFillTexture", (void (Magick::Image::*)(const Magick::Geometry&, const Magick::Image&, const Magick::Color&) )&Magick::Image::floodFillTexture)
         .def("flop", &Magick::Image::flop)
         .def("frame", (void (Magick::Image::*)(const Magick::Geometry&) )&Magick::Image::frame, Magick_Image_frame_overloads_0_1())
-        .def("frame", (void (Magick::Image::*)(const size_t, const size_t, const ssize_t, const ssize_t) )&Magick::Image::frame, Magick_Image_frame_overloads_2_4())
+        .def("frame",
+             (void (Magick::Image::*)(const unsigned int, const unsigned int,
+                                      const int, const int) )&Magick::Image::frame,
+             Magick_Image_frame_overloads_2_4())
         .def("gamma", (void (Magick::Image::*)(const double) )&Magick::Image::gamma)
         .def("gamma", (void (Magick::Image::*)(const double, const double, const double) )&Magick::Image::gamma)
         .def("gaussianBlur", &Magick::Image::gaussianBlur)
@@ -295,11 +300,11 @@ void __Image()
         .def("registerId", &Magick::Image::registerId)
         .def("unregisterId", &Magick::Image::unregisterId)
         .staticmethod("cacheThreshold")
-        .def( boost::python::self == boost::python::self )
-        .def( boost::python::self != boost::python::self )
-        .def( boost::python::self > boost::python::self )
-        .def( boost::python::self < boost::python::self )
-        .def( boost::python::self >= boost::python::self )
-        .def( boost::python::self <= boost::python::self )
+        .def( self == self )
+        .def( self != self )
+        .def( self > self )
+        .def( self < self )
+        .def( self >= self )
+        .def( self <= self )
     ;
 }
