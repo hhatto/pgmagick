@@ -1,0 +1,2 @@
+include Makefile
+include README.rst
