@@ -5,6 +5,10 @@ class Blob(_pgmagick.Blob):
     pass
 
 
+class Geometry(_pgmagick.Geometry):
+    pass
+
+
 class Image(_pgmagick.Image):
     pass
 
