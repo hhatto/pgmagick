@@ -4,14 +4,12 @@ SRC_DIR=src
 all:
 	cd $(SRC_DIR) && make
 	g++ $(LIBS) \
-		-fPIC -shared -o _pgmagick.so $(SRC_DIR)/*.o
+		-fPIC -shared -o pgmagick/_pgmagick.so $(SRC_DIR)/*.o
 
 
 TEST_DIR=test
 .PHONY: test
 test:
-	python -c "import pgmagick"
-	python -c "from pgmagick import *"
 	python $(TEST_DIR)/test_pgmagick_blob.py
 	python $(TEST_DIR)/test_pgmagick_color.py
 	python $(TEST_DIR)/test_pgmagick_image.py
@@ -27,6 +25,11 @@ profile_im:
 profile_4:
 	cd example && sh profile.sh
 
+pypireg:
+	python setup.py register
+	python setup.py sdist upload
+
 clean:
-	rm _pgmagick.so
+	rm -rf pgmagick.* build dist
+	rm pgmagick/_pgmagick.so
 	rm $(SRC_DIR)/*.o

@@ -10,10 +10,18 @@ Install
 
     $ pip install pgmagick
 
+Require
+=======
+
+required on Ubuntu::
+
+    $ apt-get install libgraphicsmagick++-dev
+    $ apt-get install libboost-python1.40-dev
+
 Usage
 =====
 
-example:
+example::
 
     >>> from pgmagick import Image, FilterTypes
     >>> im = Image('input.jpg')
