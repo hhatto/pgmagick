@@ -33,4 +33,5 @@ pypireg:
 clean:
 	rm -rf pgmagick.* build dist
 	rm pgmagick/_pgmagick.so
+	rm pgmagick/*.pyc
 	rm $(SRC_DIR)/*.o
