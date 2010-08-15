@@ -3,14 +3,16 @@
 
 #include <Magick++/Geometry.h>
 
+using namespace boost::python;
+
 
 void __Geometry()
 {
-	boost::python::class_< Magick::Geometry >("Geometry", boost::python::init<  >())
-        .def(boost::python::init< unsigned int, unsigned int, boost::python::optional< unsigned int, unsigned int, bool, bool > >())
-        .def(boost::python::init< const std::string& >())
-        .def(boost::python::init< const char* >())
-        .def(boost::python::init< const Magick::Geometry& >())
+	class_< Magick::Geometry >("Geometry", init<  >())
+        .def(init< unsigned int, unsigned int, optional< unsigned int, unsigned int, bool, bool > >())
+        .def(init< const std::string& >())
+        .def(init< const char* >())
+        .def(init< const Magick::Geometry& >())
         .def("width", (void (Magick::Geometry::*)(size_t) )&Magick::Geometry::width)
         .def("width", (size_t (Magick::Geometry::*)() const)&Magick::Geometry::width)
         .def("height", (void (Magick::Geometry::*)(size_t) )&Magick::Geometry::height)
@@ -33,14 +35,14 @@ void __Geometry()
         .def("less", (bool (Magick::Geometry::*)() const)&Magick::Geometry::less)
         .def("isValid", (void (Magick::Geometry::*)(bool) )&Magick::Geometry::isValid)
         .def("isValid", (bool (Magick::Geometry::*)() const)&Magick::Geometry::isValid)
-        .def( boost::python::self <= boost::python::self )
-        .def( boost::python::self == boost::python::self )
-        .def( boost::python::self > boost::python::self )
-        .def( boost::python::self != boost::python::self )
-        .def( boost::python::self < boost::python::self )
-        .def( boost::python::self >= boost::python::self )
+        .def( self <= self )
+        .def( self == self )
+        .def( self > self )
+        .def( self != self )
+        .def( self < self )
+        .def( self >= self )
         .def("to_std_string", &Magick::Geometry::operator std::string)
     ;
 
-boost::python::implicitly_convertible<std::string,Magick::Geometry>();}
+implicitly_convertible<std::string,Magick::Geometry>();}
 
