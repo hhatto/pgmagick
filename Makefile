@@ -14,6 +14,7 @@ test:
 	python $(TEST_DIR)/test_pgmagick_color.py
 	python $(TEST_DIR)/test_pgmagick_image.py
 	python $(TEST_DIR)/test_pgmagick_geometry.py
+	python $(TEST_DIR)/test_pgmagick_montage.py
 
 profile_pg:
 	cd example && python -m cProfile -o test.cprof pgmagick_prof.py
