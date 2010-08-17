@@ -1,2 +1,3 @@
 include Makefile
+include src/Makefile
 include README.rst
