@@ -7,6 +7,7 @@ void __FilterTypes();
 void __Geometry();
 void __Image();
 void __Montage();
+void __Pixels();
 
 
 BOOST_PYTHON_MODULE(_pgmagick)
@@ -17,4 +18,5 @@ BOOST_PYTHON_MODULE(_pgmagick)
     __Geometry();
     __Image();
     __Montage();
+    __Pixels();
 }

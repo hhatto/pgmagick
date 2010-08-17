@@ -41,3 +41,7 @@ class ColorYUV(_pgmagick.ColorYUV):
 
 class Montage(_pgmagick.Montage):
     pass
+
+
+class Pixels(_pgmagick.Pixels):
+    pass
