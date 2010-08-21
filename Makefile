@@ -15,6 +15,7 @@ test:
 	python $(TEST_DIR)/test_pgmagick_image.py
 	python $(TEST_DIR)/test_pgmagick_geometry.py
 	python $(TEST_DIR)/test_pgmagick_montage.py
+	python $(TEST_DIR)/test_pgmagick_import.py
 
 profile_pg:
 	cd example && python -m cProfile -o test.cprof pgmagick_prof.py
@@ -33,6 +34,6 @@ pypireg:
 
 clean:
 	rm -rf pgmagick.* build dist
+	cd $(SRC_DIR) && make clean
 	rm pgmagick/_pgmagick.so
 	rm pgmagick/*.pyc
-	cd $(SRC_DIR) && make clean
