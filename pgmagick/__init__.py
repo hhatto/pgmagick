@@ -1,6 +1,7 @@
 import _pgmagick
 
 FilterTypes = _pgmagick.FilterTypes
+CompositeOperator = _pgmagick.CompositeOperator
 
 
 class Blob(_pgmagick.Blob):

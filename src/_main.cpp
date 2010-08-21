@@ -3,6 +3,7 @@
 
 void __Blob();
 void __Color();
+void __CompositeOperator();
 void __FilterTypes();
 void __Geometry();
 void __Image();
@@ -14,6 +15,7 @@ BOOST_PYTHON_MODULE(_pgmagick)
 {
     __Blob();
     __Color();
+    __CompositeOperator();
     __FilterTypes();
     __Geometry();
     __Image();

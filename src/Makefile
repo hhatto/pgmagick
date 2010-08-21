@@ -1,7 +1,7 @@
 FLAGS=-Wall
 INCS=-I/usr/include/python2.6 -I/usr/include/GraphicsMagick
-OBJS=_main.o _Blob.o _Color.o _Image.o _FilterTypes.o _Geometry.o _Montage.o \
-	 _Pixels.o
+OBJS=_main.o _Blob.o _Color.o _CompositeOperator.o _Image.o _FilterTypes.o \
+	 _Geometry.o _Montage.o _Pixels.o
 
 all: $(OBJS)
 
@@ -16,6 +16,10 @@ _Blob.o: _Blob.cpp
 _Color.o: _Color.cpp
 	g++ $(FLAGS) $(INCS) \
 		-o _Color.o -c _Color.cpp
+
+_CompositeOperator.o: _CompositeOperator.cpp
+	g++ $(FLAGS) $(INCS) \
+		-o _CompositeOperator.o -c _CompositeOperator.cpp
 
 _Image.o: _Image.cpp
 	g++ $(FLAGS) $(INCS) \
