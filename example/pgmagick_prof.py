@@ -1,12 +1,9 @@
 import sys
-sys.path.append('../')
-from pgmagick import Image, FilterTypes
+from pgmagick import Image, FilterTypes as ft
 
 # same
 # convert SRC.jpg -filter Sinc -resize 500x500 -sharpen 1 -quality 100 DST.jpg
 # gm convert SRC.jpg -filter Sinc -resize 500x500 -sharpen 1 -quality 100 DST.jpg
-
-ft = FilterTypes()
 
 im = Image('./X.jpg')
 im.quality(100)
