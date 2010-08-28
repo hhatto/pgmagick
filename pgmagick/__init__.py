@@ -24,6 +24,8 @@ class ColorRGB(_pgmagick.ColorRGB):
 class ColorYUV(_pgmagick.ColorYUV):
     pass
 
+ColorspaceType = _pgmagick.ColorspaceType
+
 CompositeOperator = _pgmagick.CompositeOperator
 
 CompressionType = _pgmagick.CompressionType
@@ -174,8 +176,12 @@ class DrawableTextUnderColor(_pgmagick.DrawableTextUnderColor):
 class DrawableTranslation(_pgmagick.DrawableTranslation):
     pass
 
+EndianType = _pgmagick.EndianType
+
 class Exception(_pgmagick.Exception):
     pass
+
+FillRule = _pgmagick.FillRule
 
 FilterTypes = _pgmagick.FilterTypes
 
@@ -187,6 +193,14 @@ GravityType = _pgmagick.GravityType
 class Image(_pgmagick.Image):
     pass
 
+ImageType = _pgmagick.ImageType
+
+InterlaceType = _pgmagick.InterlaceType
+
+LineCap = _pgmagick.LineCap
+
+LineJoin = _pgmagick.LineJoin
+
 class Montage(_pgmagick.Montage):
     pass
 
@@ -194,6 +208,10 @@ class MontageFramed(_pgmagick.MontageFramed):
     pass
 
 NoiseType = _pgmagick.NoiseType
+
+OrientationType = _pgmagick.OrientationType
+
+PaintMethod = _pgmagick.PaintMethod
 
 class PathArcAbs(_pgmagick.PathArcAbs):
     pass
@@ -263,6 +281,20 @@ class PathSmoothQuadraticCurvetoRel(_pgmagick.PathSmoothQuadraticCurvetoRel):
 
 class Pixels(_pgmagick.Pixels):
     pass
+
+QuantumOperator = _pgmagick.QuantumOperator
+
+QuantumType = _pgmagick.QuantumType
+
+RenderingIntent = _pgmagick.RenderingIntent
+
+ResolutionType = _pgmagick.ResolutionType
+
+StorageType = _pgmagick.StorageType
+
+StretchType = _pgmagick.StretchType
+
+StyleType = _pgmagick.StyleType
 
 class TypeMetric(_pgmagick.TypeMetric):
     pass
