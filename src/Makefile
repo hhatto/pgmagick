@@ -59,6 +59,7 @@ OBJS = _Blob.o \
        _DrawableTranslation.o \
        _DrawableViewbox.o \
        _Exception.o \
+       _EndianType.o \
        _FilterTypes.o \
        _Geometry.o \
        _GravityType.o \
