@@ -60,6 +60,7 @@ OBJS = _Blob.o \
        _DrawableViewbox.o \
        _Exception.o \
        _EndianType.o \
+       _FillRule.o \
        _FilterTypes.o \
        _Geometry.o \
        _GravityType.o \
