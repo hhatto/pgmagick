@@ -67,8 +67,11 @@ OBJS = _Blob.o \
        _Image.o \
        _ImageType.o \
        _InterlaceType.o \
+       _LineCap.o \
+       _LineJoin.o \
        _Montage.o \
        _NoiseType.o \
+       _OrientationType.o \
        _PathArcAbs.o \
        _PathArcArgs.o \
        _PathArcRel.o \
