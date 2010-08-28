@@ -1,6 +1,8 @@
 from setuptools import setup, find_packages, Extension
+from distutils.sysconfig import get_python_inc
+import glob
 
-include_dirs = ['/usr/include/python2.6',
+include_dirs = [get_python_inc(),
                 '/usr/include/GraphicsMagick/']
 library_dirs = ['/usr/lib']
 
@@ -15,16 +17,7 @@ setup(name='pgmagick',
     packages=find_packages(),
     ext_modules=[
         Extension('pgmagick._pgmagick',
-                  sources=['src/_Blob.cpp',
-                           'src/_Color.cpp',
-                           'src/_CompositeOperator.cpp',
-                           'src/_Exception.cpp',
-                           'src/_FilterTypes.cpp',
-                           'src/_Geometry.cpp',
-                           'src/_Image.cpp',
-                           'src/_Montage.cpp',
-                           'src/_Pixels.cpp',
-                           'src/_main.cpp'],
+                  sources=glob.glob('./src/*.cpp'),
                   include_dirs=include_dirs,
                   library_dirs=library_dirs,
                   libraries=['boost_python', 'GraphicsMagick++'],
