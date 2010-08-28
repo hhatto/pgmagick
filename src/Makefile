@@ -72,6 +72,7 @@ OBJS = _Blob.o \
        _Montage.o \
        _NoiseType.o \
        _OrientationType.o \
+       _PaintMethod.o \
        _PathArcAbs.o \
        _PathArcArgs.o \
        _PathArcRel.o \
