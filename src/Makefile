@@ -96,6 +96,7 @@ OBJS = _Blob.o \
        _PathSmoothQuadraticCurvetoAbs.o \
        _PathSmoothQuadraticCurvetoRel.o \
        _Pixels.o \
+       _QuantumOperator.o \
        _TypeMetric.o \
        _VPath.o \
        _main.o
