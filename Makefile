@@ -3,6 +3,7 @@ SRC_DIR=src
 
 all:
 	cd $(SRC_DIR) && make
+	cp -p src/*.so pgmagick/
 
 
 TEST_DIR=test
