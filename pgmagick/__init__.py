@@ -1,4 +1,4 @@
-import _pgmagin
+import _pgmagick
 
 
 class Blob(_pgmagick.Blob):

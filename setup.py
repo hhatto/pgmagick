@@ -7,7 +7,7 @@ include_dirs = [get_python_inc(),
 library_dirs = ['/usr/lib']
 
 setup(name='pgmagick',
-    version="0.1.1",
+    version="0.1.2",
     description="Yet Another Python wrapper for GraphicsMagick++",
     long_description=open('README.rst').read(),
     author='Hideo Hattori',
