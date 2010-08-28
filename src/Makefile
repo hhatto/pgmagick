@@ -98,6 +98,8 @@ OBJS = _Blob.o \
        _Pixels.o \
        _QuantumOperator.o \
        _QuantumType.o \
+       _RenderingIntent.o \
+       _ResolutionType.o \
        _TypeMetric.o \
        _VPath.o \
        _main.o
