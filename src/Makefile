@@ -65,6 +65,7 @@ OBJS = _Blob.o \
        _Geometry.o \
        _GravityType.o \
        _Image.o \
+       _ImageType.o \
        _Montage.o \
        _NoiseType.o \
        _PathArcAbs.o \
