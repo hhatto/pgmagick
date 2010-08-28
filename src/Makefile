@@ -101,6 +101,8 @@ OBJS = _Blob.o \
        _RenderingIntent.o \
        _ResolutionType.o \
        _StorageType.o \
+       _StretchType.o \
+       _StyleType.o \
        _TypeMetric.o \
        _VPath.o \
        _main.o
