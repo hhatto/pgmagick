@@ -100,6 +100,7 @@ OBJS = _Blob.o \
        _QuantumType.o \
        _RenderingIntent.o \
        _ResolutionType.o \
+       _StorageType.o \
        _TypeMetric.o \
        _VPath.o \
        _main.o
