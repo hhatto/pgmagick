@@ -5,6 +5,7 @@ LIBS = -lboost_python -lGraphicsMagick++
 OBJS = _Blob.o \
        _ChannelType.o \
        _Color.o \
+       _ColorspaceType.o \
        _CompositeOperator.o \
        _CompressionType.o \
        _Coordinate.o \
