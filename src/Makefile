@@ -1,45 +1,104 @@
-FLAGS=-Wall
-INCS=-I/usr/include/python2.6 -I/usr/include/GraphicsMagick
-OBJS=_main.o _Blob.o _Color.o _CompositeOperator.o _Image.o _FilterTypes.o \
-	 _Geometry.o _Montage.o _Pixels.o
+FLAGS = -Wall
+INCS = -I/usr/include/python2.6 -I/usr/include/GraphicsMagick
+SO = _pgmagick.so
+LIBS = -lboost_python -lGraphicsMagick++
+OBJS = _Blob.o \
+       _ChannelType.o \
+       _Color.o \
+       _CompositeOperator.o \
+       _CompressionType.o \
+       _Coordinate.o \
+       _DecorationType.o \
+       _Drawable.o \
+       _DrawableAffine.o \
+       _DrawableArc.o \
+       _DrawableBezier.o \
+       _DrawableCircle.o \
+       _DrawableClipPath.o \
+       _DrawableColor.o \
+       _DrawableCompositeImage.o \
+       _DrawableDashArray.o \
+       _DrawableDashOffset.o \
+       _DrawableEllipse.o \
+       _DrawableFillColor.o \
+       _DrawableFillOpacity.o \
+       _DrawableFillRule.o \
+       _DrawableFont.o \
+       _DrawableGravity.o \
+       _DrawableLine.o \
+       _DrawableMatte.o \
+       _DrawableMiterLimit.o \
+       _DrawablePath.o \
+       _DrawablePoint.o \
+       _DrawablePointSize.o \
+       _DrawablePolygon.o \
+       _DrawablePolyline.o \
+       _DrawablePopClipPath.o \
+       _DrawablePopGraphicContext.o \
+       _DrawablePopPattern.o \
+       _DrawablePushClipPath.o \
+       _DrawablePushGraphicContext.o \
+       _DrawablePushPattern.o \
+       _DrawableRectangle.o \
+       _DrawableRotation.o \
+       _DrawableRoundRectangle.o \
+       _DrawableScaling.o \
+       _DrawableSkewX.o \
+       _DrawableSkewY.o \
+       _DrawableStrokeAntialias.o \
+       _DrawableStrokeColor.o \
+       _DrawableStrokeLineCap.o \
+       _DrawableStrokeLineJoin.o \
+       _DrawableStrokeOpacity.o \
+       _DrawableStrokeWidth.o \
+       _DrawableText.o \
+       _DrawableTextAntialias.o \
+       _DrawableTextDecoration.o \
+       _DrawableTextUnderColor.o \
+       _DrawableTranslation.o \
+       _DrawableViewbox.o \
+       _Exception.o \
+       _FilterTypes.o \
+       _Geometry.o \
+       _GravityType.o \
+       _Image.o \
+       _Montage.o \
+       _NoiseType.o \
+       _PathArcAbs.o \
+       _PathArcArgs.o \
+       _PathArcRel.o \
+       _PathClosePath.o \
+       _PathCurvetoAbs.o \
+       _PathCurvetoArgs.o \
+       _PathCurvetoRel.o \
+       _PathLinetoAbs.o \
+       _PathLinetoHorizontalAbs.o \
+       _PathLinetoHorizontalRel.o \
+       _PathLinetoRel.o \
+       _PathLinetoVerticalAbs.o \
+       _PathLinetoVerticalRel.o \
+       _PathMovetoAbs.o \
+       _PathMovetoRel.o \
+       _PathQuadraticCurvetoAbs.o \
+       _PathQuadraticCurvetoArgs.o \
+       _PathQuadraticCurvetoRel.o \
+       _PathSmoothCurvetoAbs.o \
+       _PathSmoothCurvetoRel.o \
+       _PathSmoothQuadraticCurvetoAbs.o \
+       _PathSmoothQuadraticCurvetoRel.o \
+       _Pixels.o \
+       _TypeMetric.o \
+       _VPath.o \
+       _main.o
 
-all: $(OBJS)
+.SUFFIXES: .cpp .o
 
-_main.o: _main.cpp
-	g++ $(FLAGS) $(INCS) \
-		-o _main.o -c _main.cpp
+$(SO): $(OBJS)
+	g++ $(LIBS) -fPIC -shared -o $(SO) $^
 
-_Blob.o: _Blob.cpp
-	g++ $(FLAGS) $(INCS) \
-		-o _Blob.o -c _Blob.cpp
-
-_Color.o: _Color.cpp
-	g++ $(FLAGS) $(INCS) \
-		-o _Color.o -c _Color.cpp
-
-_CompositeOperator.o: _CompositeOperator.cpp
-	g++ $(FLAGS) $(INCS) \
-		-o _CompositeOperator.o -c _CompositeOperator.cpp
-
-_Image.o: _Image.cpp
-	g++ $(FLAGS) $(INCS) \
-		-o _Image.o -c _Image.cpp
-
-_FilterTypes.o: _FilterTypes.cpp
-	g++ $(FLAGS) $(INCS) \
-		-o _FilterTypes.o -c _FilterTypes.cpp
-
-_Geometry.o: _Geometry.cpp
-	g++ $(FLAGS) $(INCS) \
-		-o _Geometry.o -c _Geometry.cpp
-
-_Montage.o: _Montage.cpp
-	g++ $(FLAGS) $(INCS) \
-		-o _Montage.o -c _Montage.cpp
-
-_Pixels.o: _Pixels.cpp
-	g++ $(FLAGS) $(INCS) \
-		-o _Pixels.o -c _Pixels.cpp
+.cpp.o:
+	g++ $(FLAGS) $(INCS) -o $@ -c $<
 
 clean:
-	rm $(OBJS)
+	rm $(OBJS) $(SO)
+

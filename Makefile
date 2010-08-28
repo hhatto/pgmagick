@@ -3,8 +3,6 @@ SRC_DIR=src
 
 all:
 	cd $(SRC_DIR) && make
-	g++ $(LIBS) \
-		-fPIC -shared -o pgmagick/_pgmagick.so $(SRC_DIR)/*.o
 
 
 TEST_DIR=test
