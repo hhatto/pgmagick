@@ -23,17 +23,17 @@ struct Magick_DrawableViewbox_Wrapper: Magick::DrawableViewbox
 
 void __DrawableViewbox()
 {
-#if 0
     class_< Magick::DrawableViewbox, boost::noncopyable, Magick_DrawableViewbox_Wrapper >("DrawableViewbox", init< long unsigned int, long unsigned int, long unsigned int, long unsigned int >())
-        .def("x1", (void (Magick::DrawableViewbox::*)(long size_t) )&Magick::DrawableViewbox::x1)
-        .def("x1", (long size_t (Magick::DrawableViewbox::*)() const)&Magick::DrawableViewbox::x1)
-        .def("y1", (void (Magick::DrawableViewbox::*)(long size_t) )&Magick::DrawableViewbox::y1)
-        .def("y1", (long size_t (Magick::DrawableViewbox::*)() const)&Magick::DrawableViewbox::y1)
-        .def("x2", (void (Magick::DrawableViewbox::*)(long size_t) )&Magick::DrawableViewbox::x2)
-        .def("x2", (long size_t (Magick::DrawableViewbox::*)() const)&Magick::DrawableViewbox::x2)
-        .def("y2", (void (Magick::DrawableViewbox::*)(long size_t) )&Magick::DrawableViewbox::y2)
-        .def("y2", (long size_t (Magick::DrawableViewbox::*)() const)&Magick::DrawableViewbox::y2)
+        .def("x1", (void (Magick::DrawableViewbox::*)(unsigned long) )&Magick::DrawableViewbox::x1)
+        .def("x1", (unsigned long (Magick::DrawableViewbox::*)() const)&Magick::DrawableViewbox::x1)
+        .def("y1", (void (Magick::DrawableViewbox::*)(unsigned long) )&Magick::DrawableViewbox::y1)
+        .def("y1", (unsigned long (Magick::DrawableViewbox::*)() const)&Magick::DrawableViewbox::y1)
+        .def("x2", (void (Magick::DrawableViewbox::*)(unsigned long) )&Magick::DrawableViewbox::x2)
+        .def("x2", (unsigned long (Magick::DrawableViewbox::*)() const)&Magick::DrawableViewbox::x2)
+        .def("y2", (void (Magick::DrawableViewbox::*)(unsigned long) )&Magick::DrawableViewbox::y2)
+        .def("y2", (unsigned long (Magick::DrawableViewbox::*)() const)&Magick::DrawableViewbox::y2)
     ;
+#if 0
 #endif
 }
 
