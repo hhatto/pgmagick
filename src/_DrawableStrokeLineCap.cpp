@@ -24,7 +24,7 @@ struct Magick_DrawableStrokeLineCap_Wrapper: Magick::DrawableStrokeLineCap
 
 void __DrawableStrokeLineCap()
 {
-    class_< Magick::DrawableStrokeLineCap, boost::noncopyable, Magick_DrawableStrokeLineCap_Wrapper >("DrawableStrokeLineCap", init< Magick::LineCap >())
+    class_< Magick::DrawableStrokeLineCap, bases<Magick::Drawable>, boost::noncopyable, Magick_DrawableStrokeLineCap_Wrapper >("DrawableStrokeLineCap", init< Magick::LineCap >())
         .def("linecap", (void (Magick::DrawableStrokeLineCap::*)(Magick::LineCap) )&Magick::DrawableStrokeLineCap::linecap)
         .def("linecap", (Magick::LineCap (Magick::DrawableStrokeLineCap::*)() const)&Magick::DrawableStrokeLineCap::linecap)
     ;

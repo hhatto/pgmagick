@@ -27,7 +27,7 @@ struct Magick_DrawableTextAntialias_Wrapper: Magick::DrawableTextAntialias
 
 void __DrawableTextAntialias()
 {
-    class_< Magick::DrawableTextAntialias, Magick_DrawableTextAntialias_Wrapper >("DrawableTextAntialias", init< bool >())
+    class_< Magick::DrawableTextAntialias, bases<Magick::DrawableBase>, Magick_DrawableTextAntialias_Wrapper >("DrawableTextAntialias", init< bool >())
         .def(init< const Magick::DrawableTextAntialias& >())
         .def("flag", (void (Magick::DrawableTextAntialias::*)(bool) )&Magick::DrawableTextAntialias::flag)
         .def("flag", (bool (Magick::DrawableTextAntialias::*)() const)&Magick::DrawableTextAntialias::flag)

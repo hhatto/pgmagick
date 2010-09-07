@@ -27,7 +27,7 @@ struct Magick_DrawablePath_Wrapper: Magick::DrawablePath
 
 void __DrawablePath()
 {
-    class_< Magick::DrawablePath, Magick_DrawablePath_Wrapper >("DrawablePath", init< const Magick::VPathList& >())
+    class_< Magick::DrawablePath, bases<Magick::Drawable>, Magick_DrawablePath_Wrapper >("DrawablePath", init< const Magick::VPathList& >())
         .def(init< const Magick::DrawablePath& >())
     ;
 }

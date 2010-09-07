@@ -24,7 +24,7 @@ struct Magick_DrawableArc_Wrapper: Magick::DrawableArc
 
 void __DrawableArc()
 {
-    class_< Magick::DrawableArc, boost::noncopyable, Magick_DrawableArc_Wrapper >("DrawableArc", init< double, double, double, double, double, double >())
+    class_< Magick::DrawableArc, bases<Magick::Drawable>, boost::noncopyable, Magick_DrawableArc_Wrapper >("DrawableArc", init< double, double, double, double, double, double >())
         .def("startX", (void (Magick::DrawableArc::*)(double) )&Magick::DrawableArc::startX)
         .def("startX", (double (Magick::DrawableArc::*)() const)&Magick::DrawableArc::startX)
         .def("startY", (void (Magick::DrawableArc::*)(double) )&Magick::DrawableArc::startY)

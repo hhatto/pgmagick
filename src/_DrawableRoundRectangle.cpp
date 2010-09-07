@@ -24,7 +24,7 @@ struct Magick_DrawableRoundRectangle_Wrapper: Magick::DrawableRoundRectangle
 
 void __DrawableRoundRectangle()
 {
-    class_< Magick::DrawableRoundRectangle, boost::noncopyable, Magick_DrawableRoundRectangle_Wrapper >("DrawableRoundRectangle", init< double, double, double, double, double, double >())
+    class_< Magick::DrawableRoundRectangle, bases<Magick::Drawable>, boost::noncopyable, Magick_DrawableRoundRectangle_Wrapper >("DrawableRoundRectangle", init< double, double, double, double, double, double >())
         .def("centerX", (void (Magick::DrawableRoundRectangle::*)(double) )&Magick::DrawableRoundRectangle::centerX)
         .def("centerX", (double (Magick::DrawableRoundRectangle::*)() const)&Magick::DrawableRoundRectangle::centerX)
         .def("centerY", (void (Magick::DrawableRoundRectangle::*)(double) )&Magick::DrawableRoundRectangle::centerY)

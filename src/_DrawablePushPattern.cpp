@@ -27,7 +27,7 @@ struct Magick_DrawablePushPattern_Wrapper: Magick::DrawablePushPattern
 
 void __DrawablePushPattern()
 {
-    class_< Magick::DrawablePushPattern, Magick_DrawablePushPattern_Wrapper >("DrawablePushPattern", init< const Magick::DrawablePushPattern& >())
+    class_< Magick::DrawablePushPattern, bases<Magick::Drawable>, Magick_DrawablePushPattern_Wrapper >("DrawablePushPattern", init< const Magick::DrawablePushPattern& >())
         .def(init< const std::string&, long int, long int, long int, long int >())
     ;
 }

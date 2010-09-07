@@ -23,7 +23,7 @@ struct Magick_DrawableViewbox_Wrapper: Magick::DrawableViewbox
 
 void __DrawableViewbox()
 {
-    class_< Magick::DrawableViewbox, boost::noncopyable, Magick_DrawableViewbox_Wrapper >("DrawableViewbox", init< long unsigned int, long unsigned int, long unsigned int, long unsigned int >())
+    class_< Magick::DrawableViewbox, bases<Magick::DrawableBase>, boost::noncopyable, Magick_DrawableViewbox_Wrapper >("DrawableViewbox", init< long unsigned int, long unsigned int, long unsigned int, long unsigned int >())
         .def("x1", (void (Magick::DrawableViewbox::*)(unsigned long) )&Magick::DrawableViewbox::x1)
         .def("x1", (unsigned long (Magick::DrawableViewbox::*)() const)&Magick::DrawableViewbox::x1)
         .def("y1", (void (Magick::DrawableViewbox::*)(unsigned long) )&Magick::DrawableViewbox::y1)

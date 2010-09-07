@@ -24,7 +24,7 @@ struct Magick_DrawableColor_Wrapper: Magick::DrawableColor
 
 void __DrawableColor()
 {
-    class_< Magick::DrawableColor, boost::noncopyable, Magick_DrawableColor_Wrapper >("DrawableColor", init< double, double, Magick::PaintMethod >())
+    class_< Magick::DrawableColor, bases<Magick::Drawable>, boost::noncopyable, Magick_DrawableColor_Wrapper >("DrawableColor", init< double, double, Magick::PaintMethod >())
         .def("x", (void (Magick::DrawableColor::*)(double) )&Magick::DrawableColor::x)
         .def("x", (double (Magick::DrawableColor::*)() const)&Magick::DrawableColor::x)
         .def("y", (void (Magick::DrawableColor::*)(double) )&Magick::DrawableColor::y)

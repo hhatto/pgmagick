@@ -27,7 +27,7 @@ struct Magick_DrawablePushClipPath_Wrapper: Magick::DrawablePushClipPath
 
 void __DrawablePushClipPath()
 {
-    class_< Magick::DrawablePushClipPath, Magick_DrawablePushClipPath_Wrapper >("DrawablePushClipPath", init< const std::string& >())
+    class_< Magick::DrawablePushClipPath, bases<Magick::Drawable>, Magick_DrawablePushClipPath_Wrapper >("DrawablePushClipPath", init< const std::string& >())
         .def(init< const Magick::DrawablePushClipPath& >())
     ;
 }

@@ -27,7 +27,7 @@ struct Magick_DrawableFillColor_Wrapper: Magick::DrawableFillColor
 
 void __DrawableFillColor()
 {
-    class_< Magick::DrawableFillColor, Magick_DrawableFillColor_Wrapper >("DrawableFillColor", init< const Magick::Color& >())
+    class_< Magick::DrawableFillColor, bases<Magick::Drawable>, Magick_DrawableFillColor_Wrapper >("DrawableFillColor", init< const Magick::Color& >())
         .def(init< const Magick::DrawableFillColor& >())
         .def("color", (void (Magick::DrawableFillColor::*)(const Magick::Color&) )&Magick::DrawableFillColor::color)
         .def("color", (Magick::Color (Magick::DrawableFillColor::*)() const)&Magick::DrawableFillColor::color)

@@ -30,7 +30,7 @@ struct Magick_DrawableDashArray_Wrapper: Magick::DrawableDashArray
 
 void __DrawableDashArray()
 {
-    class_< Magick::DrawableDashArray, Magick_DrawableDashArray_Wrapper >("DrawableDashArray", init< const double* >())
+    class_< Magick::DrawableDashArray, bases<Magick::Drawable>, Magick_DrawableDashArray_Wrapper >("DrawableDashArray", init< const double* >())
         .def(init< const size_t* >())
         .def(init< const Magick::DrawableDashArray& >())
     ;

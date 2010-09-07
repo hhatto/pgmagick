@@ -30,7 +30,7 @@ struct Magick_DrawableFont_Wrapper: Magick::DrawableFont
 
 void __DrawableFont()
 {
-    class_< Magick::DrawableFont, Magick_DrawableFont_Wrapper >("DrawableFont", init< const std::string& >())
+    class_< Magick::DrawableFont, bases<Magick::DrawableBase>, Magick_DrawableFont_Wrapper >("DrawableFont", init< const std::string& >())
         .def(init< const std::string&, Magick::StyleType, const long unsigned int, Magick::StretchType >())
         .def(init< const Magick::DrawableFont& >())
         .def("font", (void (Magick::DrawableFont::*)(const std::string&) )&Magick::DrawableFont::font)

@@ -24,7 +24,7 @@ struct Magick_DrawableStrokeOpacity_Wrapper: Magick::DrawableStrokeOpacity
 
 void __DrawableStrokeOpacity()
 {
-    class_< Magick::DrawableStrokeOpacity, boost::noncopyable, Magick_DrawableStrokeOpacity_Wrapper >("DrawableStrokeOpacity", init< double >())
+    class_< Magick::DrawableStrokeOpacity, bases<Magick::Drawable>, boost::noncopyable, Magick_DrawableStrokeOpacity_Wrapper >("DrawableStrokeOpacity", init< double >())
         .def("opacity", (void (Magick::DrawableStrokeOpacity::*)(double) )&Magick::DrawableStrokeOpacity::opacity)
         .def("opacity", (double (Magick::DrawableStrokeOpacity::*)() const)&Magick::DrawableStrokeOpacity::opacity)
     ;

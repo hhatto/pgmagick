@@ -24,7 +24,7 @@ struct Magick_DrawableFillOpacity_Wrapper: Magick::DrawableFillOpacity
 
 void __DrawableFillOpacity()
 {
-    class_< Magick::DrawableFillOpacity, boost::noncopyable, Magick_DrawableFillOpacity_Wrapper >("DrawableFillOpacity", init< double >())
+    class_< Magick::DrawableFillOpacity, bases<Magick::Drawable>, boost::noncopyable, Magick_DrawableFillOpacity_Wrapper >("DrawableFillOpacity", init< double >())
         .def("opacity", (void (Magick::DrawableFillOpacity::*)(double) )&Magick::DrawableFillOpacity::opacity)
         .def("opacity", (double (Magick::DrawableFillOpacity::*)() const)&Magick::DrawableFillOpacity::opacity)
     ;

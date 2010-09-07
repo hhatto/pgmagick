@@ -24,7 +24,7 @@ struct Magick_DrawableTranslation_Wrapper: Magick::DrawableTranslation
 
 void __DrawableTranslation()
 {
-    class_< Magick::DrawableTranslation, boost::noncopyable, Magick_DrawableTranslation_Wrapper >("DrawableTranslation", init< double, double >())
+    class_< Magick::DrawableTranslation, bases<Magick::Drawable>, boost::noncopyable, Magick_DrawableTranslation_Wrapper >("DrawableTranslation", init< double, double >())
         .def("x", (void (Magick::DrawableTranslation::*)(double) )&Magick::DrawableTranslation::x)
         .def("x", (double (Magick::DrawableTranslation::*)() const)&Magick::DrawableTranslation::x)
         .def("y", (void (Magick::DrawableTranslation::*)(double) )&Magick::DrawableTranslation::y)

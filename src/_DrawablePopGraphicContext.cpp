@@ -24,6 +24,6 @@ struct Magick_DrawablePopGraphicContext_Wrapper: Magick::DrawablePopGraphicConte
 
 void __DrawablePopGraphicContext()
 {
-    class_< Magick::DrawablePopGraphicContext, boost::noncopyable, Magick_DrawablePopGraphicContext_Wrapper >("DrawablePopGraphicContext", init<  >())
+    class_< Magick::DrawablePopGraphicContext, bases<Magick::Drawable>, boost::noncopyable, Magick_DrawablePopGraphicContext_Wrapper >("DrawablePopGraphicContext", init<  >())
     ;
 }

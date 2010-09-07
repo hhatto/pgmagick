@@ -24,7 +24,7 @@ struct Magick_DrawableStrokeLineJoin_Wrapper: Magick::DrawableStrokeLineJoin
 
 void __DrawableStrokeLineJoin()
 {
-    class_< Magick::DrawableStrokeLineJoin, boost::noncopyable, Magick_DrawableStrokeLineJoin_Wrapper >("DrawableStrokeLineJoin", init< Magick::LineJoin >())
+    class_< Magick::DrawableStrokeLineJoin, bases<Magick::Drawable>, boost::noncopyable, Magick_DrawableStrokeLineJoin_Wrapper >("DrawableStrokeLineJoin", init< Magick::LineJoin >())
         .def("linejoin", (void (Magick::DrawableStrokeLineJoin::*)(Magick::LineJoin) )&Magick::DrawableStrokeLineJoin::linejoin)
         .def("linejoin", (Magick::LineJoin (Magick::DrawableStrokeLineJoin::*)() const)&Magick::DrawableStrokeLineJoin::linejoin)
     ;

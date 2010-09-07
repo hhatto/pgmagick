@@ -24,7 +24,7 @@ struct Magick_DrawableRotation_Wrapper: Magick::DrawableRotation
 
 void __DrawableRotation()
 {
-    class_< Magick::DrawableRotation, boost::noncopyable, Magick_DrawableRotation_Wrapper >("DrawableRotation", init< double >())
+    class_< Magick::DrawableRotation, bases<Magick::Drawable>, boost::noncopyable, Magick_DrawableRotation_Wrapper >("DrawableRotation", init< double >())
         .def("angle", (void (Magick::DrawableRotation::*)(double) )&Magick::DrawableRotation::angle)
         .def("angle", (double (Magick::DrawableRotation::*)() const)&Magick::DrawableRotation::angle)
     ;

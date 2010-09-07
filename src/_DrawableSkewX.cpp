@@ -24,7 +24,7 @@ struct Magick_DrawableSkewX_Wrapper: Magick::DrawableSkewX
 
 void __DrawableSkewX()
 {
-    class_< Magick::DrawableSkewX, boost::noncopyable, Magick_DrawableSkewX_Wrapper >("DrawableSkewX", init< double >())
+    class_< Magick::DrawableSkewX, bases<Magick::Drawable>, boost::noncopyable, Magick_DrawableSkewX_Wrapper >("DrawableSkewX", init< double >())
         .def("angle", (void (Magick::DrawableSkewX::*)(double) )&Magick::DrawableSkewX::angle)
         .def("angle", (double (Magick::DrawableSkewX::*)() const)&Magick::DrawableSkewX::angle)
     ;

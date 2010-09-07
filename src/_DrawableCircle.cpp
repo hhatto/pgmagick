@@ -24,7 +24,7 @@ struct Magick_DrawableCircle_Wrapper: Magick::DrawableCircle
 
 void __DrawableCircle()
 {
-    class_< Magick::DrawableCircle, boost::noncopyable, Magick_DrawableCircle_Wrapper >("DrawableCircle", init< double, double, double, double >())
+    class_< Magick::DrawableCircle, bases<Magick::DrawableBase>, boost::noncopyable, Magick_DrawableCircle_Wrapper >("DrawableCircle", init< double, double, double, double >())
         .def("originX", (void (Magick::DrawableCircle::*)(double) )&Magick::DrawableCircle::originX)
         .def("originX", (double (Magick::DrawableCircle::*)() const)&Magick::DrawableCircle::originX)
         .def("originY", (void (Magick::DrawableCircle::*)(double) )&Magick::DrawableCircle::originY)

@@ -27,7 +27,7 @@ struct Magick_DrawableTextDecoration_Wrapper: Magick::DrawableTextDecoration
 
 void __DrawableTextDecoration()
 {
-    class_< Magick::DrawableTextDecoration, Magick_DrawableTextDecoration_Wrapper >("DrawableTextDecoration", init< Magick::DecorationType >())
+    class_< Magick::DrawableTextDecoration, bases<Magick::Drawable>, Magick_DrawableTextDecoration_Wrapper >("DrawableTextDecoration", init< Magick::DecorationType >())
         .def(init< const Magick::DrawableTextDecoration& >())
         .def("decoration", (void (Magick::DrawableTextDecoration::*)(Magick::DecorationType) )&Magick::DrawableTextDecoration::decoration)
         .def("decoration", (Magick::DecorationType (Magick::DrawableTextDecoration::*)() const)&Magick::DrawableTextDecoration::decoration)

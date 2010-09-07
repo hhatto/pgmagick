@@ -24,7 +24,7 @@ struct Magick_DrawableScaling_Wrapper: Magick::DrawableScaling
 
 void __DrawableScaling()
 {
-    class_< Magick::DrawableScaling, boost::noncopyable, Magick_DrawableScaling_Wrapper >("DrawableScaling", init< double, double >())
+    class_< Magick::DrawableScaling, bases<Magick::Drawable>, boost::noncopyable, Magick_DrawableScaling_Wrapper >("DrawableScaling", init< double, double >())
         .def("x", (void (Magick::DrawableScaling::*)(double) )&Magick::DrawableScaling::x)
         .def("x", (double (Magick::DrawableScaling::*)() const)&Magick::DrawableScaling::x)
         .def("y", (void (Magick::DrawableScaling::*)(double) )&Magick::DrawableScaling::y)

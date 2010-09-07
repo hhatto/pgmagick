@@ -24,7 +24,7 @@ struct Magick_DrawablePointSize_Wrapper: Magick::DrawablePointSize
 
 void __DrawablePointSize()
 {
-    class_< Magick::DrawablePointSize, boost::noncopyable, Magick_DrawablePointSize_Wrapper >("DrawablePointSize", init< double >())
+    class_< Magick::DrawablePointSize, bases<Magick::Drawable>, boost::noncopyable, Magick_DrawablePointSize_Wrapper >("DrawablePointSize", init< double >())
         .def("pointSize", (void (Magick::DrawablePointSize::*)(double) )&Magick::DrawablePointSize::pointSize)
         .def("pointSize", (double (Magick::DrawablePointSize::*)() const)&Magick::DrawablePointSize::pointSize)
     ;

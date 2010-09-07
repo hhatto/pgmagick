@@ -24,7 +24,7 @@ struct Magick_DrawableStrokeAntialias_Wrapper: Magick::DrawableStrokeAntialias
 
 void __DrawableStrokeAntialias()
 {
-    class_< Magick::DrawableStrokeAntialias, boost::noncopyable, Magick_DrawableStrokeAntialias_Wrapper >("DrawableStrokeAntialias", init< bool >())
+    class_< Magick::DrawableStrokeAntialias, bases<Magick::Drawable>, boost::noncopyable, Magick_DrawableStrokeAntialias_Wrapper >("DrawableStrokeAntialias", init< bool >())
         .def("flag", (void (Magick::DrawableStrokeAntialias::*)(bool) )&Magick::DrawableStrokeAntialias::flag)
         .def("flag", (bool (Magick::DrawableStrokeAntialias::*)() const)&Magick::DrawableStrokeAntialias::flag)
     ;

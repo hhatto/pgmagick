@@ -24,7 +24,7 @@ struct Magick_DrawablePoint_Wrapper: Magick::DrawablePoint
 
 void __DrawablePoint()
 {
-    class_< Magick::DrawablePoint, boost::noncopyable, Magick_DrawablePoint_Wrapper >("DrawablePoint", init< double, double >())
+    class_< Magick::DrawablePoint, bases<Magick::Drawable>, boost::noncopyable, Magick_DrawablePoint_Wrapper >("DrawablePoint", init< double, double >())
         .def("x", (void (Magick::DrawablePoint::*)(double) )&Magick::DrawablePoint::x)
         .def("x", (double (Magick::DrawablePoint::*)() const)&Magick::DrawablePoint::x)
         .def("y", (void (Magick::DrawablePoint::*)(double) )&Magick::DrawablePoint::y)

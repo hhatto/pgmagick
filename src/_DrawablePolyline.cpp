@@ -27,7 +27,7 @@ struct Magick_DrawablePolyline_Wrapper: Magick::DrawablePolyline
 
 void __DrawablePolyline()
 {
-    class_< Magick::DrawablePolyline, Magick_DrawablePolyline_Wrapper >("DrawablePolyline", init< const Magick::CoordinateList& >())
+    class_< Magick::DrawablePolyline, bases<Magick::Drawable>, Magick_DrawablePolyline_Wrapper >("DrawablePolyline", init< const Magick::CoordinateList& >())
         .def(init< const Magick::DrawablePolyline& >())
     ;
 }

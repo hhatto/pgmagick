@@ -30,7 +30,7 @@ struct Magick_DrawableText_Wrapper: Magick::DrawableText
 
 void __DrawableText()
 {
-    class_< Magick::DrawableText, Magick_DrawableText_Wrapper >("DrawableText", init< const Magick::DrawableText& >())
+    class_< Magick::DrawableText, bases<Magick::DrawableBase>, Magick_DrawableText_Wrapper >("DrawableText", init< const Magick::DrawableText& >())
         .def(init< const double, const double, const std::string& >())
         .def(init< const double, const double, const std::string&, const std::string& >())
         .def("encoding", &Magick::DrawableText::encoding)

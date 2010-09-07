@@ -27,7 +27,7 @@ struct Magick_DrawableAffine_Wrapper: Magick::DrawableAffine
 
 void __DrawableAffine()
 {
-    class_< Magick::DrawableAffine, boost::noncopyable, Magick_DrawableAffine_Wrapper >("DrawableAffine", init<  >())
+    class_< Magick::DrawableAffine, bases<Magick::Drawable>, boost::noncopyable, Magick_DrawableAffine_Wrapper >("DrawableAffine", init<  >())
         .def(init< double, double, double, double, double, double >())
         .def("sx", (void (Magick::DrawableAffine::*)(const double) )&Magick::DrawableAffine::sx)
         .def("sx", (double (Magick::DrawableAffine::*)() const)&Magick::DrawableAffine::sx)
