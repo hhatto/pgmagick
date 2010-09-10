@@ -33,7 +33,5 @@ void __DrawableViewbox()
         .def("y2", (void (Magick::DrawableViewbox::*)(unsigned long) )&Magick::DrawableViewbox::y2)
         .def("y2", (unsigned long (Magick::DrawableViewbox::*)() const)&Magick::DrawableViewbox::y2)
     ;
-#if 0
-#endif
 }
 
