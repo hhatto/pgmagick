@@ -48,6 +48,17 @@ composite example::
     >>> base.composite(layer, 100, 100, co.OverCompositeOp)
     >>> im.write('output.png')
 
+draw example::
+
+    >>> from pgmagick import Image, DrawableCircle, DrawableText, Geometry, Color
+    >>> im = Image(Geometry(300, 300), Color("yellow"))
+    >>> circle = DrawableCircle(100, 100, 20, 20)
+    >>> im.draw(circle)
+    >>> im.fontPointsize(65)
+    >>> text = DrawableText(30, 250, "Hello pgmagick")
+    >>> im.draw(text)
+    >>> im.write('hoge.png')
+
 more API detail... read to `Magick++ API for GraphicsMagick`_ document.
 
 .. _`Magick++ API for GraphicsMagick`: http://www.graphicsmagick.org/Magick++/
