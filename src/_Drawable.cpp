@@ -11,6 +11,8 @@ using namespace boost::python;
 
 void __Drawable()
 {
+    implicitly_convertible< Magick::DrawableBase, Magick::Drawable >();
+
     class_< Magick::DrawableBase, noncopyable >("DrawableBase", no_init)
     ;
 
