@@ -27,7 +27,7 @@ struct Magick_DrawableStrokeColor_Wrapper: Magick::DrawableStrokeColor
 
 void __DrawableStrokeColor()
 {
-    class_< Magick::DrawableStrokeColor, bases<Magick::Drawable>, Magick_DrawableStrokeColor_Wrapper >("DrawableStrokeColor", init< const Magick::Color& >())
+    class_< Magick::DrawableStrokeColor, bases<Magick::DrawableBase>, Magick_DrawableStrokeColor_Wrapper >("DrawableStrokeColor", init< const Magick::Color& >())
         .def(init< const Magick::DrawableStrokeColor& >())
         .def("color", (void (Magick::DrawableStrokeColor::*)(const Magick::Color&) )&Magick::DrawableStrokeColor::color)
         .def("color", (Magick::Color (Magick::DrawableStrokeColor::*)() const)&Magick::DrawableStrokeColor::color)

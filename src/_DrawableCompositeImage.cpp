@@ -43,7 +43,7 @@ struct Magick_DrawableCompositeImage_Wrapper: Magick::DrawableCompositeImage
 
 void __DrawableCompositeImage()
 {
-    class_< Magick::DrawableCompositeImage, bases<Magick::Drawable>, Magick_DrawableCompositeImage_Wrapper >("DrawableCompositeImage", init< const Magick::DrawableCompositeImage& >())
+    class_< Magick::DrawableCompositeImage, bases<Magick::DrawableBase>, Magick_DrawableCompositeImage_Wrapper >("DrawableCompositeImage", init< const Magick::DrawableCompositeImage& >())
         .def(init< double, double, const std::string& >())
         .def(init< double, double, const Magick::Image& >())
         .def(init< double, double, double, double, const std::string& >())

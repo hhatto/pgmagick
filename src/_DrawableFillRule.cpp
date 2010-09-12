@@ -24,7 +24,7 @@ struct Magick_DrawableFillRule_Wrapper: Magick::DrawableFillRule
 
 void __DrawableFillRule()
 {
-    class_< Magick::DrawableFillRule, bases<Magick::Drawable>, boost::noncopyable, Magick_DrawableFillRule_Wrapper >("DrawableFillRule", init< const Magick::FillRule >())
+    class_< Magick::DrawableFillRule, bases<Magick::DrawableBase>, boost::noncopyable, Magick_DrawableFillRule_Wrapper >("DrawableFillRule", init< const Magick::FillRule >())
         .def("fillRule", (void (Magick::DrawableFillRule::*)(const Magick::FillRule) )&Magick::DrawableFillRule::fillRule)
         .def("fillRule", (Magick::FillRule (Magick::DrawableFillRule::*)() const)&Magick::DrawableFillRule::fillRule)
     ;

@@ -24,7 +24,7 @@ struct Magick_DrawableStrokeWidth_Wrapper: Magick::DrawableStrokeWidth
 
 void __DrawableStrokeWidth()
 {
-    class_< Magick::DrawableStrokeWidth, bases<Magick::Drawable>, boost::noncopyable, Magick_DrawableStrokeWidth_Wrapper >("DrawableStrokeWidth", init< double >())
+    class_< Magick::DrawableStrokeWidth, bases<Magick::DrawableBase>, boost::noncopyable, Magick_DrawableStrokeWidth_Wrapper >("DrawableStrokeWidth", init< double >())
         .def("width", (void (Magick::DrawableStrokeWidth::*)(double) )&Magick::DrawableStrokeWidth::width)
         .def("width", (double (Magick::DrawableStrokeWidth::*)() const)&Magick::DrawableStrokeWidth::width)
     ;

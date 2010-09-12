@@ -24,7 +24,7 @@ struct Magick_DrawableLine_Wrapper: Magick::DrawableLine
 
 void __DrawableLine()
 {
-    class_< Magick::DrawableLine, bases<Magick::Drawable>, boost::noncopyable, Magick_DrawableLine_Wrapper >("DrawableLine", init< double, double, double, double >())
+    class_< Magick::DrawableLine, bases<Magick::DrawableBase>, boost::noncopyable, Magick_DrawableLine_Wrapper >("DrawableLine", init< double, double, double, double >())
         .def("startX", (void (Magick::DrawableLine::*)(double) )&Magick::DrawableLine::startX)
         .def("startX", (double (Magick::DrawableLine::*)() const)&Magick::DrawableLine::startX)
         .def("startY", (void (Magick::DrawableLine::*)(double) )&Magick::DrawableLine::startY)

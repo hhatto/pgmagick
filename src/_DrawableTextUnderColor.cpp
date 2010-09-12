@@ -27,7 +27,7 @@ struct Magick_DrawableTextUnderColor_Wrapper: Magick::DrawableTextUnderColor
 
 void __DrawableTextUnderColor()
 {
-    class_< Magick::DrawableTextUnderColor, bases<Magick::Drawable>, Magick_DrawableTextUnderColor_Wrapper >("DrawableTextUnderColor", init< const Magick::Color& >())
+    class_< Magick::DrawableTextUnderColor, bases<Magick::DrawableBase>, Magick_DrawableTextUnderColor_Wrapper >("DrawableTextUnderColor", init< const Magick::Color& >())
         .def(init< const Magick::DrawableTextUnderColor& >())
         .def("color", (void (Magick::DrawableTextUnderColor::*)(const Magick::Color&) )&Magick::DrawableTextUnderColor::color)
         .def("color", (Magick::Color (Magick::DrawableTextUnderColor::*)() const)&Magick::DrawableTextUnderColor::color)

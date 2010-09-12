@@ -24,7 +24,7 @@ struct Magick_DrawableEllipse_Wrapper: Magick::DrawableEllipse
 
 void __DrawableEllipse()
 {
-    class_< Magick::DrawableEllipse, bases<Magick::Drawable>, boost::noncopyable, Magick_DrawableEllipse_Wrapper >("DrawableEllipse", init< double, double, double, double, double, double >())
+    class_< Magick::DrawableEllipse, bases<Magick::DrawableBase>, boost::noncopyable, Magick_DrawableEllipse_Wrapper >("DrawableEllipse", init< double, double, double, double, double, double >())
         .def("originX", (void (Magick::DrawableEllipse::*)(double) )&Magick::DrawableEllipse::originX)
         .def("originX", (double (Magick::DrawableEllipse::*)() const)&Magick::DrawableEllipse::originX)
         .def("originY", (void (Magick::DrawableEllipse::*)(double) )&Magick::DrawableEllipse::originY)

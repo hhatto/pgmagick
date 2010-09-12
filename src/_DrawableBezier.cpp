@@ -27,7 +27,7 @@ struct Magick_DrawableBezier_Wrapper: Magick::DrawableBezier
 
 void __DrawableBezier()
 {
-    class_< Magick::DrawableBezier, bases<Magick::Drawable>, Magick_DrawableBezier_Wrapper >("DrawableBezier", init< const Magick::CoordinateList& >())
+    class_< Magick::DrawableBezier, bases<Magick::DrawableBase>, Magick_DrawableBezier_Wrapper >("DrawableBezier", init< const Magick::CoordinateList& >())
         .def(init< const Magick::DrawableBezier& >())
     ;
 }

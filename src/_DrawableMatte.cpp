@@ -24,7 +24,7 @@ struct Magick_DrawableMatte_Wrapper: Magick::DrawableMatte
 
 void __DrawableMatte()
 {
-    class_< Magick::DrawableMatte, bases<Magick::Drawable>, boost::noncopyable, Magick_DrawableMatte_Wrapper >("DrawableMatte", init< double, double, Magick::PaintMethod >())
+    class_< Magick::DrawableMatte, bases<Magick::DrawableBase>, boost::noncopyable, Magick_DrawableMatte_Wrapper >("DrawableMatte", init< double, double, Magick::PaintMethod >())
         .def("x", (void (Magick::DrawableMatte::*)(double) )&Magick::DrawableMatte::x)
         .def("x", (double (Magick::DrawableMatte::*)() const)&Magick::DrawableMatte::x)
         .def("y", (void (Magick::DrawableMatte::*)(double) )&Magick::DrawableMatte::y)

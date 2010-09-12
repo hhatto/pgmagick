@@ -24,6 +24,6 @@ struct Magick_DrawablePopPattern_Wrapper: Magick::DrawablePopPattern
 
 void __DrawablePopPattern()
 {
-    class_< Magick::DrawablePopPattern, bases<Magick::Drawable>, boost::noncopyable, Magick_DrawablePopPattern_Wrapper >("DrawablePopPattern", init<  >())
+    class_< Magick::DrawablePopPattern, bases<Magick::DrawableBase>, boost::noncopyable, Magick_DrawablePopPattern_Wrapper >("DrawablePopPattern", init<  >())
     ;
 }

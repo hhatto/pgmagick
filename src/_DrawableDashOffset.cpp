@@ -24,7 +24,7 @@ struct Magick_DrawableDashOffset_Wrapper: Magick::DrawableDashOffset
 
 void __DrawableDashOffset()
 {
-    class_< Magick::DrawableDashOffset, bases<Magick::Drawable>, boost::noncopyable, Magick_DrawableDashOffset_Wrapper >("DrawableDashOffset", init< const double >())
+    class_< Magick::DrawableDashOffset, bases<Magick::DrawableBase>, boost::noncopyable, Magick_DrawableDashOffset_Wrapper >("DrawableDashOffset", init< const double >())
         .def("offset", (void (Magick::DrawableDashOffset::*)(const double) )&Magick::DrawableDashOffset::offset)
         .def("offset", (double (Magick::DrawableDashOffset::*)() const)&Magick::DrawableDashOffset::offset)
     ;

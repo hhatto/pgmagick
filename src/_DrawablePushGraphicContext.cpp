@@ -24,6 +24,6 @@ struct Magick_DrawablePushGraphicContext_Wrapper: Magick::DrawablePushGraphicCon
 
 void __DrawablePushGraphicContext()
 {
-    class_< Magick::DrawablePushGraphicContext, bases<Magick::Drawable>, boost::noncopyable, Magick_DrawablePushGraphicContext_Wrapper >("DrawablePushGraphicContext", init<  >())
+    class_< Magick::DrawablePushGraphicContext, bases<Magick::DrawableBase>, boost::noncopyable, Magick_DrawablePushGraphicContext_Wrapper >("DrawablePushGraphicContext", init<  >())
     ;
 }

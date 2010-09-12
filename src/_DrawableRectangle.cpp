@@ -24,7 +24,7 @@ struct Magick_DrawableRectangle_Wrapper: Magick::DrawableRectangle
 
 void __DrawableRectangle()
 {
-    class_< Magick::DrawableRectangle, bases<Magick::Drawable>, boost::noncopyable, Magick_DrawableRectangle_Wrapper >("DrawableRectangle", init< double, double, double, double >())
+    class_< Magick::DrawableRectangle, bases<Magick::DrawableBase>, boost::noncopyable, Magick_DrawableRectangle_Wrapper >("DrawableRectangle", init< double, double, double, double >())
         .def("upperLeftX", (void (Magick::DrawableRectangle::*)(double) )&Magick::DrawableRectangle::upperLeftX)
         .def("upperLeftX", (double (Magick::DrawableRectangle::*)() const)&Magick::DrawableRectangle::upperLeftX)
         .def("upperLeftY", (void (Magick::DrawableRectangle::*)(double) )&Magick::DrawableRectangle::upperLeftY)

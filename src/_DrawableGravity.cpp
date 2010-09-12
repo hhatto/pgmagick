@@ -24,7 +24,7 @@ struct Magick_DrawableGravity_Wrapper: Magick::DrawableGravity
 
 void __DrawableGravity()
 {
-    class_< Magick::DrawableGravity, bases<Magick::Drawable>, boost::noncopyable, Magick_DrawableGravity_Wrapper >("DrawableGravity", init< Magick::GravityType >())
+    class_< Magick::DrawableGravity, bases<Magick::DrawableBase>, boost::noncopyable, Magick_DrawableGravity_Wrapper >("DrawableGravity", init< Magick::GravityType >())
         .def("gravity", (void (Magick::DrawableGravity::*)(Magick::GravityType) )&Magick::DrawableGravity::gravity)
         .def("gravity", (Magick::GravityType (Magick::DrawableGravity::*)() const)&Magick::DrawableGravity::gravity)
     ;

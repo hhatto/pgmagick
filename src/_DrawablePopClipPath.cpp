@@ -24,6 +24,6 @@ struct Magick_DrawablePopClipPath_Wrapper: Magick::DrawablePopClipPath
 
 void __DrawablePopClipPath()
 {
-    class_< Magick::DrawablePopClipPath, bases<Magick::Drawable>, boost::noncopyable, Magick_DrawablePopClipPath_Wrapper >("DrawablePopClipPath", init<  >())
+    class_< Magick::DrawablePopClipPath, bases<Magick::DrawableBase>, boost::noncopyable, Magick_DrawablePopClipPath_Wrapper >("DrawablePopClipPath", init<  >())
     ;
 }

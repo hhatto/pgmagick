@@ -27,7 +27,7 @@ struct Magick_DrawablePolygon_Wrapper: Magick::DrawablePolygon
 
 void __DrawablePolygon()
 {
-    class_< Magick::DrawablePolygon, bases<Magick::Drawable>, Magick_DrawablePolygon_Wrapper >("DrawablePolygon", init< const Magick::CoordinateList& >())
+    class_< Magick::DrawablePolygon, bases<Magick::DrawableBase>, Magick_DrawablePolygon_Wrapper >("DrawablePolygon", init< const Magick::CoordinateList& >())
         .def(init< const Magick::DrawablePolygon& >())
     ;
 }
