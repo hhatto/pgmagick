@@ -29,8 +29,12 @@ void __Drawable()
     class_< Magick::DrawableList >("DrawableList", init<  >())
         .def(init< const Magick::DrawableList& >())
         .def("push_back", &std::list<Magick::Drawable>::push_back)
+        .def("append", &std::list<Magick::Drawable>::push_back)
         .def("pop_back", &std::list<Magick::Drawable>::pop_back)
+        .def("pop", &std::list<Magick::Drawable>::pop_back)
+        .def("remove", &std::list<Magick::Drawable>::remove)
         .def("reverse", &std::list<Magick::Drawable>::reverse)
+        .def("count", &std::list<Magick::Drawable>::size)
         .def("__len__", &std::list<Magick::Drawable>::size)
     ;
 }
