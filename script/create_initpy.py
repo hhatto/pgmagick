@@ -12,6 +12,8 @@ print "import _pgmagick\n\n"
 for obj in dir(_pgmagick):
     if obj[:2] is '__':
         continue
+    if obj is 'DrawableBase':
+        continue
     exec "typestr = str(type(_pgmagick.%s))" % obj
     if typestr == "<type 'Boost.Python.class'>":
         print "class %s(_pgmagick.%s):\n    pass\n" % (obj, obj)
