@@ -33,6 +33,9 @@ CompressionType = _pgmagick.CompressionType
 class Coordinate(_pgmagick.Coordinate):
     pass
 
+class CoordinateList(_pgmagick.CoordinateList):
+    pass
+
 DecorationType = _pgmagick.DecorationType
 
 class Drawable(_pgmagick.Drawable):
@@ -84,6 +87,9 @@ class DrawableGravity(_pgmagick.DrawableGravity):
     pass
 
 class DrawableLine(_pgmagick.DrawableLine):
+    pass
+
+class DrawableList(_pgmagick.DrawableList):
     pass
 
 class DrawableMatte(_pgmagick.DrawableMatte):
@@ -176,6 +182,9 @@ class DrawableTextUnderColor(_pgmagick.DrawableTextUnderColor):
 class DrawableTranslation(_pgmagick.DrawableTranslation):
     pass
 
+class DrawableViewbox(_pgmagick.DrawableViewbox):
+    pass
+
 EndianType = _pgmagick.EndianType
 
 class Exception(_pgmagick.Exception):
@@ -219,10 +228,16 @@ class PathArcAbs(_pgmagick.PathArcAbs):
 class PathArcArgs(_pgmagick.PathArcArgs):
     pass
 
+class PathArcArgsList(_pgmagick.PathArcArgsList):
+    pass
+
 class PathArcRel(_pgmagick.PathArcRel):
     pass
 
 class PathClosePath(_pgmagick.PathClosePath):
+    pass
+
+class PathCurveToArgsList(_pgmagick.PathCurveToArgsList):
     pass
 
 class PathCurvetoAbs(_pgmagick.PathCurvetoAbs):
@@ -264,6 +279,9 @@ class PathQuadraticCurvetoAbs(_pgmagick.PathQuadraticCurvetoAbs):
 class PathQuadraticCurvetoArgs(_pgmagick.PathQuadraticCurvetoArgs):
     pass
 
+class PathQuadraticCurvetoArgsList(_pgmagick.PathQuadraticCurvetoArgsList):
+    pass
+
 class PathQuadraticCurvetoRel(_pgmagick.PathQuadraticCurvetoRel):
     pass
 
@@ -300,5 +318,8 @@ class TypeMetric(_pgmagick.TypeMetric):
     pass
 
 class VPath(_pgmagick.VPath):
+    pass
+
+class VPathList(_pgmagick.VPathList):
     pass
 
