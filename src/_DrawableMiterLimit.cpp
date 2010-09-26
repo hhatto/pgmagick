@@ -25,7 +25,7 @@ struct Magick_DrawableMiterLimit_Wrapper: Magick::DrawableMiterLimit
 void __DrawableMiterLimit()
 {
     class_< Magick::DrawableMiterLimit, bases<Magick::DrawableBase>, boost::noncopyable, Magick_DrawableMiterLimit_Wrapper >("DrawableMiterLimit", init< unsigned int >())
-        .def("miterlimit", (void (Magick::DrawableMiterLimit::*)(size_t) )&Magick::DrawableMiterLimit::miterlimit)
-        .def("miterlimit", (size_t (Magick::DrawableMiterLimit::*)() const)&Magick::DrawableMiterLimit::miterlimit)
+        .def("miterlimit", (void (Magick::DrawableMiterLimit::*)(unsigned int) )&Magick::DrawableMiterLimit::miterlimit)
+        .def("miterlimit", (unsigned int (Magick::DrawableMiterLimit::*)() const)&Magick::DrawableMiterLimit::miterlimit)
     ;
 }
