@@ -29,7 +29,7 @@ library_dirs.append(find_file('libGraphicsMagick', search_library_dirs))
 
 setup(name='pgmagick',
     version="0.2.3",
-    description="Yet Another Python wrapper for GraphicsMagick++",
+    description="Yet Another Python wrapper for GraphicsMagick",
     long_description=open('README.rst').read(),
     author='Hideo Hattori',
     author_email='hhatto.jp@gmail.com',
