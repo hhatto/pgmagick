@@ -1,4 +1,5 @@
 import _pgmagick
+_pgmagick.InitializeMagick("./")
 
 
 class Blob(_pgmagick.Blob):
