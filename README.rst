@@ -26,6 +26,11 @@ package install on Fedora::
     $ yum install GraphicsMagick-c++-devel
     $ yum install boost-devel
 
+GraphicsMagick from source package::
+
+    $ ./configure --enable-shared=yes
+    $ make && make Install
+
 
 Usage
 =====
