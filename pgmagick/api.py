@@ -1,5 +1,4 @@
 import pgmagick
-pgmagick.__init()
 
 
 class Image(pgmagick.Image):
@@ -28,13 +27,21 @@ class Image(pgmagick.Image):
                 pgmagick.Image.__init__(self, geometry, pgmagick.Color())
         else:
             pgmagick.Image.__init__(self)
-        size = pgmagick.Image.size(self)
-        self.width, self.height = size.width(), size.height()
+        self.width, self.height = self.columns(), self.rows()
 
     def annotate(self, string, position=(0, 0), gravity='center', angle=0):
         position = pgmagick.Geometry(int(position[0]), int(position[1]))
         exec "gravity_type = pgmagick.GravityType.%sGravity" % gravity.title()
         pgmagick.Image.annotate(self, string, position, gravity_type, angle)
+
+    def draw(self, draw_obj):
+        if type(draw_obj) == list or type(draw_obj) == tuple:
+            draw = DrawableList()
+            for d in draw_obj:
+                draw.append(d)
+        else:
+            draw = draw_obj
+        pgmagick.Image.draw(self, draw)
 
     def scale(self, size, filter_type=None):
         if type(size) == float:
@@ -50,6 +57,5 @@ class Image(pgmagick.Image):
             pgmagick.Image.filterType(self, filter_type)
         geometry = pgmagick.Geometry(size)
         pgmagick.Image.scale(self, geometry)
-        size = self.size()
-        self.height = size.height()
-        self.width = size.width()
+        self.height = self.rows()
+        self.width = self.columns()
