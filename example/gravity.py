@@ -23,6 +23,7 @@ dl.append(DrawableText(0, 0, "west"))
 
 dl.append(DrawableGravity(GravityType.EastGravity))
 dl.append(DrawableText(0, 0, "east"))
+dl.append(DrawableText(0, 20, "east-long"))
 
 dl.append(DrawableGravity(GravityType.SouthGravity))
 dl.append(DrawableText(0, 0, "south"))
