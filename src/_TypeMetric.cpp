@@ -1,4 +1,3 @@
-
 #include <boost/python.hpp>
 #include <boost/cstdint.hpp>
 
