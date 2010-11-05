@@ -1,8 +1,6 @@
-#include <boost/python.hpp>
-
 #include <Magick++/Drawable.h>
-
 #include <Magick++.h>
+#include <boost/python.hpp>
 
 using namespace boost;
 using namespace boost::python;
