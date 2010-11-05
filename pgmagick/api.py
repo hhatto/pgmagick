@@ -59,3 +59,31 @@ class Image(pgmagick.Image):
         pgmagick.Image.scale(self, geometry)
         self.height = self.rows()
         self.width = self.columns()
+
+
+class Draw(object):
+
+    def __init__(self):
+        self.drawer = pgmagick.DrawableList()
+
+    def affine(self, sx, sy, rx, ry, tx, ty):
+        affine = pgmagick.DrawableAffine(float(sx), float(sy),
+                                         float(rx), float(ry),
+                                         float(tx), float(ty))
+        self.drawer.append(affine)
+
+    def arc(self, start_x, start_y, end_x, end_y, start_degrees, end_degrees):
+        arc = pgmagick.DrawableArc(float(start_x), float(start_y),
+                                   float(end_x), float(end_y),
+                                   float(start_degrees), float(end_degrees))
+        self.drawer.append(arc)
+
+    def bezier(self, points):
+        """
+        points -> ((5, 5), (6, 6), (7, 7))
+        """
+        coordinates = pgmagick.CoordinateList()
+        for point in points:
+            x, y = float(point[0]), float(point[1])
+            coordinates.append(pgmagick.Coordinate(x, y))
+        self.drawer.append(pgmagick.DrawableBezier(coordinates))
