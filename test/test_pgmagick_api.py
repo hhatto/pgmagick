@@ -49,4 +49,9 @@ class DrawTestCase(unittest.TestCase):
         self.im.draw(self.d.drawer)
         self.im.write('t.png')
 
+    def test_circle(self):
+        self.d.circle(40, 40, 50, 100)
+        self.im.draw(self.d.drawer)
+        self.im.write('t.png')
+
 unittest.main()

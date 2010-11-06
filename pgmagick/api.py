@@ -80,10 +80,18 @@ class Draw(object):
 
     def bezier(self, points):
         """
-        points -> ((5, 5), (6, 6), (7, 7))
+        Draw a Bezier-curve.
+
+        :param points: ex.) ((5, 5), (6, 6), (7, 7))
+        :type points: list
         """
         coordinates = pgmagick.CoordinateList()
         for point in points:
             x, y = float(point[0]), float(point[1])
             coordinates.append(pgmagick.Coordinate(x, y))
         self.drawer.append(pgmagick.DrawableBezier(coordinates))
+
+    def circle(self, origin_x, origin_y, perim_x, perim_y):
+        circle = pgmagick.DrawableCircle(float(origin_x), float(origin_y),
+                                         float(perim_x), float(perim_y))
+        self.drawer.append(circle)
