@@ -95,3 +95,16 @@ class Draw(object):
         circle = pgmagick.DrawableCircle(float(origin_x), float(origin_y),
                                          float(perim_x), float(perim_y))
         self.drawer.append(circle)
+
+    def color(self, x, y, paint_method):
+        """
+        :param paint_method: 'point' or 'replace' or 'floodfill' or
+                             'filltoborder' or 'reset'
+        """
+        pm = pgmagick.PaintMethod()
+        if paint_method.lower() == 'filltoborder':
+            exec 'paint_method = pm.FillToBorder'
+        else:
+            exec 'paint_method = pm.%sMethod' % paint_method.title()
+        color = pgmagick.DrawableColor(x, y, paint_method)
+        self.drawer.append(color)

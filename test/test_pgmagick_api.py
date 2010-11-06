@@ -54,4 +54,9 @@ class DrawTestCase(unittest.TestCase):
         self.im.draw(self.d.drawer)
         self.im.write('t.png')
 
+    def test_color(self):
+        self.d.color(40, 40, 'point')
+        self.im.draw(self.d.drawer)
+        self.im.write('t.png')
+
 unittest.main()
