@@ -9,13 +9,7 @@ all:
 TEST_DIR=test
 .PHONY: test
 test:
-	python $(TEST_DIR)/test_pgmagick_blob.py
-	python $(TEST_DIR)/test_pgmagick_color.py
-	python $(TEST_DIR)/test_pgmagick_image.py
-	python $(TEST_DIR)/test_pgmagick_geometry.py
-	python $(TEST_DIR)/test_pgmagick_montage.py
-	python $(TEST_DIR)/test_pgmagick_import.py
-	python $(TEST_DIR)/test_pgmagick_api.py
+	cd $(TEST_DIR) && make
 
 profile_pg:
 	cd example && python -m cProfile -o test.cprof pgmagick_prof.py
