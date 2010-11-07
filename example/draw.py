@@ -1,4 +1,5 @@
-from pgmagick import Image, DrawableCircle, DrawableText, Geometry, Color
+from pgmagick import Image, Geometry, Color, \
+                     DrawableCircle, DrawableText
 
 im = Image(Geometry(300, 300), Color("yellow"))
 
@@ -9,5 +10,4 @@ im.fontPointsize(65)
 im.font("/var/lib/defoma/x-ttcidfont-conf.d/dirs/TrueType/UnBatang.ttf")
 text = DrawableText(30, 250, "hello gm")
 im.draw(text)
-
-im.write('hoge.png')
+im.write('circle-text.png')

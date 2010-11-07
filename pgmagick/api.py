@@ -39,6 +39,8 @@ class Image(pgmagick.Image):
             draw = DrawableList()
             for d in draw_obj:
                 draw.append(d)
+        elif type(draw_obj) == Draw:
+            draw = draw_obj.drawer
         else:
             draw = draw_obj
         pgmagick.Image.draw(self, draw)
