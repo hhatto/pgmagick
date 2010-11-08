@@ -34,6 +34,31 @@ class Image(pgmagick.Image):
         exec "gravity_type = pgmagick.GravityType.%sGravity" % gravity.title()
         pgmagick.Image.annotate(self, string, position, gravity_type, angle)
 
+    def composite(self, composite_img, offset,
+                  compose=pgmagick.CompositeOperator.InCompositeOp):
+        if type(offset) == list or type(offset) == tuple:
+            x = int(offset[0])
+            y = int(offset[1])
+            offset = pgmagick.Geometry(x, y)
+        elif pgmagick.Geometry == type(offset):
+            pass
+        elif type(offset) == str:   # is gravity (string)
+            exec "offset = pgmagick.GravityType.%sGravity" % offset.title()
+        else:   # is gravity (pgmagick.GravityType)
+            pass
+        if type(compose) == pgmagick.CompositeOperator:
+            pass
+        elif compose.lower() in ('copyblue', 'copygreen', 'copyopacity',
+                                 'copyred', 'copycyan', 'copymagenta',
+                                 'copyyellow', 'copyblack'):
+            color = compose.lower().split('copy')[1].title()
+            exec "compose = pgmagick.CompositeOperator."\
+                 "Copy%sCompositeOp" % color
+        else:   # other string
+            exec "compose = pgmagick.CompositeOperator."\
+                 "%sCompositeOp" % compose.title()
+        pgmagick.Image.composite(self, composite_img, offset, compose)
+
     def draw(self, draw_obj):
         if type(draw_obj) == list or type(draw_obj) == tuple:
             draw = DrawableList()

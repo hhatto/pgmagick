@@ -26,6 +26,24 @@ class ImageTestCase(unittest.TestCase):
         im.scale(0.6)
         im.write('t.jpg')
 
+    def test_composite_arg_list(self):
+        base = Image((300, 200), 'green')
+        layer = Image((300, 200), 'transparent')
+        drawer = Draw()
+        drawer.circle(50, 50, 50, 100)
+        layer.draw(drawer)
+        base.composite(layer, (10, 10), 'over')
+        base.write('t.png')
+
+    def test_composite_arg_gravity(self):
+        base = Image((300, 200), 'green')
+        layer = Image((150, 100), 'transparent')
+        drawer = Draw()
+        drawer.circle(50, 50, 20, 20)
+        layer.draw(drawer)
+        base.composite(layer, 'center', 'over')
+        base.write('t.png')
+
 
 class DrawTestCase(unittest.TestCase):
 
