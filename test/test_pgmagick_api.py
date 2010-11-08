@@ -44,6 +44,14 @@ class ImageTestCase(unittest.TestCase):
         base.composite(layer, 'center', 'over')
         base.write('t.png')
 
+    def test_fontpointsize(self):
+        img = Image((300, 200), 'red')
+        img.font_pointsize(60)
+        self.assertEqual(60, img.font_pointsize())
+        self.assertEqual(float, type(img.font_pointsize()))
+        img.annotate("hello", (100, 100))
+        img.write('t.png')
+
 
 class DrawTestCase(unittest.TestCase):
 

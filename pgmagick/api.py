@@ -70,6 +70,13 @@ class Image(pgmagick.Image):
             draw = draw_obj
         pgmagick.Image.draw(self, draw)
 
+    def font_pointsize(self, point_size=None):
+        if point_size:
+            point_size = float(point_size)
+            pgmagick.Image.fontPointsize(self, point_size)
+        else:
+            return pgmagick.Image.fontPointsize(self)
+
     def scale(self, size, filter_type=None):
         if type(size) == float:
             scaled_height = self.height * size
