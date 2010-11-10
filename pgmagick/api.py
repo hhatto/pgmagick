@@ -160,3 +160,12 @@ class Draw(object):
                                            float(radius_x), float(radius_y),
                                            float(arc_start), float(arc_end))
         self.drawer.append(ellipse)
+
+    def fill_color(self, color):
+        if type(color) == list or type(color) == tuple:
+            r, g, b = int(color[0]), int(color[1]), int(color[2])
+            color = pgmagick.Color(r, g, b)
+        else:   # type is str, or the other type
+            color = pgmagick.Color(color)
+        fill_color = pgmagick.DrawableFillColor(color)
+        self.drawer.append(fill_color)

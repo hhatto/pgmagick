@@ -96,4 +96,10 @@ class DrawTestCase(unittest.TestCase):
         self.im.draw(self.d)
         self.im.write('t.png')
 
+    def test_fill_color(self):
+        self.d.fill_color('#f09060')
+        self.d.ellipse(150, 150, 120, 120, 0, 120)
+        self.im.draw(self.d)
+        self.im.write('t.png')
+
 unittest.main()
