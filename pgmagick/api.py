@@ -187,6 +187,23 @@ class Draw(object):
         opacity = pgmagick.DrawableFillOpacity(float(opacity))
         self.drawer.append(opacity)
 
+    def font(self, family, style='normal', weight=400, stretch='normal'):
+        exec "style = pgmagick.StyleType.%sStyle" % style.title()
+        stretch = stretch.lower()
+        if 'condensed' in stretch:
+            tmp = stretch.split('condensed')[0]
+            stretch = "%sCondensedStretch" % tmp.title()
+        elif 'expanded' in stretch:
+            tmp = stretch.split('expanded')[0]
+            stretch = "%sExpandedStretch" % tmp.title()
+        else:
+            stretch = "%sStretch" % stretch.title()
+        exec "stretch = pgmagick.StretchType.%s" % stretch
+        if weight is 'bold':
+            weight = 800
+        font = pgmagick.DrawableFont(family, style, weight, stretch)
+        self.drawer.append(font)
+
     def pointsize(self, pointsize):
         pointsize = pgmagick.DrawablePointSize(pointsize)
         self.drawer.append(pointsize)

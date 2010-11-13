@@ -133,4 +133,40 @@ class DrawTestCase(unittest.TestCase):
         self.im.draw(self.d)
         self.im.write('t.png')
 
+    def test_font_style_italic(self):
+        self.d.font('vera.ttf', 'italic')
+        self.d.text(30, 30, "hello pgmagick")
+        self.im.draw(self.d)
+        self.im.write('t.png')
+
+    def test_font_style_oblique(self):
+        self.d.font('vera.ttf', 'oblique')
+        self.d.text(30, 30, "hello pgmagick")
+        self.im.draw(self.d)
+        self.im.write('t.png')
+
+    def test_font_stretch_ultracondensed(self):
+        self.d.font('vera.ttf', 'oblique', stretch='ultracondensed')
+        self.d.text(30, 30, "hello pgmagick")
+        self.im.draw(self.d)
+        self.im.write('t.png')
+
+    def test_font_stretch_extraexpanded(self):
+        self.d.font('vera.ttf', 'oblique', stretch='extraexpanded')
+        self.d.text(30, 30, "hello pgmagick")
+        self.im.draw(self.d)
+        self.im.write('t.png')
+
+    def test_font_weight100(self):
+        self.d.font('vera.ttf', weight=100)
+        self.d.text(30, 30, "hello pgmagick")
+        self.im.draw(self.d)
+        self.im.write('t.png')
+
+    def test_font_bold(self):
+        self.d.font('vera.ttf', weight='bold')
+        self.d.text(30, 30, "hello pgmagick")
+        self.im.draw(self.d)
+        self.im.write('t.png')
+
 unittest.main()
