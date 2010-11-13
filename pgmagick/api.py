@@ -169,3 +169,29 @@ class Draw(object):
             color = pgmagick.Color(color)
         fill_color = pgmagick.DrawableFillColor(color)
         self.drawer.append(fill_color)
+
+    def fill_rule(self, rule='evenodd'):
+        if rule.lower() == 'evenodd':
+            fill_rule = pgmagick.FillRule.EvenOddRule
+        elif rule.lower() == 'nonzero':
+            fill_rule = pgmagick.FillRule.NonZeroRule
+        else:
+            fill_rule = rule
+        fill_rule = pgmagick.DrawableFillRule(fill_rule)
+        self.drawer.append(fill_rule)
+
+    def fill_opacity(self, opacity):
+        """
+        :param opacity: 0.0 <= opacity <= 1.0
+        """
+        opacity = pgmagick.DrawableFillOpacity(float(opacity))
+        self.drawer.append(opacity)
+
+    def pointsize(self, pointsize):
+        pointsize = pgmagick.DrawablePointSize(pointsize)
+        self.drawer.append(pointsize)
+
+    def text(self, x, y, string, encoding=None):
+        # TODO: unable encoding
+        text = pgmagick.DrawableText(x, y, string)
+        self.drawer.append(text)

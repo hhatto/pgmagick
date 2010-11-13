@@ -102,4 +102,35 @@ class DrawTestCase(unittest.TestCase):
         self.im.draw(self.d)
         self.im.write('t.png')
 
+    def test_fill_rule(self):
+        self.d.fill_rule('evenodd')
+        self.d.circle(150, 150, 50, 180)
+        self.d.fill_rule('nonzero')
+        self.d.circle(350, 150, 250, 180)
+        self.im.draw(self.d.drawer)
+        self.im.write('t.png')
+
+    def test_fill_opacity(self):
+        self.im = Image((600, 400), 'transparent')
+        self.d.fill_color('red')
+        self.d.fill_opacity(0.5)
+        self.d.circle(150, 150, 50, 180)
+        self.d.fill_color('green')
+        self.d.fill_opacity(0.8)
+        self.d.circle(160, 160, 50, 180)
+        self.im.draw(self.d.drawer)
+        self.im.write('t.png')
+
+    def test_pointsize(self):
+        self.d.pointsize(10)
+        self.d.pointsize(30.)
+        self.d.circle(150, 150, 50, 180)
+        self.im.draw(self.d.drawer)
+        self.im.write('t.png')
+
+    def test_text(self):
+        self.d.text(30, 30, "hello pgmagick")
+        self.im.draw(self.d)
+        self.im.write('t.png')
+
 unittest.main()
