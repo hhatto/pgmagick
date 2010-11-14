@@ -7,16 +7,16 @@ class Image(pgmagick.Image):
     width = 0
 
     def __init__(self, filename=None, color=None, *args, **kargs):
-        if type(filename) == str:
+        if isinstance(filename, str):
             pgmagick.Image.__init__(self, filename)
-        elif type(filename) == list or type(filename) == tuple:
+        elif isinstance(filename, list or tuple):
             size = filename
             geometry = pgmagick.Geometry(int(size[0]), int(size[1]))
-            if type(color) == list or type(color) == tuple:
+            if isinstance(color, list or tuple):
                 r, g, b = int(color[0]), int(color[1]), int(color[2])
                 color = pgmagick.Color(r, g, b)
                 pgmagick.Image.__init__(self, geometry, color)
-            elif type(color) == str:
+            elif isinstance(color, str):
                 if color.find('gradient') == 0:
                     pgmagick.Image.__init__(self, geometry, pgmagick.Color())
                     self.read(color)
@@ -36,17 +36,17 @@ class Image(pgmagick.Image):
 
     def composite(self, composite_img, offset,
                   compose=pgmagick.CompositeOperator.InCompositeOp):
-        if type(offset) == list or type(offset) == tuple:
+        if isinstance(offset, list or tuple):
             x = int(offset[0])
             y = int(offset[1])
             offset = pgmagick.Geometry(x, y)
-        elif pgmagick.Geometry == type(offset):
+        elif isinstance(offset, pgmagick.Geometry):
             pass
-        elif type(offset) == str:   # is gravity (string)
+        elif isinstance(offset, str):   # is gravity (string)
             exec "offset = pgmagick.GravityType.%sGravity" % offset.title()
         else:   # is gravity (pgmagick.GravityType)
             pass
-        if type(compose) == pgmagick.CompositeOperator:
+        if isinstance(compose, pgmagick.CompositeOperator):
             pass
         elif compose.lower() in ('copyblue', 'copygreen', 'copyopacity',
                                  'copyred', 'copycyan', 'copymagenta',
@@ -60,11 +60,11 @@ class Image(pgmagick.Image):
         pgmagick.Image.composite(self, composite_img, offset, compose)
 
     def draw(self, draw_obj):
-        if type(draw_obj) == list or type(draw_obj) == tuple:
+        if isinstance(draw_obj, list or tuple):
             draw = DrawableList()
             for d in draw_obj:
                 draw.append(d)
-        elif type(draw_obj) == Draw:
+        elif isinstance(draw_obj, Draw):
             draw = draw_obj.drawer
         else:
             draw = draw_obj
@@ -78,11 +78,11 @@ class Image(pgmagick.Image):
             return pgmagick.Image.fontPointsize(self)
 
     def scale(self, size, filter_type=None):
-        if type(size) == float:
+        if isinstance(size, float):
             scaled_height = self.height * size
             scaled_width = self.width * size
             size = "%dx%d" % (int(scaled_width), int(scaled_height))
-        elif type(size) == list or type(size) == tuple:
+        elif isinstance(size, list or tuple):
             scaled_width, scaled_height = int(size[0]), int(size[1])
             size = "%dx%d" % (int(scaled_width), int(scaled_height))
         if filter_type:
@@ -162,7 +162,7 @@ class Draw(object):
         self.drawer.append(ellipse)
 
     def fill_color(self, color):
-        if type(color) == list or type(color) == tuple:
+        if isinstance(color, list or tuple):
             r, g, b = int(color[0]), int(color[1]), int(color[2])
             color = pgmagick.Color(r, g, b)
         else:   # type is str, or the other type
