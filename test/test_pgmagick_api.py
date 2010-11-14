@@ -169,4 +169,10 @@ class DrawTestCase(unittest.TestCase):
         self.im.draw(self.d)
         self.im.write('t.png')
 
+    def test_gravity(self):
+        self.d.gravity('center')
+        self.d.text(0, 0, "hello pgmagick")
+        self.im.draw(self.d)
+        self.im.write('t.png')
+
 unittest.main()

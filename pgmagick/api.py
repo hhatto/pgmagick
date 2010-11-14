@@ -204,6 +204,14 @@ class Draw(object):
         font = pgmagick.DrawableFont(family, style, weight, stretch)
         self.drawer.append(font)
 
+    def gravity(self, gravity_type):
+        if isinstance(gravity_type, str):
+            exec "g = pgmagick.GravityType.%sGravity" % gravity_type.title()
+        else:
+            g = gravity_type
+        gravity_type = pgmagick.DrawableGravity(g)
+        self.drawer.append(gravity_type)
+
     def pointsize(self, pointsize):
         pointsize = pgmagick.DrawablePointSize(pointsize)
         self.drawer.append(pointsize)
