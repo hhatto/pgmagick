@@ -6,3 +6,6 @@ all:
 	python test_pgmagick_montage.py
 	python test_pgmagick_import.py
 	python test_pgmagick_api.py
+
+clean:
+	rm *.png *.jpg
