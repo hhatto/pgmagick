@@ -4,7 +4,6 @@ all:
 	python test_pgmagick_image.py
 	python test_pgmagick_geometry.py
 	python test_pgmagick_montage.py
-	python test_pgmagick_import.py
 	python test_pgmagick_api.py
 
 clean:

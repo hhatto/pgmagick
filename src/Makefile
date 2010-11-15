@@ -116,5 +116,5 @@ $(SO): $(OBJS)
 	g++ $(FLAGS) $(INCS) -o $@ -c $<
 
 clean:
-	rm $(OBJS) $(SO)
+	rm -rf $(OBJS) $(SO)
 

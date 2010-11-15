@@ -9,10 +9,10 @@ class Image(pgmagick.Image):
     def __init__(self, filename=None, color=None, *args, **kargs):
         if isinstance(filename, str):
             pgmagick.Image.__init__(self, filename)
-        elif isinstance(filename, list or tuple):
+        elif isinstance(filename, (list, tuple)):
             size = filename
             geometry = pgmagick.Geometry(int(size[0]), int(size[1]))
-            if isinstance(color, list or tuple):
+            if isinstance(color, (list, tuple)):
                 r, g, b = int(color[0]), int(color[1]), int(color[2])
                 color = pgmagick.Color(r, g, b)
                 pgmagick.Image.__init__(self, geometry, color)
@@ -31,12 +31,12 @@ class Image(pgmagick.Image):
 
     def annotate(self, string, position=(0, 0), gravity='center', angle=0):
         position = pgmagick.Geometry(int(position[0]), int(position[1]))
-        exec "gravity_type = pgmagick.GravityType.%sGravity" % gravity.title()
-        pgmagick.Image.annotate(self, string, position, gravity_type, angle)
+        exec "gravity = pgmagick.GravityType.%sGravity" % gravity.title()
+        pgmagick.Image.annotate(self, string, position, gravity, angle)
 
     def composite(self, composite_img, offset,
                   compose=pgmagick.CompositeOperator.InCompositeOp):
-        if isinstance(offset, list or tuple):
+        if isinstance(offset, (list, tuple)):
             x = int(offset[0])
             y = int(offset[1])
             offset = pgmagick.Geometry(x, y)
@@ -60,8 +60,8 @@ class Image(pgmagick.Image):
         pgmagick.Image.composite(self, composite_img, offset, compose)
 
     def draw(self, draw_obj):
-        if isinstance(draw_obj, list or tuple):
-            draw = DrawableList()
+        if isinstance(draw_obj, (list, tuple)):
+            draw = pgmagick.DrawableList()
             for d in draw_obj:
                 draw.append(d)
         elif isinstance(draw_obj, Draw):
@@ -82,7 +82,7 @@ class Image(pgmagick.Image):
             scaled_height = self.height * size
             scaled_width = self.width * size
             size = "%dx%d" % (int(scaled_width), int(scaled_height))
-        elif isinstance(size, list or tuple):
+        elif isinstance(size, (list, tuple)):
             scaled_width, scaled_height = int(size[0]), int(size[1])
             size = "%dx%d" % (int(scaled_width), int(scaled_height))
         if filter_type:
@@ -113,8 +113,7 @@ class Draw(object):
         self.drawer.append(arc)
 
     def bezier(self, points):
-        """
-        Draw a Bezier-curve.
+        """Draw a Bezier-curve.
 
         :param points: ex.) ((5, 5), (6, 6), (7, 7))
         :type points: list
@@ -137,7 +136,7 @@ class Draw(object):
         """
         pm = pgmagick.PaintMethod()
         if paint_method.lower() == 'filltoborder':
-            exec 'paint_method = pm.FillToBorder'
+            paint_method = pm.FillToBorderMethod
         else:
             exec 'paint_method = pm.%sMethod' % paint_method.title()
         color = pgmagick.DrawableColor(x, y, paint_method)
@@ -162,7 +161,7 @@ class Draw(object):
         self.drawer.append(ellipse)
 
     def fill_color(self, color):
-        if isinstance(color, list or tuple):
+        if isinstance(color, (list, tuple)):
             r, g, b = int(color[0]), int(color[1]), int(color[2])
             color = pgmagick.Color(r, g, b)
         else:   # type is str, or the other type
@@ -211,6 +210,10 @@ class Draw(object):
             g = gravity_type
         gravity_type = pgmagick.DrawableGravity(g)
         self.drawer.append(gravity_type)
+
+    def line(self, start_x, start_y, end_x, end_y):
+        line = pgmagick.DrawableLine(start_x, start_y, end_x, end_y)
+        self.drawer.append(line)
 
     def pointsize(self, pointsize):
         pointsize = pgmagick.DrawablePointSize(pointsize)

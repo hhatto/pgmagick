@@ -175,4 +175,9 @@ class DrawTestCase(unittest.TestCase):
         self.im.draw(self.d)
         self.im.write('t.png')
 
+    def test_line(self):
+        self.d.line(10, 10, 40, 200)
+        self.im.draw(self.d)
+        self.im.write('t.png')
+
 unittest.main()
