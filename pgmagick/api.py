@@ -223,3 +223,12 @@ class Draw(object):
         # TODO: unable encoding
         text = pgmagick.DrawableText(x, y, string)
         self.drawer.append(text)
+
+    def text_antialias(self, flag=True):
+        """text antialias
+
+        :param flag: True or False. (default is True)
+        :type flag: bool
+        """
+        antialias = pgmagick.DrawableTextAntialias(flag)
+        self.drawer.append(antialias)

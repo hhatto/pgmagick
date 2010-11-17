@@ -180,4 +180,14 @@ class DrawTestCase(unittest.TestCase):
         self.im.draw(self.d)
         self.im.write('t.png')
 
+    def test_non_antialias(self):
+        self.d.font('courier', weight='bold')
+        self.d.pointsize(70)
+        self.d.text_antialias(False)
+        self.d.text(30, 100, "hello pgmagick")
+        self.d.text_antialias(True)
+        self.d.text(30, 200, "hello pgmagick")
+        self.im.draw(self.d)
+        self.im.write('t.png')
+
 unittest.main()
