@@ -232,3 +232,16 @@ class Draw(object):
         """
         antialias = pgmagick.DrawableTextAntialias(flag)
         self.drawer.append(antialias)
+
+    def text_decoration(self, decoration):
+        """text decoration
+
+        :param decoration: 'no', 'underline', 'overline', 'linethrough'
+        :type decoration: str
+        """
+        if decoration.lower() == 'linethrough':
+            d = pgmagick.DecorationType.LineThroughDecoration
+        else:
+            exec "d = pgmagick.DecorationType.%sDecoration" % decoration.title()
+        decoration = pgmagick.DrawableTextDecoration(d)
+        self.drawer.append(decoration)

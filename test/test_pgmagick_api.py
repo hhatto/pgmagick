@@ -190,4 +190,15 @@ class DrawTestCase(unittest.TestCase):
         self.im.draw(self.d)
         self.im.write('t.png')
 
+    def test_decoration(self):
+        self.d.pointsize(70)
+        self.d.text_decoration('overline')
+        self.d.text(30, 100, "hello pgmagick")
+        self.d.text_decoration('linethrough')
+        self.d.text(30, 200, "hello pgmagick")
+        self.d.text_decoration('underline')
+        self.d.text(30, 300, "hello pgmagick")
+        self.im.draw(self.d)
+        self.im.write('t.png')
+
 unittest.main()
