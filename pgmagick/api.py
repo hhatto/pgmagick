@@ -17,7 +17,7 @@ class Image(pgmagick.Image):
                 color = pgmagick.Color(r, g, b)
                 pgmagick.Image.__init__(self, geometry, color)
             elif isinstance(color, str):
-                if color.find('gradient') == 0:
+                if color.find('gradient') == 0 or color.find('plasma') == 0:
                     pgmagick.Image.__init__(self, geometry, pgmagick.Color())
                     self.read(color)
                 else:
