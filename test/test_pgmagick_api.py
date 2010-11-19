@@ -180,7 +180,7 @@ class DrawTestCase(unittest.TestCase):
         self.im.draw(self.d)
         self.im.write('t.png')
 
-    def test_non_antialias(self):
+    def test_text_antialias(self):
         self.d.font('courier', weight='bold')
         self.d.pointsize(70)
         self.d.text_antialias(False)
@@ -190,7 +190,7 @@ class DrawTestCase(unittest.TestCase):
         self.im.draw(self.d)
         self.im.write('t.png')
 
-    def test_decoration(self):
+    def test_text_decoration(self):
         self.d.pointsize(70)
         self.d.text_decoration('overline')
         self.d.text(30, 100, "hello pgmagick")
@@ -198,6 +198,13 @@ class DrawTestCase(unittest.TestCase):
         self.d.text(30, 200, "hello pgmagick")
         self.d.text_decoration('underline')
         self.d.text(30, 300, "hello pgmagick")
+        self.im.draw(self.d)
+        self.im.write('t.png')
+
+    def test_text_undercolor(self):
+        self.d.pointsize(70)
+        self.d.text_undercolor('lime')
+        self.d.text(30, 100, "hello pgmagick")
         self.im.draw(self.d)
         self.im.write('t.png')
 

@@ -1,6 +1,18 @@
 import pgmagick
 
 
+def _convert_colorobj(input_obj):
+    if isinstance(input_obj, (list, tuple)):
+        r, g, b = int(input_obj[0]), int(input_obj[1]), int(input_obj[2])
+        color = pgmagick.Color(r, g, b)
+    elif isinstance(input_obj, str):
+        color = pgmagick.Color(input_obj)
+    else:
+        color = input_obj
+        assert isinstance(color, pgmagick.Color)
+    return color
+
+
 class Image(pgmagick.Image):
 
     height = 0
@@ -161,11 +173,7 @@ class Draw(object):
         self.drawer.append(ellipse)
 
     def fill_color(self, color):
-        if isinstance(color, (list, tuple)):
-            r, g, b = int(color[0]), int(color[1]), int(color[2])
-            color = pgmagick.Color(r, g, b)
-        else:   # type is str, or the other type
-            color = pgmagick.Color(color)
+        color = _convert_colorobj(color)
         fill_color = pgmagick.DrawableFillColor(color)
         self.drawer.append(fill_color)
 
@@ -242,6 +250,12 @@ class Draw(object):
         if decoration.lower() == 'linethrough':
             d = pgmagick.DecorationType.LineThroughDecoration
         else:
-            exec "d = pgmagick.DecorationType.%sDecoration" % decoration.title()
+            decoration_type_string = "%sDecoration" % decoration.title()
+            exec "d = pgmagick.DecorationType.%s" % decoration_type_string
         decoration = pgmagick.DrawableTextDecoration(d)
         self.drawer.append(decoration)
+
+    def text_undercolor(self, color):
+        color = _convert_colorobj(color)
+        undercolor = pgmagick.DrawableTextUnderColor(color)
+        self.drawer.append(undercolor)
