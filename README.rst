@@ -17,9 +17,9 @@ Require
 =======
 GraphicsMagick and Boost.Python.
 
-package install on Ubuntu::
+package install on Ubuntu(test on Ubuntu10.04+)::
 
-    $ apt-get install libgraphicsmagick++-dev
+    $ apt-get install libgraphicsmagick++1-dev
     $ apt-get install libboost-python1.40-dev
 
 package install on Fedora::
