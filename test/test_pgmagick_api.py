@@ -180,6 +180,11 @@ class DrawTestCase(unittest.TestCase):
         self.im.draw(self.d)
         self.im.write('t.png')
 
+    def test_rectangle(self):
+        self.d.rectangle((50, 50), (100, 100))
+        self.im.draw(self.d)
+        self.im.write('t.png')
+
     def test_round_rectangle(self):
         self.d.round_rectangle((200, 200), (30, 30), (15, 15))
         self.im.draw(self.d)

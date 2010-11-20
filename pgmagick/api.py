@@ -350,23 +350,18 @@ class Draw(object):
         pass
 
     def rectangle(self, upper_left, lower_right):
-        # TODO: not implemented
-        pass
+        r = pgmagick.DrawableRectangle(upper_left[0], upper_left[1],
+                                       lower_right[0], lower_right[1])
+        self.drawer.append(r)
 
     def rotation(self, angle):
         # TODO: not implemented
         pass
 
     def round_rectangle(self, center, size, corner_size):
-        center_x = float(center[0])
-        center_y = float(center[1])
-        width = float(size[0])
-        height = float(size[1])
-        corner_width = float(corner_size[0])
-        corner_height = float(corner_size[1])
-        rr = pgmagick.DrawableRoundRectangle(center_x, center_y,
-                                             width, height,
-                                             corner_width, corner_height)
+        rr = pgmagick.DrawableRoundRectangle(center[0], center[1],
+                                             size[0], size[1],
+                                             corner_size[0], corner_size[1])
         self.drawer.append(rr)
 
     def scaling(self, x, y):
