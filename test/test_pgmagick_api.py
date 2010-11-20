@@ -180,6 +180,46 @@ class DrawTestCase(unittest.TestCase):
         self.im.draw(self.d)
         self.im.write('t.png')
 
+    def test_stroke_antialias(self):
+        self.d.stroke_color('black')
+        self.d.stroke_width(20)
+        self.d.stroke_antialias(True)
+        self.d.line(10, 10, 40, 200)
+        self.d.stroke_antialias(False)
+        self.d.line(50, 10, 80, 200)
+        self.im.draw(self.d)
+        self.im.write('t.png')
+
+    def test_stroke_linecap(self):
+        self.d.stroke_color('lime')
+        self.d.stroke_linecap('butt')
+        self.d.stroke_linecap('round')
+        self.d.stroke_linecap('square')
+        self.d.line(10, 10, 40, 200)
+        self.im.draw(self.d)
+        self.im.write('t.png')
+
+    def test_stroke_linejoin(self):
+        self.d.stroke_color('lime')
+        self.d.stroke_linejoin('round')
+        self.d.stroke_linejoin('bevel')     # FIXME: Unit Test Error
+        self.d.stroke_linejoin('miter')
+        self.d.line(10, 10, 40, 200)
+        self.im.draw(self.d)
+        self.im.write('t.png')
+
+    def test_stroke_color(self):
+        self.d.stroke_color('lime')
+        self.d.line(10, 10, 40, 200)
+        self.im.draw(self.d)
+        self.im.write('t.png')
+
+    def test_stroke_width(self):
+        self.d.stroke_width(20)
+        self.d.line(20, 20, 50, 210)
+        self.im.draw(self.d)
+        self.im.write('t.png')
+
     def test_text_antialias(self):
         self.d.font('courier', weight='bold')
         self.d.pointsize(70)

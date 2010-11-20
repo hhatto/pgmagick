@@ -227,6 +227,45 @@ class Draw(object):
         pointsize = pgmagick.DrawablePointSize(pointsize)
         self.drawer.append(pointsize)
 
+    def stroke_antialias(self, flag=True):
+        """stroke antialias
+
+        :param flag: True or False. (default is True)
+        :type flag: bool
+        """
+        antialias = pgmagick.DrawableStrokeAntialias(flag)
+        self.drawer.append(antialias)
+
+    def stroke_color(self, color):
+        color = _convert_colorobj(color)
+        color = pgmagick.DrawableStrokeColor(color)
+        self.drawer.append(color)
+
+    def stroke_linecap(self, linecap):
+        """set to stroke linecap.
+
+        :param linecap: 'undefined', 'butt', 'round', 'square'
+        :type linecap: str
+        """
+        exec "linecap = pgmagick.LineCap.%sCap" % linecap.title()
+        linecap = pgmagick.DrawableStrokeLineCap(linecap)
+        self.drawer.append(linecap)
+
+    def stroke_linejoin(self, linejoin):
+        """set to stroke linejoin.
+
+        :param linejoin: 'undefined', 'miter', 'round', 'bevel'
+        :type linejoin: str
+        """
+        exec "linejoin = pgmagick.LineJoin.%sJoin" % linejoin.title()
+        linejoin = pgmagick.DrawableStrokeLineJoin(linejoin)
+        self.drawer.append(linejoin)
+
+    def stroke_width(self, width):
+        width = float(width)
+        width = pgmagick.DrawableStrokeWidth(width)
+        self.drawer.append(width)
+
     def text(self, x, y, string, encoding=None):
         # TODO: unable encoding
         text = pgmagick.DrawableText(x, y, string)

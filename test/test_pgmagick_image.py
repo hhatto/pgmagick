@@ -2,7 +2,7 @@ import sys
 import unittest
 sys.path.append('../')
 sys.path.append('./')
-from pgmagick import Image, Geometry, Color
+from pgmagick import Image, Geometry, Color, LineJoin
 
 
 class TestImage(unittest.TestCase):
@@ -19,5 +19,11 @@ class TestImage(unittest.TestCase):
         size = im.size()
         self.assertEqual(300, size.width())
         self.assertEqual(200, size.height())
+
+    def test_stroke_linejoin(self):
+        im = Image(Geometry(300, 200), Color('transparent'))
+        im.strokeLineJoin(LineJoin.MiterJoin)
+        im.strokeLineJoin(LineJoin.RoundJoin)
+        im.strokeLineJoin(LineJoin.BevelJoin)
 
 unittest.main()
