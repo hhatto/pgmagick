@@ -248,4 +248,9 @@ class DrawTestCase(unittest.TestCase):
         self.im.draw(self.d)
         self.im.write('t.png')
 
+    def test_translate(self):
+        self.d.translate(10, 200)
+        self.im.draw(self.d)
+        self.im.write('t.png')
+
 unittest.main()

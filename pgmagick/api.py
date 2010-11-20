@@ -446,5 +446,4 @@ class Draw(object):
         self.drawer.append(undercolor)
 
     def translate(self, x, y):
-        # TODO: not implemented
-        pass
+        self.drawer.append(pgmagick.DrawableTranslation(float(x), float(y)))
