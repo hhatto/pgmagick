@@ -41,10 +41,71 @@ class Image(pgmagick.Image):
             pgmagick.Image.__init__(self)
         self.width, self.height = self.columns(), self.rows()
 
+    # API of Manipulate An Image
+    def adaptive_threshold(self, width, height, offset=0):
+        # TODO: not implemented
+        pass
+
+    def add_noise(self, noise_type):
+        # TODO: not implemented
+        pass
+
+    def add_noise_channel(self, channel, noise_type):
+        # TODO: not implemented
+        pass
+
+    def affine_transform(self, affine):
+        # TODO: not implemented
+        pass
+
     def annotate(self, string, position=(0, 0), gravity='center', angle=0):
         position = pgmagick.Geometry(int(position[0]), int(position[1]))
         exec "gravity = pgmagick.GravityType.%sGravity" % gravity.title()
         pgmagick.Image.annotate(self, string, position, gravity, angle)
+
+    def blur(self, radius=0.0, sigma=1.0):
+        # TODO: not implemented
+        pass
+
+    def blur_channel(self, channel, radius=0.0, sigma=1.0):
+        # TODO: not implemented
+        pass
+
+    def border(self, geometry=None):
+        # TODO: not implemented
+        pass
+
+    def channel(self, channel):
+        # TODO: not implemented
+        pass
+
+    def channel_depth(self, channel, depth=None):
+        # TODO: not implemented
+        pass
+
+    def charcoal(self, radius=0.0, sigma=1.0):
+        # TODO: not implemented
+        pass
+
+    def chop(self, geometry):
+        # TODO: not implemented
+        pass
+
+    def colorize(self, opacity_rgb, color):
+        # TODO: not implemented
+        pass
+
+    def color_matrix(self, order, color_matrix):
+        # TODO: not implemented
+        pass
+
+    def comment(self, comment):
+        # TODO: not implemented
+        pass
+
+    def compare(self, reference):
+        # TODO: not implemented
+        pass
 
     def composite(self, composite_img, offset,
                   compose=pgmagick.CompositeOperator.InCompositeOp):
@@ -71,6 +132,22 @@ class Image(pgmagick.Image):
                  "%sCompositeOp" % compose.title()
         pgmagick.Image.composite(self, composite_img, offset, compose)
 
+    def contrast(self, sharpen):
+        # TODO: not implemented
+        pass
+
+    def convolve(self, order, kernel):
+        # TODO: not implemented
+        pass
+
+    def crop(self, geometry):
+        # TODO: not implemented
+        pass
+
+    def cycle_colormap(self, amount):
+        # TODO: not implemented
+        pass
+
     def draw(self, draw_obj):
         if isinstance(draw_obj, (list, tuple)):
             draw = pgmagick.DrawableList()
@@ -82,12 +159,25 @@ class Image(pgmagick.Image):
             draw = draw_obj
         pgmagick.Image.draw(self, draw)
 
-    def font_pointsize(self, point_size=None):
-        if point_size:
-            point_size = float(point_size)
-            pgmagick.Image.fontPointsize(self, point_size)
-        else:
-            return pgmagick.Image.fontPointsize(self)
+    def edge(self, radius=0.0):
+        # TODO: not implemented
+        pass
+
+    def emboss(self, radius=0.0, sigma=1.0):
+        # TODO: not implemented
+        pass
+
+    def floodfill_color(self, point, fill_color):
+        # TODO: not implemented
+        pass
+
+    def floodfill_opacity(self, point, opacity, method):
+        # TODO: not implemented
+        pass
+
+    def floodfill_texture(self, point, texture):
+        # TODO: not implemented
+        pass
 
     def scale(self, size, filter_type=None):
         if isinstance(size, float):
@@ -105,6 +195,14 @@ class Image(pgmagick.Image):
         pgmagick.Image.scale(self, geometry)
         self.height = self.rows()
         self.width = self.columns()
+
+    # API of Set/Get Image
+    def font_pointsize(self, point_size=None):
+        if point_size:
+            point_size = float(point_size)
+            pgmagick.Image.fontPointsize(self, point_size)
+        else:
+            return pgmagick.Image.fontPointsize(self)
 
 
 class Draw(object):
@@ -223,9 +321,57 @@ class Draw(object):
         line = pgmagick.DrawableLine(start_x, start_y, end_x, end_y)
         self.drawer.append(line)
 
+    def matte(self, x, y, paint_method):
+        # TODO: not implemented
+        pass
+
+    def miter_limit(self, miterlimit):
+        # TODO: not implemented
+        pass
+
+    def path(self, vpath):
+        # TODO: not implemented
+        pass
+
+    def point(self, x, y):
+        # TODO: not implemented
+        pass
+
     def pointsize(self, pointsize):
         pointsize = pgmagick.DrawablePointSize(pointsize)
         self.drawer.append(pointsize)
+
+    def polygon(self, coordinates):
+        # TODO: not implemented
+        pass
+
+    def polyline(self, coordinates):
+        # TODO: not implemented
+        pass
+
+    def rectangle(self, upper_left, lower_right):
+        # TODO: not implemented
+        pass
+
+    def rotation(self, angle):
+        # TODO: not implemented
+        pass
+
+    def round_rectangle(self, center, size, corner_size):
+        # TODO: not implemented
+        pass
+
+    def scaling(self, x, y):
+        # TODO: not implemented
+        pass
+
+    def skewx(self, angle):
+        # TODO: not implemented
+        pass
+
+    def skewy(self, angle):
+        # TODO: not implemented
+        pass
 
     def stroke_antialias(self, flag=True):
         """stroke antialias
@@ -298,3 +444,7 @@ class Draw(object):
         color = _convert_colorobj(color)
         undercolor = pgmagick.DrawableTextUnderColor(color)
         self.drawer.append(undercolor)
+
+    def translate(self, x, y):
+        # TODO: not implemented
+        pass
