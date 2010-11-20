@@ -60,7 +60,7 @@ class Image(pgmagick.Image):
 
     def annotate(self, string, position=(0, 0), gravity='center', angle=0):
         position = pgmagick.Geometry(int(position[0]), int(position[1]))
-        exec "gravity = pgmagick.GravityType.%sGravity" % gravity.title()
+        gravity = getattr(pgmagick.GravityType, "%sGravity" % gravity.title())
         pgmagick.Image.annotate(self, string, position, gravity, angle)
 
     def blur(self, radius=0.0, sigma=1.0):
@@ -116,7 +116,8 @@ class Image(pgmagick.Image):
         elif isinstance(offset, pgmagick.Geometry):
             pass
         elif isinstance(offset, str):   # is gravity (string)
-            exec "offset = pgmagick.GravityType.%sGravity" % offset.title()
+            offset = getattr(pgmagick.GravityType,
+                             "%sGravity" % offset.title())
         else:   # is gravity (pgmagick.GravityType)
             pass
         if isinstance(compose, pgmagick.CompositeOperator):
@@ -125,11 +126,11 @@ class Image(pgmagick.Image):
                                  'copyred', 'copycyan', 'copymagenta',
                                  'copyyellow', 'copyblack'):
             color = compose.lower().split('copy')[1].title()
-            exec "compose = pgmagick.CompositeOperator."\
-                 "Copy%sCompositeOp" % color
+            compose = getattr(pgmagick.CompositeOperator,
+                              "Copy%sCompositeOp" % color)
         else:   # other string
-            exec "compose = pgmagick.CompositeOperator."\
-                 "%sCompositeOp" % compose.title()
+            compose = getattr(pgmagick.CompositeOperator,
+                              "%sCompositeOp" % compose.title())
         pgmagick.Image.composite(self, composite_img, offset, compose)
 
     def contrast(self, sharpen):
@@ -188,8 +189,8 @@ class Image(pgmagick.Image):
             scaled_width, scaled_height = int(size[0]), int(size[1])
             size = "%dx%d" % (int(scaled_width), int(scaled_height))
         if filter_type:
-            filter_type = filter_type.title()
-            exec "filter_type = pgmagick.FilterTypes.%sFilter" % filter_type
+            filter_type = getattr(pgmagick.FilterTypes,
+                                  "%sFilter" % filter_type.title())
             pgmagick.Image.filterType(self, filter_type)
         geometry = pgmagick.Geometry(size)
         pgmagick.Image.scale(self, geometry)
@@ -248,7 +249,7 @@ class Draw(object):
         if paint_method.lower() == 'filltoborder':
             paint_method = pm.FillToBorderMethod
         else:
-            exec 'paint_method = pm.%sMethod' % paint_method.title()
+            paint_method = getattr(pm, "%sMethod" % paint_method.title())
         color = pgmagick.DrawableColor(x, y, paint_method)
         self.drawer.append(color)
 
@@ -293,7 +294,7 @@ class Draw(object):
         self.drawer.append(opacity)
 
     def font(self, family, style='normal', weight=400, stretch='normal'):
-        exec "style = pgmagick.StyleType.%sStyle" % style.title()
+        style = getattr(pgmagick.StyleType, "%sStyle" % style.title())
         stretch = stretch.lower()
         if 'condensed' in stretch:
             tmp = stretch.split('condensed')[0]
@@ -303,7 +304,7 @@ class Draw(object):
             stretch = "%sExpandedStretch" % tmp.title()
         else:
             stretch = "%sStretch" % stretch.title()
-        exec "stretch = pgmagick.StretchType.%s" % stretch
+        stretch = getattr(pgmagick.StretchType, "%s" % stretch)
         if weight is 'bold':
             weight = 800
         font = pgmagick.DrawableFont(family, style, weight, stretch)
@@ -311,10 +312,11 @@ class Draw(object):
 
     def gravity(self, gravity_type):
         if isinstance(gravity_type, str):
-            exec "g = pgmagick.GravityType.%sGravity" % gravity_type.title()
+            gravity = getattr(pgmagick.GravityType,
+                              "%sGravity" % gravity_type.title())
         else:
-            g = gravity_type
-        gravity_type = pgmagick.DrawableGravity(g)
+            gravity = gravity_type
+        gravity_type = pgmagick.DrawableGravity(gravity)
         self.drawer.append(gravity_type)
 
     def line(self, start_x, start_y, end_x, end_y):
@@ -398,7 +400,7 @@ class Draw(object):
         :param linecap: 'undefined', 'butt', 'round', 'square'
         :type linecap: str
         """
-        exec "linecap = pgmagick.LineCap.%sCap" % linecap.title()
+        linecap = getattr(pgmagick.LineCap, "%sCap" % linecap.title())
         linecap = pgmagick.DrawableStrokeLineCap(linecap)
         self.drawer.append(linecap)
 
@@ -408,7 +410,7 @@ class Draw(object):
         :param linejoin: 'undefined', 'miter', 'round', 'bevel'
         :type linejoin: str
         """
-        exec "linejoin = pgmagick.LineJoin.%sJoin" % linejoin.title()
+        linejoin = getattr(pgmagick.LineJoin, "%sJoin" % linejoin.title())
         linejoin = pgmagick.DrawableStrokeLineJoin(linejoin)
         self.drawer.append(linejoin)
 
@@ -441,7 +443,7 @@ class Draw(object):
             d = pgmagick.DecorationType.LineThroughDecoration
         else:
             decoration_type_string = "%sDecoration" % decoration.title()
-            exec "d = pgmagick.DecorationType.%s" % decoration_type_string
+            d = getattr(pgmagick.DecorationType, "%s" % decoration_type_string)
         decoration = pgmagick.DrawableTextDecoration(d)
         self.drawer.append(decoration)
 
