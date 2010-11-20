@@ -287,7 +287,7 @@ class Draw(object):
 
     def fill_opacity(self, opacity):
         """
-        :param opacity: 0.0 <= opacity <= 1.0
+        :param opacity: 0.0 ~ 1.0
         """
         opacity = pgmagick.DrawableFillOpacity(float(opacity))
         self.drawer.append(opacity)
@@ -366,12 +366,10 @@ class Draw(object):
         pass
 
     def skewx(self, angle):
-        # TODO: not implemented
-        pass
+        self.drawer.append(pgmagick.DrawableSkewX(float(angle)))
 
     def skewy(self, angle):
-        # TODO: not implemented
-        pass
+        self.drawer.append(pgmagick.DrawableSkewY(float(angle)))
 
     def stroke_antialias(self, flag=True):
         """stroke antialias

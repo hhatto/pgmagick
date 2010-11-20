@@ -180,6 +180,23 @@ class DrawTestCase(unittest.TestCase):
         self.im.draw(self.d)
         self.im.write('t.png')
 
+    def test_skew(self):
+        self.d = Draw()
+        self.d.fill_opacity(0.6)
+        self.d.circle(50, 50, 50, 100)
+        self.im.draw(self.d)
+        self.d = Draw()
+        self.d.fill_opacity(0.6)
+        self.d.circle(50, 50, 50, 100)
+        self.d.skewx(40)
+        self.im.draw(self.d)
+        self.d = Draw()
+        self.d.fill_opacity(0.6)
+        self.d.circle(50, 50, 50, 100)
+        self.d.skewy(40)
+        self.im.draw(self.d)
+        self.im.write('t.png')
+
     def test_stroke_antialias(self):
         self.d.stroke_color('black')
         self.d.stroke_width(20)
