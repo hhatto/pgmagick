@@ -15,4 +15,3 @@ void __LineJoin()
         .value("BevelJoin", Magick::BevelJoin)
     ;
 }
-

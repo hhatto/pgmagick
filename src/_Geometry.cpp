@@ -44,5 +44,6 @@ void __Geometry()
         .def("to_std_string", &Magick::Geometry::operator std::string)
     ;
 
-implicitly_convertible<std::string,Magick::Geometry>();}
+    implicitly_convertible<std::string,Magick::Geometry>();
+}
 

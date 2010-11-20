@@ -1,9 +1,7 @@
-
 #include <boost/python.hpp>
 #include <boost/cstdint.hpp>
 
 #include <Magick++/Drawable.h>
-
 #include <Magick++.h>
 
 using namespace boost::python;
@@ -20,7 +18,7 @@ struct Magick_PathLinetoHorizontalRel_Wrapper: Magick::PathLinetoHorizontalRel
 };
 
 
-} 
+}
 
 
 void __PathLinetoHorizontalRel()
@@ -31,4 +29,3 @@ void __PathLinetoHorizontalRel()
     ;
 
 }
-

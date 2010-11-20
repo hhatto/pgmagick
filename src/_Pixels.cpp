@@ -16,4 +16,3 @@ void __Pixels()
         .def("rows", &Magick::Pixels::rows)
     ;
 }
-

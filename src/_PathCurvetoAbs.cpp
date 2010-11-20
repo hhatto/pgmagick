@@ -1,9 +1,7 @@
-
 #include <boost/python.hpp>
 #include <boost/cstdint.hpp>
 
 #include <Magick++/Drawable.h>
-
 #include <Magick++.h>
 
 using namespace boost::python;
@@ -26,7 +24,7 @@ struct Magick_PathCurvetoAbs_Wrapper: Magick::PathCurvetoAbs
 };
 
 
-} 
+}
 
 
 void __PathCurvetoAbs()
@@ -37,4 +35,3 @@ void __PathCurvetoAbs()
     ;
 
 }
-
