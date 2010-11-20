@@ -180,6 +180,21 @@ class DrawTestCase(unittest.TestCase):
         self.im.draw(self.d)
         self.im.write('t.png')
 
+    def test_round_rectangle(self):
+        self.d.round_rectangle((200, 200), (30, 30), (15, 15))
+        self.im.draw(self.d)
+        self.im.write('t.png')
+
+    def test_scaling(self):
+        self.d.scaling(0.4, 0.4)
+        self.d.circle(150, 150, 150, 200)
+        self.im.draw(self.d)
+        self.d = Draw()
+        self.d.fill_opacity(0.6)
+        self.d.circle(150, 150, 150, 200)
+        self.im.draw(self.d)
+        self.im.write('t.png')
+
     def test_skew(self):
         self.d = Draw()
         self.d.fill_opacity(0.6)

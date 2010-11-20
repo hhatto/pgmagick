@@ -358,12 +358,24 @@ class Draw(object):
         pass
 
     def round_rectangle(self, center, size, corner_size):
-        # TODO: not implemented
-        pass
+        center_x = float(center[0])
+        center_y = float(center[1])
+        width = float(size[0])
+        height = float(size[1])
+        corner_width = float(corner_size[0])
+        corner_height = float(corner_size[1])
+        rr = pgmagick.DrawableRoundRectangle(center_x, center_y,
+                                             width, height,
+                                             corner_width, corner_height)
+        self.drawer.append(rr)
 
     def scaling(self, x, y):
-        # TODO: not implemented
-        pass
+        """Scaling Draw Object
+
+        :param x: 0.0 ~ 1.0
+        :param y: 0.0 ~ 1.0
+        """
+        self.drawer.append(pgmagick.DrawableScaling(float(x), float(y)))
 
     def skewx(self, angle):
         self.drawer.append(pgmagick.DrawableSkewX(float(angle)))
