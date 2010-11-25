@@ -13,6 +13,41 @@ def _convert_colorobj(input_obj):
     return color
 
 
+def _convert_coordinatelist(input_obj):
+    """convert from 'list' or 'tuple' object to pgmagick.CoordinateList.
+
+    :type input_obj: list or tuple
+    """
+    cdl = pgmagick.CoordinateList()
+    for obj in input_obj:
+        cdl.append(pgmagick.Coordinate(obj[0], obj[1]))
+    return cdl
+
+
+def _convert_paintmethod(input_obj):
+    if isinstance(input_obj, pgmagick.PaintMethod):
+        return input_obj
+    pm = pgmagick.PaintMethod()
+    if input_obj.lower() == 'filltoborder':
+        paint_method = pm.FillToBorderMethod
+    else:
+        paint_method = getattr(pm, "%sMethod" % input_obj.title())
+    return paint_method
+
+
+def _convert_vpathlist(input_obj):
+    """convert from 'list' or 'tuple' object to pgmagick.VPathList.
+
+    :type input_obj: list or tuple
+    """
+    vpl = pgmagick.VPathList()
+    for obj in input_obj:
+        # FIXME
+        obj = pgmagick.PathMovetoAbs(pgmagick.Coordinate(obj[0], obj[1]))
+        vpl.append(obj)
+    return vpl
+
+
 class Image(pgmagick.Image):
 
     height = 0
@@ -244,18 +279,21 @@ class Draw(object):
         """
         :param paint_method: 'point' or 'replace' or 'floodfill' or
                              'filltoborder' or 'reset'
+        :type paint_method: str or pgmagick.PaintMethod
         """
-        pm = pgmagick.PaintMethod()
-        if paint_method.lower() == 'filltoborder':
-            paint_method = pm.FillToBorderMethod
-        else:
-            paint_method = getattr(pm, "%sMethod" % paint_method.title())
+        paint_method = _convert_paintmethod(paint_method)
         color = pgmagick.DrawableColor(x, y, paint_method)
         self.drawer.append(color)
 
-    def composite(self):
-        # TODO: not implemented
-        pass
+    def composite(self, x, y, width, height, image,
+                  op=pgmagick.CompositeOperator.OverCompositeOp):
+        # FIXME: unable to composite pgmagick.Image object.
+        if width == 0 or height == 0:
+            composite = pgmagick.DrawableCompositeImage(x, y, image)
+        else:
+            composite = pgmagick.DrawableCompositeImage(x, y, width, height,
+                                                        image, op)
+        self.drawer.append(composite)
 
     def ellipse(self, org_x, org_y, radius_x, radius_y, arc_start, arc_end):
         """
@@ -324,32 +362,46 @@ class Draw(object):
         self.drawer.append(line)
 
     def matte(self, x, y, paint_method):
-        # TODO: not implemented
-        pass
+        """
+        :param paint_method: 'point' or 'replace' or 'floodfill' or
+                             'filltoborder' or 'reset'
+        :type paint_method: str or pgmagick.PaintMethod
+        """
+        paint_method = _convert_paintmethod(paint_method)
+        self.drawer.append(pgmagick.DrawableMatte(x, y, paint_method))
 
-    def miter_limit(self, miterlimit):
-        # TODO: not implemented
-        pass
+    def miterlimit(self, miterlimit):
+        # FIXME
+        self.drawer.append(pgmagick.DrawableMiterLimit(miterlimit))
 
     def path(self, vpath):
-        # TODO: not implemented
-        pass
+        # FIXME
+        if isinstance(vpath, pgmagick.VPathList):
+            vpath = vpath
+        elif isinstance(vpath, (list, tuple)):
+            vpath = _convert_vpathlist(vpath)
+        self.drawer.append(pgmagick.DrawablePath(vpath))
 
     def point(self, x, y):
-        # TODO: not implemented
-        pass
+        self.drawer.append(pgmagick.DrawablePoint(x, y))
 
     def pointsize(self, pointsize):
         pointsize = pgmagick.DrawablePointSize(pointsize)
         self.drawer.append(pointsize)
 
     def polygon(self, coordinates):
-        # TODO: not implemented
-        pass
+        if isinstance(coordinates, pgmagick.CoordinateList):
+            obj = coordinates
+        elif isinstance(coordinates, (list, tuple)):
+            obj = _convert_coordinatelist(coordinates)
+        self.drawer.append(pgmagick.DrawablePolygon(obj))
 
     def polyline(self, coordinates):
-        # TODO: not implemented
-        pass
+        if isinstance(coordinates, pgmagick.CoordinateList):
+            obj = coordinates
+        elif isinstance(coordinates, (list, tuple)):
+            obj = _convert_coordinatelist(coordinates)
+        self.drawer.append(pgmagick.DrawablePolyline(obj))
 
     def rectangle(self, upper_left, lower_right):
         r = pgmagick.DrawableRectangle(upper_left[0], upper_left[1],
@@ -357,8 +409,7 @@ class Draw(object):
         self.drawer.append(r)
 
     def rotation(self, angle):
-        # TODO: not implemented
-        pass
+        self.drawer.append(pgmagick.DrawableRotation(angle))
 
     def round_rectangle(self, center, size, corner_size):
         rr = pgmagick.DrawableRoundRectangle(center[0], center[1],
@@ -413,6 +464,9 @@ class Draw(object):
         linejoin = getattr(pgmagick.LineJoin, "%sJoin" % linejoin.title())
         linejoin = pgmagick.DrawableStrokeLineJoin(linejoin)
         self.drawer.append(linejoin)
+
+    def stroke_opacity(self, opacity):
+        self.drawer.append(pgmagick.DrawableStrokeOpacity(float(opacity)))
 
     def stroke_width(self, width):
         width = float(width)

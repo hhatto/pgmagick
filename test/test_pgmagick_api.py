@@ -85,6 +85,12 @@ class DrawTestCase(unittest.TestCase):
         self.im.draw(self.d.drawer)
         self.im.write('t.png')
 
+    def test_composite(self):
+        img1 = Image((20, 20), 'plasma:blue')
+        self.d.composite(10, 10, 0, 0, img1)
+        self.im.draw(self.d)
+        self.im.write('t.png')
+
     def test_draw_for_draw_class(self):
         self.d.color(40, 40, 'point')
         self.d.circle(100, 100, 50, 100)
@@ -119,18 +125,6 @@ class DrawTestCase(unittest.TestCase):
         self.d.fill_opacity(0.8)
         self.d.circle(160, 160, 50, 180)
         self.im.draw(self.d.drawer)
-        self.im.write('t.png')
-
-    def test_pointsize(self):
-        self.d.pointsize(10)
-        self.d.pointsize(30.)
-        self.d.circle(150, 150, 50, 180)
-        self.im.draw(self.d.drawer)
-        self.im.write('t.png')
-
-    def test_text(self):
-        self.d.text(30, 30, "hello pgmagick")
-        self.im.draw(self.d)
         self.im.write('t.png')
 
     def test_font_style_italic(self):
@@ -180,8 +174,82 @@ class DrawTestCase(unittest.TestCase):
         self.im.draw(self.d)
         self.im.write('t.png')
 
+    def test_matte(self):
+        self.d.matte(30, 30, 'filltoborder')
+        self.im.draw(self.d)
+        self.im.write('t.png')
+
+    def test_miterlimit(self):
+        self.d.miterlimit(0)
+        self.d.stroke_color('black')
+        self.d.stroke_width(3)
+        self.d.line(10, 200, 100, 10)
+        self.d.line(100, 10, 210, 200)
+        self.im.draw(self.d)
+        self.d = Draw()
+        self.d.miterlimit(18)
+        self.d.stroke_color('black')
+        self.d.stroke_width(3)
+        self.d.stroke_opacity(0.5)
+        self.d.fill_opacity(0.5)
+        self.d.line(210, 200, 300, 10)
+        self.d.line(300, 10, 410, 200)
+        self.im.draw(self.d)
+        self.im.write('t.png')
+
+    def test_path(self):
+        self.d.path((40, 30))
+        self.im.draw(self.d.drawer)
+        self.im.write('t.png')
+
+    def test_point(self):
+        for i in range(50):
+            self.d.point(i, i + 10)
+        for i in range(50, 200, 2):
+            self.d.point(i, i + 10)
+        self.im.draw(self.d.drawer)
+        self.im.write('t.png')
+
+    def test_pointsize(self):
+        self.d.pointsize(10)
+        self.d.pointsize(30.)
+        self.d.circle(150, 150, 50, 180)
+        self.im.draw(self.d.drawer)
+        self.im.write('t.png')
+
+    def test_polygon(self):
+        coordinate = ((10, 10), (20, 30), (40, 50))
+        self.d.polygon(coordinate)
+        coordinate = [(100, 100), (150, 100), [150, 150], (100, 150)]
+        self.d.polygon(coordinate)
+        self.im.draw(self.d)
+        self.im.write('t.png')
+
+    def test_polyline(self):
+        coordinate = ((10, 10), (20, 30), (40, 50))
+        self.d.polyline(coordinate)
+        coordinate = [(100, 100), (150, 100), [150, 150], (100, 150)]
+        self.d.polyline(coordinate)
+        self.im.draw(self.d)
+        self.im.write('t.png')
+
     def test_rectangle(self):
         self.d.rectangle((50, 50), (100, 100))
+        self.im.draw(self.d)
+        self.im.write('t.png')
+
+    def test_rotation(self):
+        self.d.rectangle((150, 150), (200, 200))
+        self.d.rotation(40)
+        self.im.draw(self.d)
+        self.d = Draw()
+        self.d.fill_opacity(0.8)
+        self.d.rectangle((150, 150), (200, 200))
+        self.d.rotation(20)
+        self.im.draw(self.d)
+        self.d = Draw()
+        self.d.fill_opacity(0.6)
+        self.d.rectangle((150, 150), (200, 200))
         self.im.draw(self.d)
         self.im.write('t.png')
 
@@ -254,6 +322,11 @@ class DrawTestCase(unittest.TestCase):
     def test_stroke_width(self):
         self.d.stroke_width(20)
         self.d.line(20, 20, 50, 210)
+        self.im.draw(self.d)
+        self.im.write('t.png')
+
+    def test_text(self):
+        self.d.text(30, 30, "hello pgmagick")
         self.im.draw(self.d)
         self.im.write('t.png')
 
