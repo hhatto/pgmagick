@@ -28,7 +28,7 @@ include_dirs.append(find_file('Magick++', search_include_dirs))
 library_dirs.append(find_file('libGraphicsMagick', search_library_dirs))
 
 setup(name='pgmagick',
-    version="0.3.0",
+    version="0.3.1",
     description="Yet Another Python wrapper for GraphicsMagick",
     long_description=open('README.rst').read(),
     author='Hideo Hattori',
@@ -52,5 +52,5 @@ setup(name='pgmagick',
         'Programming Language :: C++',
         'Programming Language :: Python',
         'Topic :: Multimedia :: Graphics'],
-    keywords="GraphicsMagick graphics visualize boost",
+    keywords="GraphicsMagick graphics visualize boost image",
 )
