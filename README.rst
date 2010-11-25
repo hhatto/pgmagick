@@ -69,7 +69,7 @@ more API detail... read to `Magick++ API for GraphicsMagick`_ document.
 
 .. _`Magick++ API for GraphicsMagick`: http://www.graphicsmagick.org/Magick++/
 
-Python APIs::
+Python APIs(*NOTICE!! this api is alpha version!!*)::
 
     >>> from pgmagick.api import Image
     >>> img = Image((300, 300), "gradient:#ffffff-#000000")
