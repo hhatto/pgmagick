@@ -7,7 +7,21 @@ __init()
 
 
 class Blob(_pgmagick.Blob):
-    pass
+
+    def __init__(self, *args):
+        if len(args) == 1 and isinstance(args[0], str):
+            _pgmagick.Blob.__init__(self)
+            self.update(args[0])
+        else:
+            _pgmagick.Blob.__init__(self, *args)
+
+    @property
+    def data(self):
+        return _pgmagick.get_blob_data(self)
+
+    @data.setter
+    def data(self, string):
+        self.update(string)
 
 ChannelType = _pgmagick.ChannelType
 
