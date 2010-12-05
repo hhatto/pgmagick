@@ -9,10 +9,9 @@ using namespace boost::python;
 void __LineJoin()
 {
     enum_< Magick::LineJoin >("LineJoin")
-        .value("UndefinedInterlace", Magick::UndefinedJoin)
+        .value("UndefinedJoin", Magick::UndefinedJoin)
         .value("MiterJoin", Magick::MiterJoin)
         .value("RoundJoin", Magick::RoundJoin)
         .value("BevelJoin", Magick::BevelJoin)
     ;
 }
-

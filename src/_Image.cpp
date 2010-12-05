@@ -36,7 +36,8 @@ BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_signature_overloads_0_1, sig
 
 void __Image()
 {
-	class_< Magick::Image >("Image", init<  >())
+    def("InitializeMagick", Magick::InitializeMagick);
+    class_< Magick::Image >("Image", init<  >())
         .def(init< const std::string& >())
         .def(init< const Magick::Geometry&, const Magick::Color& >())
         .def(init< const Magick::Blob& >())

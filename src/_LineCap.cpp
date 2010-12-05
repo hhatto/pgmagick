@@ -15,4 +15,3 @@ void __LineCap()
         .value("SquareCap", Magick::SquareCap)
     ;
 }
-

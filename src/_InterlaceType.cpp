@@ -16,4 +16,3 @@ void __InterlaceType()
         .value("PartitionInterlace", Magick::PartitionInterlace)
     ;
 }
-

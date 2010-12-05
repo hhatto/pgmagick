@@ -3,3 +3,4 @@ pgmagick.egg-info
 pgmagick/*\.pyc
 .*/.*\.(so|o)$
 pgmagick/.*\.pyc
+dist

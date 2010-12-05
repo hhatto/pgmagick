@@ -1,9 +1,7 @@
-
 #include <boost/python.hpp>
 #include <boost/cstdint.hpp>
 
 #include <Magick++/Drawable.h>
-
 #include <Magick++.h>
 
 using namespace boost::python;
@@ -20,7 +18,7 @@ struct Magick_PathClosePath_Wrapper: Magick::PathClosePath
 };
 
 
-} 
+}
 
 
 void __PathClosePath()
@@ -29,4 +27,3 @@ void __PathClosePath()
     ;
 
 }
-

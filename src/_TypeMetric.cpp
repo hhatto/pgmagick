@@ -1,4 +1,3 @@
-
 #include <boost/python.hpp>
 #include <boost/cstdint.hpp>
 
@@ -17,4 +16,3 @@ void __TypeMetric()
     ;
 
 }
-

@@ -90,5 +90,6 @@ void __Color()
         .def("y", (double (Magick::ColorYUV::*)() const)&Magick::ColorYUV::y)
     ;
 
-implicitly_convertible<std::string,Magick::Color>();}
+    implicitly_convertible<std::string,Magick::Color>();
+}
 

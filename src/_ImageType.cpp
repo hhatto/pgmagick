@@ -22,4 +22,3 @@ void __ImageType()
         .value("OptimizeType", Magick::OptimizeType)
     ;
 }
-

@@ -8,6 +8,7 @@ pgmagick is a yet another boost.python based wrapper for GraphicsMagick.
 
 Install
 =======
+install to::
 
     $ pip install pgmagick
 
@@ -16,15 +17,20 @@ Require
 =======
 GraphicsMagick and Boost.Python.
 
-package install on Ubuntu::
+package install on Ubuntu(test on Ubuntu10.04+)::
 
-    $ apt-get install libgraphicsmagick++-dev
+    $ apt-get install libgraphicsmagick++1-dev
     $ apt-get install libboost-python1.40-dev
 
 package install on Fedora::
 
     $ yum install GraphicsMagick-c++-devel
     $ yum install boost-devel
+
+GraphicsMagick from source package::
+
+    $ ./configure --enable-shared=yes
+    $ make && make Install
 
 
 Usage
@@ -62,3 +68,11 @@ draw example::
 more API detail... read to `Magick++ API for GraphicsMagick`_ document.
 
 .. _`Magick++ API for GraphicsMagick`: http://www.graphicsmagick.org/Magick++/
+
+Python APIs(*NOTICE!! this api is alpha version!!*)::
+
+    >>> from pgmagick.api import Image
+    >>> img = Image((300, 300), "gradient:#ffffff-#000000")
+    >>> img.scale(0.8)
+    >>> img.write('out.png')
+

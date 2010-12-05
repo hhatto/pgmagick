@@ -1,7 +1,6 @@
 #include <boost/python.hpp>
 
 #include <Magick++/Drawable.h>
-
 #include <Magick++.h>
 
 using namespace boost;
@@ -92,6 +91,4 @@ void __Drawable()
         .def("count", &std::list<Magick::PathQuadraticCurvetoArgs>::size)
         .def("__len__", &std::list<Magick::PathQuadraticCurvetoArgs>::size)
     ;
-    /*
-    */
 }
