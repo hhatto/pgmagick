@@ -7,6 +7,9 @@ from pgmagick.api import Image, Draw
 
 class ImageTestCase(unittest.TestCase):
 
+    def setUp(self):
+        self.img = Image((600, 400), 'red')
+
     def test_nonarg(self):
         im = Image()
 
@@ -16,10 +19,13 @@ class ImageTestCase(unittest.TestCase):
     def test_arg_float(self):
         im = Image((600.5, 400.4), 'red')
 
-    def test_size(self):
-        im = Image((600, 400), 'red')
-        self.assertEqual(im.height, 400)
-        self.assertEqual(im.width, 600)
+    def test_blur(self):
+        self.img.blur(2, 2.3)
+        self.img.write('t.jpg')
+
+    def test_blur_channel(self):
+        self.img.blur_channel('cyan')
+        self.img.write('t.jpg')
 
     def test_scale(self):
         im = Image((600, 400), 'red')

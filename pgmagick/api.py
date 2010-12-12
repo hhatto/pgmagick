@@ -107,8 +107,10 @@ class Image(pgmagick.Image):
         pass
 
     def blur_channel(self, channel, radius=0.0, sigma=1.0):
-        # TODO: not implemented
-        pass
+        if isinstance(channel, str):
+            channel = getattr(pgmagick.ChannelType,
+                              "%sChannel" % channel.title())
+        pgmagick.Image.blurChannel(self, channel, radius, sigma)
 
     def border(self, geometry=None):
         # TODO: not implemented
