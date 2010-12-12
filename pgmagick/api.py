@@ -407,18 +407,19 @@ class Draw(object):
             obj = _convert_coordinatelist(coordinates)
         self.drawer.append(pgmagick.DrawablePolyline(obj))
 
-    def rectangle(self, upper_left, lower_right):
-        r = pgmagick.DrawableRectangle(upper_left[0], upper_left[1],
-                                       lower_right[0], lower_right[1])
+    def rectangle(self, upperleft_x, upperleft_y, lowerright_x, lowerright_y):
+        r = pgmagick.DrawableRectangle(upperleft_x, upperleft_y,
+                                       lowerright_x, lowerright_y)
         self.drawer.append(r)
 
     def rotation(self, angle):
         self.drawer.append(pgmagick.DrawableRotation(angle))
 
-    def round_rectangle(self, center, size, corner_size):
-        rr = pgmagick.DrawableRoundRectangle(center[0], center[1],
-                                             size[0], size[1],
-                                             corner_size[0], corner_size[1])
+    def round_rectangle(self, center_x, center_y,
+                        width, height, corner_width, corner_height):
+        rr = pgmagick.DrawableRoundRectangle(center_x, center_y,
+                                             width, height,
+                                             corner_width, corner_height)
         self.drawer.append(rr)
 
     def scaling(self, x, y):

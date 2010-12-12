@@ -212,7 +212,8 @@ class DrawTestCase(unittest.TestCase):
         self.im.write('t.png')
 
     def test_path(self):
-        self.d.path((40, 30))
+        paths = ((40, 30),)
+        self.d.path(paths)
         self.im.draw(self.d.drawer)
         self.im.write('t.png')
 
@@ -248,27 +249,27 @@ class DrawTestCase(unittest.TestCase):
         self.im.write('t.png')
 
     def test_rectangle(self):
-        self.d.rectangle((50, 50), (100, 100))
+        self.d.rectangle(50, 50, 100, 100)
         self.im.draw(self.d)
         self.im.write('t.png')
 
     def test_rotation(self):
-        self.d.rectangle((150, 150), (200, 200))
+        self.d.rectangle(150, 150, 200, 200)
         self.d.rotation(40)
         self.im.draw(self.d)
         self.d = Draw()
         self.d.fill_opacity(0.8)
-        self.d.rectangle((150, 150), (200, 200))
+        self.d.rectangle(150, 150, 200, 200)
         self.d.rotation(20)
         self.im.draw(self.d)
         self.d = Draw()
         self.d.fill_opacity(0.6)
-        self.d.rectangle((150, 150), (200, 200))
+        self.d.rectangle(150, 150, 200, 200)
         self.im.draw(self.d)
         self.im.write('t.png')
 
     def test_round_rectangle(self):
-        self.d.round_rectangle((200, 200), (30, 30), (15, 15))
+        self.d.round_rectangle(200, 200, 30, 30, 15, 15)
         self.im.draw(self.d)
         self.im.write('t.png')
 
