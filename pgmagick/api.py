@@ -50,8 +50,13 @@ def _convert_vpathlist(input_obj):
 
 class Image(pgmagick.Image):
 
-    height = 0
-    width = 0
+    @property
+    def height(self):
+        return self.rows()
+
+    @property
+    def width(self):
+        return self.columns()
 
     def __init__(self, filename=None, color=None, *args, **kargs):
         if isinstance(filename, str):
@@ -74,7 +79,6 @@ class Image(pgmagick.Image):
                 pgmagick.Image.__init__(self, geometry, pgmagick.Color())
         else:
             pgmagick.Image.__init__(self)
-        self.width, self.height = self.columns(), self.rows()
 
     # API of Manipulate An Image
     def adaptive_threshold(self, width, height, offset=0):
@@ -217,8 +221,8 @@ class Image(pgmagick.Image):
 
     def scale(self, size, filter_type=None):
         if isinstance(size, float):
-            scaled_height = self.height * size
-            scaled_width = self.width * size
+            scaled_height = self.rows() * size
+            scaled_width = self.columns() * size
             size = "%dx%d" % (int(scaled_width), int(scaled_height))
         elif isinstance(size, (list, tuple)):
             scaled_width, scaled_height = int(size[0]), int(size[1])
@@ -229,8 +233,6 @@ class Image(pgmagick.Image):
             pgmagick.Image.filterType(self, filter_type)
         geometry = pgmagick.Geometry(size)
         pgmagick.Image.scale(self, geometry)
-        self.height = self.rows()
-        self.width = self.columns()
 
     # API of Set/Get Image
     def font_pointsize(self, point_size=None):

@@ -52,6 +52,14 @@ class ImageTestCase(unittest.TestCase):
         img.annotate("hello", (100, 100))
         img.write('t.png')
 
+    def test_size_property(self):
+        im = Image((500, 300), 'red')
+        self.assertEqual(im.width, 500)
+        self.assertEqual(im.height, 300)
+        im.scale(0.5)
+        self.assertEqual(im.width, 250)
+        self.assertEqual(im.height, 150)
+
 
 class DrawTestCase(unittest.TestCase):
 
