@@ -22,7 +22,7 @@ def find_file(filename, search_dirs):
                     return dirname
             if filename in root:
                 return dirname
-    return False
+    raise Exception(filename + " not found")
 
 include_dirs.append(find_file('Magick++', search_include_dirs))
 library_dirs.append(find_file('libGraphicsMagick', search_library_dirs))
