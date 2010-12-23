@@ -8,7 +8,8 @@ library_dirs = []
 
 search_include_dirs = ['/usr/local/include/GraphicsMagick',
                        '/usr/include/GraphicsMagick/']
-search_library_dirs = ['/usr/local/lib/', '/usr/lib/']
+search_library_dirs = ['/usr/local/lib64/', '/usr/lib64/',
+                       '/usr/local/lib/', '/usr/lib/']
 
 
 def find_file(filename, search_dirs):
@@ -22,7 +23,7 @@ def find_file(filename, search_dirs):
                     return dirname
             if filename in root:
                 return dirname
-    return False
+    raise Exception(filename + " not found")
 
 include_dirs.append(find_file('Magick++', search_include_dirs))
 library_dirs.append(find_file('libGraphicsMagick', search_library_dirs))
