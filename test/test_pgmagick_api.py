@@ -50,6 +50,11 @@ class ImageTestCase(unittest.TestCase):
         base.composite(layer, 'center', 'over')
         base.write('t.png')
 
+    def test_crop(self):
+        img = Image((300, 200), 'gradient:#ffff00-#00ffff')
+        img.crop(20, 20, 50, 100)
+        img.write('t.png')
+
     def test_fontpointsize(self):
         img = Image((300, 200), 'red')
         img.font_pointsize(60)
