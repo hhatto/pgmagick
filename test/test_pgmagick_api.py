@@ -10,6 +10,12 @@ class ImageTestCase(unittest.TestCase):
     def setUp(self):
         self.img = Image((600, 400), 'red')
 
+    def test_unicodefilename(self):
+        self.img.write('unicode.png')
+        img = Image(u'unicode.png')
+        img.scale(0.5)
+        img.write(u'unicode.jpg')
+
     def test_nonarg(self):
         im = Image()
 

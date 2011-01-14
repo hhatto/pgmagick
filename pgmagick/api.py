@@ -60,7 +60,7 @@ class Image(object):
 
     def __init__(self, filename=None, color=None, *args, **kargs):
         self.img = None
-        if isinstance(filename, str):
+        if isinstance(filename, (unicode, str)):
             self.img = pgmagick.Image(str(filename))
         elif isinstance(filename, (list, tuple)):
             size = filename
@@ -82,7 +82,7 @@ class Image(object):
             self.img = pgmagick.Image()
 
     def write(self, filename):
-        self.img.write(filename)
+        self.img.write(str(filename))
 
     # API of Manipulate An Image
     def adaptive_threshold(self, width, height, offset=0):
