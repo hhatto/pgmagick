@@ -104,6 +104,7 @@ void __StretchType();
 void __StyleType();
 void __TypeMetric();
 void __VPath();
+void __gminfo();
 
 BOOST_PYTHON_MODULE(_pgmagick)
 {
@@ -210,4 +211,5 @@ BOOST_PYTHON_MODULE(_pgmagick)
     __StyleType();
     __TypeMetric();
     __VPath();
+    __gminfo();
 }
