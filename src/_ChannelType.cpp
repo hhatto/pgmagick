@@ -19,7 +19,9 @@ void __ChannelType()
         .value("OpacityChannel", Magick::OpacityChannel)
         .value("BlackChannel", Magick::BlackChannel)
         .value("MatteChannel", Magick::MatteChannel)
+#ifndef GM_1_1_x
         .value("AllChannels", Magick::AllChannels)
         .value("GrayChannel", Magick::GrayChannel)
+#endif
     ;
 }
