@@ -32,6 +32,12 @@ GraphicsMagick from source package::
     $ ./configure --enable-shared=yes
     $ make && make Install
 
+MacOSX
+------
+install reported on MacOSX, Thanks Simon Harrison.
+
+http://simonharrison.info/talk/mac-os/pgmagick-on-mac-os/
+
 
 Usage
 =====
@@ -64,6 +70,15 @@ draw example::
     >>> text = DrawableText(30, 250, "Hello pgmagick")
     >>> im.draw(text)
     >>> im.write('hoge.png')
+
+blob access::
+
+    >>> from pgmagick import Image, Blob, Geometry
+    >>> blob = Blob(open('filename.jpg').read())
+    >>> blob.update(open('filename2.jpg').read())
+    >>> img = Image(blob, Geometry(600, 480))
+    >>> img.scale('300x200')
+    >>> img.write('out.jpg')
 
 more API detail... read to `Magick++ API for GraphicsMagick`_ document.
 
