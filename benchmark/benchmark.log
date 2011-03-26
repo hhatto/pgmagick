@@ -1,0 +1,105 @@
+## benchmarker:       release 3.0.1 (for python)
+## python platform:   linux2 [GCC 4.4.3]
+## python version:    2.6.5
+## python executable: /home/hattori/.virtualenvs/pgmagick_bench/bin/python
+
+##                                 user       sys     total      real
+kaa.imlib2                       4.7300    0.5100    5.2400    5.3243
+PIL                             13.3400    0.5200   13.8600   14.0260
+pgmagick(blob-read)              0.7500    0.0200    0.7700    0.7700
+pgmagick(normal-read)           11.2400    0.5200   11.7600   12.0217
+pgmagick(scale+sharpen)          1.4900    0.0400    1.5300    0.8640
+opencv                           7.8400    0.4100    8.2500    8.1927
+pyimlib2                         4.7200    0.4700    5.1900    5.2594
+pyimlib2_with_pgsharpen          7.0400    0.5100    7.5500    5.6968
+
+## Ranking                         real
+pgmagick(blob-read)              0.7700 (100.0%) *************************
+pgmagick(scale+sharpen)          0.8640 ( 89.1%) **********************
+pyimlib2                         5.2594 ( 14.6%) ****
+kaa.imlib2                       5.3243 ( 14.5%) ****
+pyimlib2_with_pgsharpen          5.6968 ( 13.5%) ***
+opencv                           8.1927 (  9.4%) **
+pgmagick(normal-read)           12.0217 (  6.4%) **
+PIL                             14.0260 (  5.5%) *
+
+## Ratio Matrix                    real    [01]    [02]    [03]    [04]    [05]    [06]    [07]    [08]
+[01] pgmagick(blob-read)         0.7700  100.0%  112.2%  683.0%  691.4%  739.8% 1063.9% 1561.2% 1821.5%
+[02] pgmagick(scale+sharpen)     0.8640   89.1%  100.0%  608.8%  616.3%  659.4%  948.3% 1391.5% 1623.5%
+[03] pyimlib2                    5.2594   14.6%   16.4%  100.0%  101.2%  108.3%  155.8%  228.6%  266.7%
+[04] kaa.imlib2                  5.3243   14.5%   16.2%   98.8%  100.0%  107.0%  153.9%  225.8%  263.4%
+[05] pyimlib2_with_pgsharpen     5.6968   13.5%   15.2%   92.3%   93.5%  100.0%  143.8%  211.0%  246.2%
+[06] opencv                      8.1927    9.4%   10.5%   64.2%   65.0%   69.5%  100.0%  146.7%  171.2%
+[07] pgmagick(normal-read)      12.0217    6.4%    7.2%   43.7%   44.3%   47.4%   68.1%  100.0%  116.7%
+[08] PIL                        14.0260    5.5%    6.2%   37.5%   38.0%   40.6%   58.4%   85.7%  100.0%
+======================================================================
+## benchmarker:       release 3.0.1 (for python)
+## python platform:   linux2 [GCC 4.4.3]
+## python version:    2.6.5
+## python executable: /home/hattori/.virtualenvs/pgmagick_bench/bin/python
+
+##                                 user       sys     total      real
+kaa.imlib2                       5.4800    0.5000    5.9800    5.8791
+PIL                             15.9300    0.5700   16.5000   16.6515
+pgmagick(blob-read)              2.2400    0.0800    2.3200    2.3604
+pgmagick(normal-read)           10.1300    0.5900   10.7200   10.8065
+pgmagick(scale+sharpen)          4.6800    0.1300    4.8100    3.6957
+opencv                           8.5300    0.4100    8.9400    9.1487
+pyimlib2                         5.3400    0.5000    5.8400    5.9086
+pyimlib2_with_pgsharpen          8.5400    0.5100    9.0500    7.0627
+
+## Ranking                         real
+pgmagick(blob-read)              2.3604 (100.0%) *************************
+pgmagick(scale+sharpen)          3.6957 ( 63.9%) ****************
+kaa.imlib2                       5.8791 ( 40.1%) **********
+pyimlib2                         5.9086 ( 39.9%) **********
+pyimlib2_with_pgsharpen          7.0627 ( 33.4%) ********
+opencv                           9.1487 ( 25.8%) ******
+pgmagick(normal-read)           10.8065 ( 21.8%) *****
+PIL                             16.6515 ( 14.2%) ****
+
+## Ratio Matrix                    real    [01]    [02]    [03]    [04]    [05]    [06]    [07]    [08]
+[01] pgmagick(blob-read)         2.3604  100.0%  156.6%  249.1%  250.3%  299.2%  387.6%  457.8%  705.5%
+[02] pgmagick(scale+sharpen)     3.6957   63.9%  100.0%  159.1%  159.9%  191.1%  247.6%  292.4%  450.6%
+[03] kaa.imlib2                  5.8791   40.1%   62.9%  100.0%  100.5%  120.1%  155.6%  183.8%  283.2%
+[04] pyimlib2                    5.9086   39.9%   62.5%   99.5%  100.0%  119.5%  154.8%  182.9%  281.8%
+[05] pyimlib2_with_pgsharpen     7.0627   33.4%   52.3%   83.2%   83.7%  100.0%  129.5%  153.0%  235.8%
+[06] opencv                      9.1487   25.8%   40.4%   64.3%   64.6%   77.2%  100.0%  118.1%  182.0%
+[07] pgmagick(normal-read)      10.8065   21.8%   34.2%   54.4%   54.7%   65.4%   84.7%  100.0%  154.1%
+[08] PIL                        16.6515   14.2%   22.2%   35.3%   35.5%   42.4%   54.9%   64.9%  100.0%
+======================================================================
+## benchmarker:       release 3.0.1 (for python)
+## python platform:   linux2 [GCC 4.4.3]
+## python version:    2.6.5
+## python executable: /home/hattori/.virtualenvs/pgmagick_bench/bin/python
+
+##                                 user       sys     total      real
+kaa.imlib2                       6.8900    0.5500    7.4400    7.4633
+PIL                             21.3300    0.7400   22.0700   22.4749
+pgmagick(blob-read)              6.4800    0.2900    6.7700    6.9711
+pgmagick(normal-read)           13.4900    0.5900   14.0800   14.3685
+pgmagick(scale+sharpen)         10.5300    0.3800   10.9100    8.1254
+opencv                           9.4200    0.4200    9.8400   10.1731
+pyimlib2                         6.6800    0.5600    7.2400    7.3154
+pyimlib2_with_pgsharpen         12.3700    0.7100   13.0800   10.7405
+
+## Ranking                         real
+pgmagick(blob-read)              6.9711 (100.0%) *************************
+pyimlib2                         7.3154 ( 95.3%) ************************
+kaa.imlib2                       7.4633 ( 93.4%) ***********************
+pgmagick(scale+sharpen)          8.1254 ( 85.8%) *********************
+opencv                          10.1731 ( 68.5%) *****************
+pyimlib2_with_pgsharpen         10.7405 ( 64.9%) ****************
+pgmagick(normal-read)           14.3685 ( 48.5%) ************
+PIL                             22.4749 ( 31.0%) ********
+
+## Ratio Matrix                    real    [01]    [02]    [03]    [04]    [05]    [06]    [07]    [08]
+[01] pgmagick(blob-read)         6.9711  100.0%  104.9%  107.1%  116.6%  145.9%  154.1%  206.1%  322.4%
+[02] pyimlib2                    7.3154   95.3%  100.0%  102.0%  111.1%  139.1%  146.8%  196.4%  307.2%
+[03] kaa.imlib2                  7.4633   93.4%   98.0%  100.0%  108.9%  136.3%  143.9%  192.5%  301.1%
+[04] pgmagick(scale+sharpen)     8.1254   85.8%   90.0%   91.9%  100.0%  125.2%  132.2%  176.8%  276.6%
+[05] opencv                     10.1731   68.5%   71.9%   73.4%   79.9%  100.0%  105.6%  141.2%  220.9%
+[06] pyimlib2_with_pgsharpen    10.7405   64.9%   68.1%   69.5%   75.7%   94.7%  100.0%  133.8%  209.3%
+[07] pgmagick(normal-read)      14.3685   48.5%   50.9%   51.9%   56.6%   70.8%   74.8%  100.0%  156.4%
+[08] PIL                        22.4749   31.0%   32.5%   33.2%   36.2%   45.3%   47.8%   63.9%  100.0%
+
