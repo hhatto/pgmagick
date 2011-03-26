@@ -71,7 +71,7 @@ if gm_version:
                                                   gm_version[2])
 
 setup(name='pgmagick',
-    version="0.3.1",
+    version="0.3.2",
     description="Yet Another Python wrapper for GraphicsMagick",
     long_description=open('README.rst').read(),
     author='Hideo Hattori',

@@ -10,6 +10,12 @@ class ImageTestCase(unittest.TestCase):
     def setUp(self):
         self.img = Image((600, 400), 'red')
 
+    def test_unicodefilename(self):
+        self.img.write('unicode.png')
+        img = Image(u'unicode.png')
+        img.scale(0.5)
+        img.write(u'unicode.jpg')
+
     def test_nonarg(self):
         im = Image()
 
@@ -49,6 +55,11 @@ class ImageTestCase(unittest.TestCase):
         layer.draw(drawer)
         base.composite(layer, 'center', 'over')
         base.write('t.png')
+
+    def test_crop(self):
+        img = Image((300, 200), 'gradient:#ffff00-#00ffff')
+        img.crop(20, 20, 50, 100)
+        img.write('t.png')
 
     def test_fontpointsize(self):
         img = Image((300, 200), 'red')

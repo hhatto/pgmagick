@@ -48,37 +48,41 @@ def _convert_vpathlist(input_obj):
     return vpl
 
 
-class Image(pgmagick.Image):
+class Image(object):
 
     @property
     def height(self):
-        return self.rows()
+        return self.img.rows()
 
     @property
     def width(self):
-        return self.columns()
+        return self.img.columns()
 
     def __init__(self, filename=None, color=None, *args, **kargs):
-        if isinstance(filename, str):
-            pgmagick.Image.__init__(self, filename)
+        self.img = None
+        if isinstance(filename, (unicode, str)):
+            self.img = pgmagick.Image(str(filename))
         elif isinstance(filename, (list, tuple)):
             size = filename
             geometry = pgmagick.Geometry(int(size[0]), int(size[1]))
             if isinstance(color, (list, tuple)):
                 r, g, b = int(color[0]), int(color[1]), int(color[2])
                 color = pgmagick.Color(r, g, b)
-                pgmagick.Image.__init__(self, geometry, color)
+                self.img = pgmagick.Image(geometry, color)
             elif isinstance(color, str):
                 if color.find('gradient') == 0 or color.find('plasma') == 0:
-                    pgmagick.Image.__init__(self, geometry, pgmagick.Color())
-                    self.read(color)
+                    self.img = pgmagick.Image(geometry, pgmagick.Color())
+                    self.img.read(color)
                 else:
                     color = pgmagick.Color(color)
-                    pgmagick.Image.__init__(self, geometry, color)
+                    self.img = pgmagick.Image(geometry, color)
             else:
-                pgmagick.Image.__init__(self, geometry, pgmagick.Color())
+                self.img = pgmagick.Image(geometry, pgmagick.Color())
         else:
-            pgmagick.Image.__init__(self)
+            self.img = pgmagick.Image()
+
+    def write(self, filename):
+        self.img.write(str(filename))
 
     # API of Manipulate An Image
     def adaptive_threshold(self, width, height, offset=0):
@@ -100,7 +104,7 @@ class Image(pgmagick.Image):
     def annotate(self, string, position=(0, 0), gravity='center', angle=0):
         position = pgmagick.Geometry(int(position[0]), int(position[1]))
         gravity = getattr(pgmagick.GravityType, "%sGravity" % gravity.title())
-        pgmagick.Image.annotate(self, string, position, gravity, angle)
+        self.img.annotate(string, position, gravity, angle)
 
     def blur(self, radius=0.0, sigma=1.0):
         # TODO: not implemented
@@ -110,7 +114,7 @@ class Image(pgmagick.Image):
         if isinstance(channel, str):
             channel = getattr(pgmagick.ChannelType,
                               "%sChannel" % channel.title())
-        pgmagick.Image.blurChannel(self, channel, radius, sigma)
+        self.img.blurChannel(channel, radius, sigma)
 
     def border(self, geometry=None):
         # TODO: not implemented
@@ -172,7 +176,7 @@ class Image(pgmagick.Image):
         else:   # other string
             compose = getattr(pgmagick.CompositeOperator,
                               "%sCompositeOp" % compose.title())
-        pgmagick.Image.composite(self, composite_img, offset, compose)
+        self.img.composite(composite_img, offset, compose)
 
     def contrast(self, sharpen):
         # TODO: not implemented
@@ -182,9 +186,16 @@ class Image(pgmagick.Image):
         # TODO: not implemented
         pass
 
-    def crop(self, geometry):
-        # TODO: not implemented
-        pass
+    def crop(self, *geometry):
+        if len(geometry) == 4:
+            width, height = geometry[0], geometry[1]
+            x, y = geometry[2], geometry[3]
+            g = pgmagick.Geometry(x, y, width, height)
+        elif isinstance(geometry, pgmagick.Geometry):
+            g = geometry
+        else:
+            raise Exception("not support object", geometry)
+        self.img.crop(g)
 
     def cycle_colormap(self, amount):
         # TODO: not implemented
@@ -199,7 +210,7 @@ class Image(pgmagick.Image):
             draw = draw_obj.drawer
         else:
             draw = draw_obj
-        pgmagick.Image.draw(self, draw)
+        self.img.draw(draw)
 
     def edge(self, radius=0.0):
         # TODO: not implemented
@@ -223,8 +234,8 @@ class Image(pgmagick.Image):
 
     def scale(self, size, filter_type=None):
         if isinstance(size, float):
-            scaled_height = self.rows() * size
-            scaled_width = self.columns() * size
+            scaled_height = self.img.rows() * size
+            scaled_width = self.img.columns() * size
             size = "%dx%d" % (int(scaled_width), int(scaled_height))
         elif isinstance(size, (list, tuple)):
             scaled_width, scaled_height = int(size[0]), int(size[1])
@@ -234,15 +245,15 @@ class Image(pgmagick.Image):
                                   "%sFilter" % filter_type.title())
             pgmagick.Image.filterType(self, filter_type)
         geometry = pgmagick.Geometry(size)
-        pgmagick.Image.scale(self, geometry)
+        self.img.scale(geometry)
 
     # API of Set/Get Image
     def font_pointsize(self, point_size=None):
         if point_size:
             point_size = float(point_size)
-            pgmagick.Image.fontPointsize(self, point_size)
+            self.img.fontPointsize(point_size)
         else:
-            return pgmagick.Image.fontPointsize(self)
+            return self.img.fontPointsize()
 
 
 class Draw(object):

@@ -30,7 +30,7 @@ package install on Fedora::
 GraphicsMagick from source package::
 
     $ ./configure --enable-shared=yes
-    $ make && make Install
+    $ make && make install
 
 MacOSX
 ------
