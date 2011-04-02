@@ -24,7 +24,9 @@ void __QuantumType()
         .value("RGBQuantum", Magick::RGBQuantum)
         .value("RGBAQuantum", Magick::RGBAQuantum)
         .value("CMYKQuantum", Magick::CMYKQuantum)
+#ifndef GM_1_1_x
         .value("CIEYQuantum", Magick::CIEYQuantum)
         .value("CIEXYZQuantum", Magick::CIEXYZQuantum)
+#endif
     ;
 }

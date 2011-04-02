@@ -105,6 +105,7 @@ OBJS = _Blob.o \
        _StyleType.o \
        _TypeMetric.o \
        _VPath.o \
+       _gminfo.o \
        _main.o
 
 .SUFFIXES: .cpp .o

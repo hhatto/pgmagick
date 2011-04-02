@@ -49,14 +49,18 @@ void __Image()
         .def(init< const Magick::Image& >())
         .def("adaptiveThreshold", &Magick::Image::adaptiveThreshold, Magick_Image_adaptiveThreshold_overloads_2_3())
         .def("addNoise", &Magick::Image::addNoise)
+#ifndef GM_1_1_x
         .def("addNoiseChannel", &Magick::Image::addNoiseChannel)
+#endif
         .def("affineTransform", &Magick::Image::affineTransform)
         .def("annotate", (void (Magick::Image::*)(const std::string&, const Magick::Geometry&) )&Magick::Image::annotate)
         .def("annotate", (void (Magick::Image::*)(const std::string&, const Magick::Geometry&, const Magick::GravityType) )&Magick::Image::annotate)
         .def("annotate", (void (Magick::Image::*)(const std::string&, const Magick::Geometry&, const Magick::GravityType, const double) )&Magick::Image::annotate)
         .def("annotate", (void (Magick::Image::*)(const std::string&, const Magick::GravityType) )&Magick::Image::annotate)
         .def("blur", &Magick::Image::blur, Magick_Image_blur_overloads_0_2())
+#ifndef GM_1_1_x
         .def("blurChannel", &Magick::Image::blurChannel, Magick_Image_blurChannel_overloads_1_3())
+#endif
         .def("border", &Magick::Image::border, Magick_Image_border_overloads_0_1())
         .def("channel", &Magick::Image::channel)
         .def("channelDepth", (void (Magick::Image::*)(const Magick::ChannelType, const unsigned int) )&Magick::Image::channelDepth)
@@ -96,18 +100,24 @@ void __Image()
         .def("gamma", (void (Magick::Image::*)(const double) )&Magick::Image::gamma)
         .def("gamma", (void (Magick::Image::*)(const double, const double, const double) )&Magick::Image::gamma)
         .def("gaussianBlur", &Magick::Image::gaussianBlur)
+#ifndef GM_1_1_x
         .def("gaussianBlurChannel", &Magick::Image::gaussianBlurChannel)
+#endif
         .def("implode", &Magick::Image::implode)
         .def("label", (void (Magick::Image::*)(const std::string&) )&Magick::Image::label)
+#ifndef GM_1_1_x
         .def("level", &Magick::Image::level)
         .def("levelChannel", &Magick::Image::levelChannel)
+#endif
         .def("magnify", &Magick::Image::magnify)
         .def("map", &Magick::Image::map, Magick_Image_map_overloads_1_2())
         .def("matteFloodfill", &Magick::Image::matteFloodfill)
         .def("medianFilter", &Magick::Image::medianFilter, Magick_Image_medianFilter_overloads_0_1())
         .def("minify", &Magick::Image::minify)
         .def("modulate", &Magick::Image::modulate)
+#ifndef GM_1_1_x
         .def("motionBlur", &Magick::Image::motionBlur)
+#endif
         .def("negate", &Magick::Image::negate, Magick_Image_negate_overloads_0_1())
         .def("normalize", &Magick::Image::normalize)
         .def("oilPaint", &Magick::Image::oilPaint, Magick_Image_oilPaint_overloads_0_1())
@@ -120,8 +130,10 @@ void __Image()
         .def("quantumOperator", (void (Magick::Image::*)(const int, const int, const unsigned int, const unsigned int, const Magick::ChannelType, const Magick::QuantumOperator, Magick::Quantum))&Magick::Image::quantumOperator)
         .def("process", &Magick::Image::process)
         .def("raise", &Magick::Image::raise, Magick_Image_raise_overloads_0_2())
+#ifndef GM_1_1_x
         .def("randomThreshold", &Magick::Image::randomThreshold)
         .def("randomThresholdChannel", &Magick::Image::randomThresholdChannel)
+#endif
         .def("read", (void (Magick::Image::*)(const std::string&) )&Magick::Image::read)
         .def("read", (void (Magick::Image::*)(const Magick::Geometry&, const std::string&) )&Magick::Image::read)
         .def("read", (void (Magick::Image::*)(const Magick::Blob&) )&Magick::Image::read)
@@ -139,7 +151,9 @@ void __Image()
         .def("segment", &Magick::Image::segment, Magick_Image_segment_overloads_0_2())
         .def("shade", &Magick::Image::shade, Magick_Image_shade_overloads_0_3())
         .def("sharpen", &Magick::Image::sharpen, Magick_Image_sharpen_overloads_0_2())
+#ifndef GM_1_1_x
         .def("sharpenChannel", &Magick::Image::sharpenChannel, Magick_Image_sharpenChannel_overloads_1_3())
+#endif
         .def("shave", &Magick::Image::shave)
         .def("shear", &Magick::Image::shear)
         .def("solarize", &Magick::Image::solarize, Magick_Image_solarize_overloads_0_1())
@@ -155,7 +169,9 @@ void __Image()
         .def("trim", &Magick::Image::trim)
         .def("type", (void (Magick::Image::*)(const Magick::ImageType))&Magick::Image::type)
         .def("unsharpmask", &Magick::Image::unsharpmask)
+#ifndef GM_1_1_x
         .def("unsharpmaskChannel", &Magick::Image::unsharpmaskChannel)
+#endif
         .def("wave", &Magick::Image::wave, Magick_Image_wave_overloads_0_2())
         .def("write", (void (Magick::Image::*)(const std::string&) )&Magick::Image::write)
         .def("write", (void (Magick::Image::*)(Magick::Blob*) )&Magick::Image::write)
@@ -269,8 +285,10 @@ void __Image()
         .def("monochrome", (bool (Magick::Image::*)() const)&Magick::Image::monochrome)
         .def("normalizedMaxError", &Magick::Image::normalizedMaxError)
         .def("normalizedMeanError", &Magick::Image::normalizedMeanError)
+#ifndef GM_1_1_x
         .def("orientation", (void (Magick::Image::*)(const Magick::OrientationType))&Magick::Image::orientation)
         .def("orientation", (Magick::OrientationType (Magick::Image::*)() const)&Magick::Image::orientation)
+#endif
         .def("page", (void (Magick::Image::*)(const Magick::Geometry&) )&Magick::Image::page)
         .def("page", (Magick::Geometry (Magick::Image::*)() const)&Magick::Image::page)
         .def("penColor", (void (Magick::Image::*)(const Magick::Color&) )&Magick::Image::penColor)

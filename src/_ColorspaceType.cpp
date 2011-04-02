@@ -24,10 +24,12 @@ void __ColorspaceType()
         .value("sRGBColorspace", Magick::sRGBColorspace)
         .value("HSLColorspace", Magick::HSLColorspace)
         .value("HWBColorspace", Magick::HWBColorspace)
+#ifndef GM_1_1_x
         .value("LABColorspace", Magick::LABColorspace)
         .value("CineonLogRGBColorspace", Magick::CineonLogRGBColorspace)
         .value("Rec601LumaColorspace", Magick::Rec601LumaColorspace)
         .value("Rec709LumaColorspace", Magick::Rec709LumaColorspace)
         .value("Rec709YCbCrColorspace", Magick::Rec709YCbCrColorspace)
+#endif
     ;
 }

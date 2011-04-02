@@ -237,7 +237,8 @@ class MontageFramed(_pgmagick.MontageFramed):
 
 NoiseType = _pgmagick.NoiseType
 
-OrientationType = _pgmagick.OrientationType
+if hasattr(_pgmagick, "OrientationType"):
+    OrientationType = _pgmagick.OrientationType
 
 PaintMethod = _pgmagick.PaintMethod
 

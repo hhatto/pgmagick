@@ -45,6 +45,8 @@ void __CompositeOperator()
         .value("CopyMagentaCompositeOp", Magick::CopyMagentaCompositeOp)
         .value("CopyYellowCompositeOp", Magick::CopyYellowCompositeOp)
         .value("CopyBlackCompositeOp", Magick::CopyBlackCompositeOp)
+#ifndef GM_1_1_x
         .value("DivideCompositeOp", Magick::DivideCompositeOp)
+#endif
     ;
 }
