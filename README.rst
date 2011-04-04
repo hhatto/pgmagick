@@ -36,7 +36,7 @@ MacOSX
 ------
 install reported on MacOSX, Thanks Simon Harrison.
 
-http://simonharrison.info/talk/mac-os/pgmagick-on-mac-os/
+http://simonharrison.info/talk/2011/01/17/pgmagick-on-mac-os/
 
 
 Usage
