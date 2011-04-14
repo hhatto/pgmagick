@@ -3,6 +3,7 @@ from distutils.sysconfig import get_python_inc
 import glob
 import os
 import re
+import sys
 
 GMCPP_PC = 'GraphicsMagick++.pc'
 include_dirs = [get_python_inc()]
@@ -12,6 +13,12 @@ search_include_dirs = ['/usr/local/include/GraphicsMagick',
                        '/usr/include/GraphicsMagick/']
 search_library_dirs = ['/usr/local/lib64/', '/usr/lib64/',
                        '/usr/local/lib/', '/usr/lib/']
+
+if sys.platform == 'Darwin':
+    include_dirs.append('/opt/local/include')
+    search_include_dirs.extend(['/opt/local/include/GraphicsMagick',
+                                '/opt/local/include'])
+    search_library_dirs.append('/opt/local/lib')
 
 
 def _grep(regex, filename):
