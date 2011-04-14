@@ -33,8 +33,8 @@ def get_gmversion_from_devheaders(search_dirs):
         for root, dirs, files in os.walk(dirname):
             for f in files:
                 if f == 'Image.h':
-                    _tmp = _grep(target_api_name, dirname + 'Magick++/Image.h')
-                    return '1.1.x'
+                    if _grep(target_api_name, dirname + 'Magick++/Image.h'):
+                        return '1.2.x'
 
 
 def get_gmversion_from_pc(search_dirs):
