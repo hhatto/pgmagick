@@ -15,7 +15,7 @@ install to::
 
 Require
 =======
-GraphicsMagick and Boost.Python.
+Python2.5++, GraphicsMagick and Boost.Python.
 
 package install on Ubuntu(test on Ubuntu10.04+)::
 

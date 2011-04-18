@@ -16,13 +16,7 @@ class Blob(_pgmagick.Blob):
         else:
             _pgmagick.Blob.__init__(self, *args)
 
-    @property
-    def data(self):
-        return _pgmagick.get_blob_data(self)
-
-    @data.setter
-    def data(self, string):
-        self.update(string)
+    data = property(_pgmagick.get_blob_data, _pgmagick.Blob.update)
 
 ChannelType = _pgmagick.ChannelType
 
