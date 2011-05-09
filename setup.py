@@ -76,7 +76,7 @@ if gm_version:
         ext_compile_args = ["-DGM_1_1_x"]
 
 setup(name='pgmagick',
-    version="0.3.5",
+    version="0.3.6",
     description="Yet Another Python wrapper for GraphicsMagick",
     long_description=open('README.rst').read(),
     author='Hideo Hattori',
