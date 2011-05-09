@@ -73,9 +73,7 @@ if gm_version:
     gm_version = gm_version.split('.')
     if gm_version[0] == str(1) and gm_version[1] == str(1):    # version 1.1.x
         ext_compile_args = ["-DGM_1_1_x"]
-    print "GraphicsMagick++ version: %s.%s.%s" % (gm_version[0],
-                                                  gm_version[1],
-                                                  gm_version[2])
+    print "GraphicsMagick++ version: %s" % (".".join(gm_version))
 
 setup(name='pgmagick',
     version="0.3.5",
