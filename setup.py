@@ -22,11 +22,10 @@ if sys.platform == 'Darwin':
                                 '/opt/local/include/'])
     search_library_dirs.append('/opt/local/lib/')
 # for ImageMagick
-search_include_dirs = ['/usr/local/include/ImageMagick/',
-                       '/usr/include/ImageMagick/']
+search_include_dirs.externd(['/usr/local/include/ImageMagick/',
+                             '/usr/include/ImageMagick/'])
 if sys.platform == 'Darwin':
-    search_include_dirs.extend(['/opt/local/include/ImageMagick/',
-                                '/opt/local/include/'])
+    search_include_dirs.append('/opt/local/include/ImageMagick/')
 
 
 def _grep(regex, filename):
