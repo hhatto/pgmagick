@@ -6,19 +6,27 @@ import re
 import sys
 
 GMCPP_PC = 'GraphicsMagick++.pc'
+IMCPP_PC = 'ImageMagick++.pc'
+LIBRARY = 'GraphicsMagick'  # default value
 include_dirs = [get_python_inc()]
 library_dirs = []
+libraries = ['boost_python']
 
-search_include_dirs = ['/usr/local/include/GraphicsMagick',
+search_include_dirs = ['/usr/local/include/GraphicsMagick/',
                        '/usr/include/GraphicsMagick/']
 search_library_dirs = ['/usr/local/lib64/', '/usr/lib64/',
                        '/usr/local/lib/', '/usr/lib/']
-
 if sys.platform == 'Darwin':
-    include_dirs.append('/opt/local/include')
-    search_include_dirs.extend(['/opt/local/include/GraphicsMagick',
-                                '/opt/local/include'])
-    search_library_dirs.append('/opt/local/lib')
+    include_dirs.append('/opt/local/include/')
+    search_include_dirs.extend(['/opt/local/include/GraphicsMagick/',
+                                '/opt/local/include/'])
+    search_library_dirs.append('/opt/local/lib/')
+# for ImageMagick
+search_include_dirs = ['/usr/local/include/ImageMagick/',
+                       '/usr/include/ImageMagick/']
+if sys.platform == 'Darwin':
+    search_include_dirs.extend(['/opt/local/include/ImageMagick/',
+                                '/opt/local/include/'])
 
 
 def _grep(regex, filename):
@@ -27,7 +35,7 @@ def _grep(regex, filename):
             return line
 
 
-def get_gmversion_from_devheaders(search_dirs):
+def get_version_from_devheaders(search_dirs):
     target_api_name = "addNoiseChannel"
     for dirname in search_dirs:
         for root, dirs, files in os.walk(dirname):
@@ -37,7 +45,7 @@ def get_gmversion_from_devheaders(search_dirs):
                         return '1.2.x'
 
 
-def get_gmversion_from_pc(search_dirs):
+def get_version_from_pc(search_dirs):
     """similar to 'pkg-config --modversion GraphicsMagick++'"""
     search_dirs.append('/usr/local/lib/pkgconfig/')
     search_dirs.append('/usr/lib/pkgconfig/')
@@ -47,33 +55,49 @@ def get_gmversion_from_pc(search_dirs):
                 if f == GMCPP_PC:
                     _tmp = _grep("\Version: ", dirname + GMCPP_PC)
                     return _tmp.split()[1]
+                elif f == IMCPP_PC:
+                    _tmp = _grep("\Version: ", dirname + IMCPP_PC)
+                    return _tmp.split()[1]
 
 
 def find_file(filename, search_dirs):
     for dirname in search_dirs:
-        for root, dirs, files in os.walk(dirname):
-            for f in files:
-                if filename in f:
-                    return dirname
-            for d in dirs:
-                if filename in d:
-                    return dirname
-            if filename in root:
-                return dirname
-    raise Exception(filename + " not found")
+        if os.path.exists(dirname + filename):
+            return dirname
+    return False
 
-include_dirs.append(find_file('Magick++', search_include_dirs))
-library_dirs.append(find_file('libGraphicsMagick', search_library_dirs))
+header_path = find_file('Magick++', search_include_dirs)
+if not header_path:
+    raise Exception("Magick++ not found")
+include_dirs.append(header_path)
+
+lib_path = find_file('libGraphicsMagick++.so', search_library_dirs)
+if lib_path:
+    libraries.append('GraphicsMagick++')
+else:
+    lib_path = find_file('libMagick++.so', search_library_dirs)
+    if lib_path:
+        LIBRARY = 'ImageMagick'
+        libraries.append('Magick++')
+    else:
+        raise Exception("libGraphicsMagick++ (or libMagick++) not found")
+library_dirs.append(lib_path)
 
 ext_compile_args = []
-gm_version = get_gmversion_from_pc(search_include_dirs)
-if not gm_version:
-    gm_version = get_gmversion_from_devheaders(include_dirs)
-if gm_version:
-    print "GraphicsMagick++ version:", gm_version
-    gm_version = gm_version.split('.')
-    if gm_version[0] == str(1) and gm_version[1] == str(1):    # version 1.1.x
-        ext_compile_args = ["-DGM_1_1_x"]
+_version = get_version_from_pc(search_include_dirs)
+if not _version:
+    _version = get_version_from_devheaders(include_dirs)
+if _version:
+    print "%s version: %s" % (LIBRARY, _version)
+    _version = _version.split('.')
+    if LIBRARY == 'GraphicsMagick' and \
+       not (_version[0] == str(1) and _version[1] == str(1)):
+        # for GM version 1.3.x and higher
+        ext_compile_args = ["-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_x"]
+    elif LIBRARY == 'ImageMagick':
+        ext_compile_args = ["-DPGMAGICK_LIB_IMAGEMAGICK"]
+else:
+    _version = '%s version: ???' % (LIBRARY)
 
 setup(name='pgmagick',
     version="0.3.6",
@@ -89,7 +113,7 @@ setup(name='pgmagick',
                   sources=glob.glob('./src/*.cpp'),
                   include_dirs=include_dirs,
                   library_dirs=library_dirs,
-                  libraries=['boost_python', 'GraphicsMagick++'],
+                  libraries=libraries,
                   extra_compile_args=ext_compile_args,
                  )],
     classifiers=[

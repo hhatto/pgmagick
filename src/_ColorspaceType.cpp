@@ -24,7 +24,7 @@ void __ColorspaceType()
         .value("sRGBColorspace", Magick::sRGBColorspace)
         .value("HSLColorspace", Magick::HSLColorspace)
         .value("HWBColorspace", Magick::HWBColorspace)
-#ifndef GM_1_1_x
+#ifdef PGMAGICK_LIB_GRAPHICSMAGICK_1_3_x
         .value("LABColorspace", Magick::LABColorspace)
         .value("CineonLogRGBColorspace", Magick::CineonLogRGBColorspace)
         .value("Rec601LumaColorspace", Magick::Rec601LumaColorspace)

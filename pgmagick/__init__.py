@@ -315,7 +315,8 @@ class PathSmoothQuadraticCurvetoRel(_pgmagick.PathSmoothQuadraticCurvetoRel):
 class Pixels(_pgmagick.Pixels):
     pass
 
-QuantumOperator = _pgmagick.QuantumOperator
+if hasattr(_pgmagick, "QuantumOperator"):
+    QuantumOperator = _pgmagick.QuantumOperator
 
 QuantumType = _pgmagick.QuantumType
 
@@ -338,3 +339,6 @@ class VPath(_pgmagick.VPath):
 class VPathList(_pgmagick.VPathList):
     pass
 
+class gminfo:
+    version = _pgmagick.get_version()
+    library = _pgmagick.get_library()

@@ -8,7 +8,7 @@ using namespace boost::python;
 
 void __OrientationType()
 {
-#ifndef GM_1_1_x
+#ifdef PGMAGICK_LIB_GRAPHICSMAGICK_1_3_x
     enum_< Magick::OrientationType >("OrientationType")
         .value("UndefinedOrientation", Magick::UndefinedOrientation)
         .value("TopLeftOrientation", Magick::TopLeftOrientation)

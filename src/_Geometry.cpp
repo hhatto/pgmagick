@@ -17,10 +17,17 @@ void __Geometry()
         .def("width", (unsigned int (Magick::Geometry::*)() const)&Magick::Geometry::width)
         .def("height", (void (Magick::Geometry::*)(unsigned int) )&Magick::Geometry::height)
         .def("height", (unsigned int (Magick::Geometry::*)() const)&Magick::Geometry::height)
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
+        .def("xOff", (void (Magick::Geometry::*)(::ssize_t) )&Magick::Geometry::xOff)
+        .def("xOff", (::ssize_t (Magick::Geometry::*)() const)&Magick::Geometry::xOff)
+        .def("yOff", (void (Magick::Geometry::*)(::ssize_t) )&Magick::Geometry::yOff)
+        .def("yOff", (::ssize_t (Magick::Geometry::*)() const)&Magick::Geometry::yOff)
+#else
         .def("xOff", (void (Magick::Geometry::*)(unsigned int) )&Magick::Geometry::xOff)
         .def("xOff", (unsigned int (Magick::Geometry::*)() const)&Magick::Geometry::xOff)
         .def("yOff", (void (Magick::Geometry::*)(unsigned int) )&Magick::Geometry::yOff)
         .def("yOff", (unsigned int (Magick::Geometry::*)() const)&Magick::Geometry::yOff)
+#endif
         .def("xNegative", (void (Magick::Geometry::*)(bool) )&Magick::Geometry::xNegative)
         .def("xNegative", (bool (Magick::Geometry::*)() const)&Magick::Geometry::xNegative)
         .def("yNegative", (void (Magick::Geometry::*)(bool) )&Magick::Geometry::yNegative)
