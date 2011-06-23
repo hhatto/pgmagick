@@ -22,8 +22,8 @@ if sys.platform == 'Darwin':
                                 '/opt/local/include/'])
     search_library_dirs.append('/opt/local/lib/')
 # for ImageMagick
-search_include_dirs.externd(['/usr/local/include/ImageMagick/',
-                             '/usr/include/ImageMagick/'])
+search_include_dirs.extend(['/usr/local/include/ImageMagick/',
+                            '/usr/include/ImageMagick/'])
 if sys.platform == 'Darwin':
     search_include_dirs.append('/opt/local/include/ImageMagick/')
 
