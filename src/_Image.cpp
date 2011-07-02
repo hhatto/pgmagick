@@ -118,8 +118,17 @@ void __Image()
 #ifdef PGMAGICK_LIB_GRAPHICSMAGICK_1_3_x
         .def("gaussianBlurChannel", &Magick::Image::gaussianBlurChannel)
 #endif
+#ifdef PGMAGICK_LIB_GRAPHICSMAGICK_1_3_x
         .def("haldClut", &Magick::Image::haldClut)
+#endif
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
+        .def("haldClut", &Magick::Image::haldClut)
+#endif
         .def("implode", &Magick::Image::implode)
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
+        .def("inverseFourierTransform", (void (Magick::Image::*)(const Magick::Image&))&Magick::Image::inverseFourierTransform)
+        .def("inverseFourierTransform", (void (Magick::Image::*)(const Magick::Image&, const bool))&Magick::Image::inverseFourierTransform)
+#endif
         .def("label", (void (Magick::Image::*)(const std::string&) )&Magick::Image::label)
 #ifdef PGMAGICK_LIB_GRAPHICSMAGICK_1_3_x
         .def("level", &Magick::Image::level)
