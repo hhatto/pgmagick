@@ -1,6 +1,7 @@
 import sys
 import unittest
-from pgmagick import Image, Geometry, Color, LineJoin, gminfo
+from pgmagick import Image, Geometry, Color, LineJoin, DistortImageMethod
+from pgmagick import gminfo
 
 
 class TestImage(unittest.TestCase):
@@ -24,6 +25,12 @@ class TestImage(unittest.TestCase):
         im.strokeLineJoin(LineJoin.RoundJoin)
         im.strokeLineJoin(LineJoin.BevelJoin)
 
+    def test_haldClut(self):
+        img = Image()
+        if hasattr(img, "haldClut"):
+            clutimg = Image()
+            img.haldClut(clutimg)
+
 
 class TestIMImage(unittest.TestCase):
 
@@ -36,5 +43,19 @@ class TestIMImage(unittest.TestCase):
     def test_adaptiveBlur(self):
         if self.is_imagemagick:
             self.img.adaptiveBlur()
+
+    def test_distort(self):
+        if self.is_imagemagick:
+            self.img.distort(DistortImageMethod.ScaleRotateTranslateDistortion,
+                             1, 1.0, True)
+
+    def test_extent(self):
+        if self.is_imagemagick:
+            self.img.extent(Geometry(100, 100))
+
+    def test_inverseFourierTransform(self):
+        if self.is_imagemagick:
+            phase = Image()
+            self.img.inverseFourierTransform(phase)
 
 unittest.main()
