@@ -191,6 +191,9 @@ void __Image()
         .def("sigmoidalContrast", &Magick::Image::sigmoidalContrast, Magick_Image_sigmoidalContrast_overloads_2_3())
 #endif
         .def("solarize", &Magick::Image::solarize, Magick_Image_solarize_overloads_0_1())
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
+        .def("splice", &Magick::Image::splice)
+#endif
         .def("spread", &Magick::Image::spread, Magick_Image_spread_overloads_0_1())
         .def("stegano", &Magick::Image::stegano)
         .def("stereo", &Magick::Image::stereo)

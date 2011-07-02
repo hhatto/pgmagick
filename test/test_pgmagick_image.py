@@ -61,4 +61,9 @@ class TestIMImage(unittest.TestCase):
     def test_sigmoidalContrast(self):
         if self.is_imagemagick:
             self.img.sigmoidalContrast(2, 2.)
+
+    def test_splice(self):
+        if self.is_imagemagick:
+            self.img.splice(Geometry(100, 100))
+
 unittest.main()
