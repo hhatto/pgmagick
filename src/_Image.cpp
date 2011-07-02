@@ -14,6 +14,7 @@ BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_border_overloads_0_1, border
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_charcoal_overloads_0_2, charcoal, 0, 2)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_composite_overloads_3_4, composite, 3, 4)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_composite_overloads_2_3, composite, 2, 3)
+BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_distort_overloads_3_4, distort, 3, 4)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_edge_overloads_0_1, edge, 0, 1)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_emboss_overloads_0_2, emboss, 0, 2)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_frame_overloads_0_1, frame, 0, 1)
@@ -85,6 +86,10 @@ void __Image()
         .def("cycleColormap", &Magick::Image::cycleColormap)
         .def("despeckle", &Magick::Image::despeckle)
         .def("display", &Magick::Image::display)
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
+        // FIXME: not worked
+        .def("distort", (void (Magick::Image::*)(const Magick::DistortImageMethod, const size_t, const double*, const bool))&Magick::Image::distort)
+#endif
         .def("draw", (void (Magick::Image::*)(const Magick::Drawable&) )&Magick::Image::draw)
         .def("draw", (void (Magick::Image::*)(const std::list<Magick::Drawable,std::allocator<Magick::Drawable> >&) )&Magick::Image::draw)
         .def("edge", &Magick::Image::edge, Magick_Image_edge_overloads_0_1())
@@ -92,6 +97,12 @@ void __Image()
         .def("enhance", &Magick::Image::enhance)
         .def("equalize", &Magick::Image::equalize)
         .def("erase", &Magick::Image::erase)
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
+        .def("extent", (void (Magick::Image::*)(const Magick::Geometry&))&Magick::Image::extent)
+        .def("extent", (void (Magick::Image::*)(const Magick::Geometry&, const Magick::Color&))&Magick::Image::extent)
+        .def("extent", (void (Magick::Image::*)(const Magick::Geometry&, const Magick::GravityType))&Magick::Image::extent)
+        .def("extent", (void (Magick::Image::*)(const Magick::Geometry&, const Magick::Color&, const Magick::GravityType))&Magick::Image::extent)
+#endif
         .def("flip", &Magick::Image::flip)
         .def("floodFillColor", (void (Magick::Image::*)(const Magick::Geometry&, const Magick::Color&) )&Magick::Image::floodFillColor)
         .def("floodFillColor", (void (Magick::Image::*)(const Magick::Geometry&, const Magick::Color&, const Magick::Color&) )&Magick::Image::floodFillColor)

@@ -9,6 +9,7 @@ void __CompositeOperator();
 void __CompressionType();
 void __Coordinate();
 void __DecorationType();
+void __DistortImageMethod();
 void __Drawable();
 void __DrawableAffine();
 void __DrawableArc();
@@ -116,6 +117,7 @@ BOOST_PYTHON_MODULE(_pgmagick)
     __CompressionType();
     __Coordinate();
     __DecorationType();
+    __DistortImageMethod();
     __Drawable();
     __DrawableAffine();
     __DrawableArc();

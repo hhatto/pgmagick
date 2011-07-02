@@ -1,5 +1,5 @@
 import _pgmagick
-__version__ = '0.3.6'
+__version__ = '0.4'
 
 
 def __init():
@@ -314,6 +314,9 @@ class PathSmoothQuadraticCurvetoRel(_pgmagick.PathSmoothQuadraticCurvetoRel):
 
 class Pixels(_pgmagick.Pixels):
     pass
+
+if hasattr(_pgmagick, "DistortImageMethod"):
+    DistortImageMethod = _pgmagick.DistortImageMethod
 
 if hasattr(_pgmagick, "QuantumOperator"):
     QuantumOperator = _pgmagick.QuantumOperator
