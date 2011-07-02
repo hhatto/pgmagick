@@ -1,8 +1,6 @@
 import sys
 import unittest
-sys.path.append('../')
-sys.path.append('./')
-from pgmagick import Image, Geometry, Color, LineJoin
+from pgmagick import Image, Geometry, Color, LineJoin, gminfo
 
 
 class TestImage(unittest.TestCase):
@@ -25,5 +23,18 @@ class TestImage(unittest.TestCase):
         im.strokeLineJoin(LineJoin.MiterJoin)
         im.strokeLineJoin(LineJoin.RoundJoin)
         im.strokeLineJoin(LineJoin.BevelJoin)
+
+
+class TestIMImage(unittest.TestCase):
+
+    def setUp(self):
+        self.img = Image()
+        self.is_imagemagick = False
+        if gminfo.library == 'ImageMagick':
+            self.is_imagemagick = True
+
+    def test_adaptiveBlur(self):
+        if self.is_imagemagick:
+            self.img.adaptiveBlur()
 
 unittest.main()
