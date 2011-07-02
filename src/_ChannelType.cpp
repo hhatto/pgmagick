@@ -23,5 +23,8 @@ void __ChannelType()
         .value("AllChannels", Magick::AllChannels)
         .value("GrayChannel", Magick::GrayChannel)
 #endif
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
+        .value("AllChannels", Magick::AllChannels)
+#endif
     ;
 }
