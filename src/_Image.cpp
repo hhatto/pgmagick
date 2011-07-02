@@ -118,6 +118,7 @@ void __Image()
 #ifdef PGMAGICK_LIB_GRAPHICSMAGICK_1_3_x
         .def("gaussianBlurChannel", &Magick::Image::gaussianBlurChannel)
 #endif
+        .def("haldClut", &Magick::Image::haldClut)
         .def("implode", &Magick::Image::implode)
         .def("label", (void (Magick::Image::*)(const std::string&) )&Magick::Image::label)
 #ifdef PGMAGICK_LIB_GRAPHICSMAGICK_1_3_x
