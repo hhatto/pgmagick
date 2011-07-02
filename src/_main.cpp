@@ -100,10 +100,12 @@ void __QuantumOperator();
 void __QuantumType();
 void __RenderingIntent();
 void __ResolutionType();
+void __SparseColorMethod();
 void __StorageType();
 void __StretchType();
 void __StyleType();
 void __TypeMetric();
+void __VirtualPixelMethod();
 void __VPath();
 void __gminfo();
 
@@ -208,10 +210,12 @@ BOOST_PYTHON_MODULE(_pgmagick)
     __QuantumType();
     __RenderingIntent();
     __ResolutionType();
+    __SparseColorMethod();
     __StorageType();
     __StretchType();
     __StyleType();
     __TypeMetric();
+    __VirtualPixelMethod();
     __VPath();
     __gminfo();
 }

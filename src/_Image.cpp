@@ -111,6 +111,10 @@ void __Image()
         .def("floodFillTexture", (void (Magick::Image::*)(const Magick::Geometry&, const Magick::Image&) )&Magick::Image::floodFillTexture)
         .def("floodFillTexture", (void (Magick::Image::*)(const Magick::Geometry&, const Magick::Image&, const Magick::Color&) )&Magick::Image::floodFillTexture)
         .def("flop", &Magick::Image::flop)
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
+        .def("forwardFourierTransform", (void (Magick::Image::*)())&Magick::Image::forwardFourierTransform)
+        .def("forwardFourierTransform", (void (Magick::Image::*)(const bool))&Magick::Image::forwardFourierTransform)
+#endif
         .def("frame", (void (Magick::Image::*)(const Magick::Geometry&) )&Magick::Image::frame, Magick_Image_frame_overloads_0_1())
         .def("frame", (void (Magick::Image::*)(const unsigned int, const unsigned int, const int, const int) )&Magick::Image::frame, Magick_Image_frame_overloads_2_4())
         .def("gamma", (void (Magick::Image::*)(const double) )&Magick::Image::gamma)
@@ -195,6 +199,10 @@ void __Image()
         .def("splice", &Magick::Image::splice)
 #endif
         .def("spread", &Magick::Image::spread, Magick_Image_spread_overloads_0_1())
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
+        // FIXME: not worked
+        .def("sparseColor", &Magick::Image::sparseColor)
+#endif
         .def("stegano", &Magick::Image::stegano)
         .def("stereo", &Magick::Image::stereo)
         .def("swirl", &Magick::Image::swirl)
@@ -203,10 +211,16 @@ void __Image()
         .def("transform", (void (Magick::Image::*)(const Magick::Geometry&) )&Magick::Image::transform)
         .def("transform", (void (Magick::Image::*)(const Magick::Geometry&, const Magick::Geometry&) )&Magick::Image::transform)
         .def("transparent", &Magick::Image::transparent)
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
+        .def("transparentChroma", &Magick::Image::transparentChroma)
+#endif
         .def("trim", &Magick::Image::trim)
         .def("type", (void (Magick::Image::*)(const Magick::ImageType))&Magick::Image::type)
         .def("unsharpmask", &Magick::Image::unsharpmask)
 #ifdef PGMAGICK_LIB_GRAPHICSMAGICK_1_3_x
+        .def("unsharpmaskChannel", &Magick::Image::unsharpmaskChannel)
+#endif
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
         .def("unsharpmaskChannel", &Magick::Image::unsharpmaskChannel)
 #endif
         .def("wave", &Magick::Image::wave, Magick_Image_wave_overloads_0_2())
@@ -277,6 +291,10 @@ void __Image()
         .def("directory", &Magick::Image::directory)
         .def("endian", (void (Magick::Image::*)(const Magick::EndianType))&Magick::Image::endian)
         .def("endian", (Magick::EndianType (Magick::Image::*)() const)&Magick::Image::endian)
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
+        .def("exifProfile", (void (Magick::Image::*)(const Magick::Blob&))&Magick::Image::exifProfile)
+        .def("exifProfile", (Magick::Blob (Magick::Image::*)() const)&Magick::Image::exifProfile)
+#endif
         .def("fileName", (void (Magick::Image::*)(const std::string&) )&Magick::Image::fileName)
         .def("fileName", (std::string (Magick::Image::*)() const)&Magick::Image::fileName)
         .def("fileSize", &Magick::Image::fileSize)
@@ -402,6 +420,10 @@ void __Image()
         .def("verbose", (bool (Magick::Image::*)() const)&Magick::Image::verbose)
         .def("view", (void (Magick::Image::*)(const std::string&) )&Magick::Image::view)
         .def("view", (std::string (Magick::Image::*)() const)&Magick::Image::view)
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
+        .def("virtualPixelMethod", (void (Magick::Image::*)(const Magick::VirtualPixelMethod))&Magick::Image::virtualPixelMethod)
+        .def("virtualPixelMethod", (Magick::VirtualPixelMethod (Magick::Image::*)() const)&Magick::Image::virtualPixelMethod)
+#endif
         .def("x11Display", (void (Magick::Image::*)(const std::string&) )&Magick::Image::x11Display)
         .def("x11Display", (std::string (Magick::Image::*)() const)&Magick::Image::x11Display)
         .def("xResolution", &Magick::Image::xResolution)

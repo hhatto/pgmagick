@@ -315,6 +315,9 @@ class PathSmoothQuadraticCurvetoRel(_pgmagick.PathSmoothQuadraticCurvetoRel):
 class Pixels(_pgmagick.Pixels):
     pass
 
+if hasattr(_pgmagick, "SparseColorMethod"):
+    SparseColorMethod = _pgmagick.SparseColorMethod
+
 if hasattr(_pgmagick, "DistortImageMethod"):
     DistortImageMethod = _pgmagick.DistortImageMethod
 
@@ -335,6 +338,9 @@ StyleType = _pgmagick.StyleType
 
 class TypeMetric(_pgmagick.TypeMetric):
     pass
+
+if hasattr(_pgmagick, "VirtualPixelMethod"):
+    VirtualPixelMethod = _pgmagick.VirtualPixelMethod
 
 class VPath(_pgmagick.VPath):
     pass

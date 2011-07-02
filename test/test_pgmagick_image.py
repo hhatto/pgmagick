@@ -1,6 +1,8 @@
 import sys
 import unittest
-from pgmagick import Image, Geometry, Color, LineJoin, DistortImageMethod
+import pgmagick
+from pgmagick import Blob, Image, Geometry, Color, LineJoin, DistortImageMethod
+from pgmagick import ChannelType, SparseColorMethod
 from pgmagick import gminfo
 
 
@@ -65,5 +67,21 @@ class TestIMImage(unittest.TestCase):
     def test_splice(self):
         if self.is_imagemagick:
             self.img.splice(Geometry(100, 100))
+
+    def test_sparseColor(self):
+        if self.is_imagemagick:
+            self.img.sparseColor(ChannelType.RedChannel,
+                                 SparseColorMethod.PolynomialColorInterpolate,
+                                 1, 1.)
+
+    def test_sparseColor(self):
+        if self.is_imagemagick:
+            ret = self.img.exifProfile()
+            self.assertEqual(type(ret), type(pgmagick._pgmagick.Blob()))
+
+    def test_virtualPixelMethod(self):
+        if self.is_imagemagick:
+            ret = self.img.virtualPixelMethod()
+            self.assertEqual(type(ret), type(pgmagick._pgmagick.VirtualPixelMethod()))
 
 unittest.main()
