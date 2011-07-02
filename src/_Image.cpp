@@ -6,6 +6,7 @@
 using namespace boost::python;
 
 namespace  {
+BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_adaptiveBlur_overloads_0_2, adaptiveBlur, 0, 2)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_adaptiveThreshold_overloads_2_3, adaptiveThreshold, 2, 3)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_blur_overloads_0_2, blur, 0, 2)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_blurChannel_overloads_1_3, blurChannel, 1, 3)
@@ -47,6 +48,9 @@ void __Image()
         .def(init< const Magick::Blob&, const Magick::Geometry&, const std::string& >())
         .def(init< const unsigned int, const unsigned int, const std::string&, const Magick::StorageType, const void* >())
         .def(init< const Magick::Image& >())
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
+        .def("adaptiveBlur", &Magick::Image::adaptiveBlur, Magick_Image_adaptiveBlur_overloads_0_2())
+#endif
         .def("adaptiveThreshold", &Magick::Image::adaptiveThreshold, Magick_Image_adaptiveThreshold_overloads_2_3())
         .def("addNoise", &Magick::Image::addNoise)
 #ifdef PGMAGICK_LIB_GRAPHICSMAGICK_1_3_x
