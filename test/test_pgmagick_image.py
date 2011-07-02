@@ -58,4 +58,7 @@ class TestIMImage(unittest.TestCase):
             phase = Image()
             self.img.inverseFourierTransform(phase)
 
+    def test_sigmoidalContrast(self):
+        if self.is_imagemagick:
+            self.img.sigmoidalContrast(2, 2.)
 unittest.main()

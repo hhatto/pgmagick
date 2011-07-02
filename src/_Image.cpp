@@ -29,6 +29,7 @@ BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_segment_overloads_0_2, segme
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_shade_overloads_0_3, shade, 0, 3)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_sharpen_overloads_0_2, sharpen, 0, 2)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_sharpenChannel_overloads_1_3, sharpenChannel, 1, 3)
+BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_sigmoidalContrast_overloads_2_3, sigmoidalContrast, 2, 3)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_solarize_overloads_0_1, solarize, 0, 1)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_spread_overloads_0_1, spread, 0, 1)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_wave_overloads_0_2, wave, 0, 2)
@@ -186,6 +187,9 @@ void __Image()
 #endif
         .def("shave", &Magick::Image::shave)
         .def("shear", &Magick::Image::shear)
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
+        .def("sigmoidalContrast", &Magick::Image::sigmoidalContrast, Magick_Image_sigmoidalContrast_overloads_2_3())
+#endif
         .def("solarize", &Magick::Image::solarize, Magick_Image_solarize_overloads_0_1())
         .def("spread", &Magick::Image::spread, Magick_Image_spread_overloads_0_1())
         .def("stegano", &Magick::Image::stegano)
