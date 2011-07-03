@@ -99,7 +99,7 @@ else:
     _version = '%s version: ???' % (LIBRARY)
 
 setup(name='pgmagick',
-    version="0.3.6",
+    version="0.4",
     description="Yet Another Python wrapper for GraphicsMagick",
     long_description=open('README.rst').read(),
     author='Hideo Hattori',
@@ -123,5 +123,5 @@ setup(name='pgmagick',
         'Programming Language :: C++',
         'Programming Language :: Python',
         'Topic :: Multimedia :: Graphics'],
-    keywords="GraphicsMagick graphics visualize boost image",
+    keywords="GraphicsMagick ImageMagick graphics boost image",
 )
