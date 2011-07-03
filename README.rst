@@ -1,9 +1,6 @@
 About
 =====
 pgmagick is a yet another boost.python based wrapper for GraphicsMagick.
-(PythonMagick_ is dead?)
-
-.. _PythonMagick: http://pypi.python.org/pypi/PythonMagick/
 
 
 Install
@@ -37,6 +34,14 @@ MacOSX
 install reported on MacOSX, Thanks Simon Harrison.
 
 http://simonharrison.info/talk/2011/01/17/pgmagick-on-mac-os/
+
+ImageMagick support
+-------------------
+pgmagick is supported to ImageMagick library. (*version:0.4+*)
+
+package install on Ubuntu(test on Ubuntu10.04+)::
+
+    $ apt-get install libmagick++-dev
 
 
 Usage
