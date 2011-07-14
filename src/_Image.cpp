@@ -111,10 +111,6 @@ void __Image()
         .def("floodFillTexture", (void (Magick::Image::*)(const Magick::Geometry&, const Magick::Image&) )&Magick::Image::floodFillTexture)
         .def("floodFillTexture", (void (Magick::Image::*)(const Magick::Geometry&, const Magick::Image&, const Magick::Color&) )&Magick::Image::floodFillTexture)
         .def("flop", &Magick::Image::flop)
-#ifdef PGMAGICK_LIB_IMAGEMAGICK
-        .def("forwardFourierTransform", (void (Magick::Image::*)())&Magick::Image::forwardFourierTransform)
-        .def("forwardFourierTransform", (void (Magick::Image::*)(const bool))&Magick::Image::forwardFourierTransform)
-#endif
         .def("frame", (void (Magick::Image::*)(const Magick::Geometry&) )&Magick::Image::frame, Magick_Image_frame_overloads_0_1())
         .def("frame", (void (Magick::Image::*)(const unsigned int, const unsigned int, const int, const int) )&Magick::Image::frame, Magick_Image_frame_overloads_2_4())
         .def("gamma", (void (Magick::Image::*)(const double) )&Magick::Image::gamma)
