@@ -44,18 +44,15 @@ def get_version_from_devheaders(search_dirs):
                         return '1.2.x'
 
 
-def get_version_from_pc(search_dirs):
+def get_version_from_pc(search_dirs, target):
     """similar to 'pkg-config --modversion GraphicsMagick++'"""
     search_dirs.append('/usr/local/lib/pkgconfig/')
     search_dirs.append('/usr/lib/pkgconfig/')
     for dirname in search_dirs:
         for root, dirs, files in os.walk(dirname):
             for f in files:
-                if f == GMCPP_PC:
-                    _tmp = _grep("\Version: ", dirname + GMCPP_PC)
-                    return _tmp.split()[1]
-                elif f == IMCPP_PC:
-                    _tmp = _grep("\Version: ", dirname + IMCPP_PC)
+                if f == target:
+                    _tmp = _grep("\Version: ", dirname + target)
                     return _tmp.split()[1]
 
 
@@ -65,25 +62,34 @@ def find_file(filename, search_dirs):
             return dirname
     return False
 
+# find to header path
 header_path = find_file('Magick++', search_include_dirs)
 if not header_path:
     raise Exception("Magick++ not found")
+print "include header path:", header_path
 include_dirs.append(header_path)
 
+# find to library path
 lib_path = find_file('libGraphicsMagick++.so', search_library_dirs)
 if lib_path:
     libraries.append('GraphicsMagick++')
+    print "library path: %s%s" % (lib_path, "libGraphicsMagick++.so")
 else:
     lib_path = find_file('libMagick++.so', search_library_dirs)
     if lib_path:
         LIBRARY = 'ImageMagick'
         libraries.append('Magick++')
+        print "library path: %s%s" % (lib_path, "libMagick++.so")
     else:
         raise Exception("libGraphicsMagick++ (or libMagick++) not found")
 library_dirs.append(lib_path)
 
+# get version and extra compile argument
 ext_compile_args = []
-_version = get_version_from_pc(search_include_dirs)
+if LIBRARY == 'GraphicsMagick':
+    _version = get_version_from_pc(search_include_dirs, GMCPP_PC)
+else:
+    _version = get_version_from_pc(search_include_dirs, IMCPP_PC)
 if not _version:
     _version = get_version_from_devheaders(include_dirs)
 if _version:
