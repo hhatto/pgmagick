@@ -1,9 +1,11 @@
 import sys
 import unittest
 import pgmagick
-from pgmagick import Blob, Image, Geometry, Color, LineJoin, DistortImageMethod
-from pgmagick import ChannelType, SparseColorMethod
+from pgmagick import Blob, Image, Geometry, Color, LineJoin
+from pgmagick import ChannelType
 from pgmagick import gminfo
+if gminfo.library == 'ImageMagick':
+    from pgmagick import DistortImageMethod, SparseColorMethod
 
 
 class TestImage(unittest.TestCase):
@@ -27,11 +29,12 @@ class TestImage(unittest.TestCase):
         im.strokeLineJoin(LineJoin.RoundJoin)
         im.strokeLineJoin(LineJoin.BevelJoin)
 
-    def test_haldClut(self):
-        img = Image()
-        if hasattr(img, "haldClut"):
-            clutimg = Image()
-            img.haldClut(clutimg)
+    #def test_haldClut(self):
+    #    img = Image()
+    #    if hasattr(img, "haldClut"):
+    #        clutimg = Image(Geometry(400, 300), Color("transparent"))
+    #        clutimg.read("gradient:white-black")
+    #        img.haldClut(clutimg)
 
 
 class TestIMImage(unittest.TestCase):
@@ -82,6 +85,7 @@ class TestIMImage(unittest.TestCase):
     def test_virtualPixelMethod(self):
         if self.is_imagemagick:
             ret = self.img.virtualPixelMethod()
-            self.assertEqual(type(ret), type(pgmagick._pgmagick.VirtualPixelMethod()))
+            self.assertEqual(type(ret),
+                             type(pgmagick._pgmagick.VirtualPixelMethod()))
 
 unittest.main()
