@@ -43,6 +43,14 @@ package install on Ubuntu(test on Ubuntu10.04+)::
 
     $ apt-get install libmagick++-dev
 
+show library name and version::
+
+    >>> from pgmagick import gminfo
+    >>> gminfo.library
+    'GraphicsMagick'    # or 'ImageMagick'
+    >>> gminfo.version
+    '1.3.x'
+    >>>
 
 Usage
 =====
