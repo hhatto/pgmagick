@@ -80,13 +80,13 @@ include_dirs.append(header_path)
 lib_path = find_file('libGraphicsMagick++', search_library_dirs)
 if lib_path:
     libraries.append('GraphicsMagick++')
-    print "library path: %s%s" % (lib_path, "libGraphicsMagick++.so")
+    print "library path: %s%s" % (lib_path, "libGraphicsMagick++")
 else:
     lib_path = find_file('libMagick++', search_library_dirs)
     if lib_path:
         LIBRARY = 'ImageMagick'
         libraries.append('Magick++')
-        print "library path: %s%s" % (lib_path, "libMagick++.so")
+        print "library path: %s%s" % (lib_path, "libMagick++")
     else:
         raise Exception("libGraphicsMagick++ (or libMagick++) not found")
 library_dirs.append(lib_path)
