@@ -58,8 +58,15 @@ def get_version_from_pc(search_dirs, target):
 
 def find_file(filename, search_dirs):
     for dirname in search_dirs:
-        if os.path.exists(dirname + filename):
-            return dirname
+        for root, dirs, files in os.walk(dirname):
+            for f in files:
+                if filename in f:
+                    return dirname
+            for d in dirs:
+                if filename in d:
+                    return dirname
+            if filename in root:
+                return dirname
     return False
 
 # find to header path
