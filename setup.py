@@ -112,7 +112,7 @@ else:
     _version = '%s version: ???' % (LIBRARY)
 
 setup(name='pgmagick',
-    version="0.4",
+    version="0.4.1",
     description="Yet Another Python wrapper for GraphicsMagick",
     long_description=open('README.rst').read(),
     author='Hideo Hattori',
