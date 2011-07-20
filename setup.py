@@ -70,12 +70,12 @@ print "include header path:", header_path
 include_dirs.append(header_path)
 
 # find to library path
-lib_path = find_file('libGraphicsMagick++.so', search_library_dirs)
+lib_path = find_file('libGraphicsMagick++', search_library_dirs)
 if lib_path:
     libraries.append('GraphicsMagick++')
     print "library path: %s%s" % (lib_path, "libGraphicsMagick++.so")
 else:
-    lib_path = find_file('libMagick++.so', search_library_dirs)
+    lib_path = find_file('libMagick++', search_library_dirs)
     if lib_path:
         LIBRARY = 'ImageMagick'
         libraries.append('Magick++')
