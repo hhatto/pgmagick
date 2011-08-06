@@ -43,10 +43,17 @@ void __Montage()
              &Magick::Montage::penColor)
         .def("penColor", (Magick::Color (Magick::Montage::*)() const)
              &Magick::Montage::penColor)
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
+        .def("pointSize", (void (Magick::Montage::*)(size_t))
+             &Magick::Montage::pointSize)
+        .def("pointSize", (size_t (Magick::Montage::*)() const)
+             &Magick::Montage::pointSize)
+#else
         .def("pointSize", (void (Magick::Montage::*)(unsigned int))
              &Magick::Montage::pointSize)
         .def("pointSize", (unsigned int (Magick::Montage::*)() const)
              &Magick::Montage::pointSize)
+#endif
         .def("shadow", (void (Magick::Montage::*)(const bool))
              &Magick::Montage::shadow)
         .def("shadow", (bool (Magick::Montage::*)() const)
