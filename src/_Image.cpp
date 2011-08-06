@@ -87,16 +87,15 @@ void __Image()
 #endif
         .def("charcoal", &Magick::Image::charcoal, Magick_Image_charcoal_overloads_0_2())
         .def("chop", &Magick::Image::chop)
-#ifdef PGMAGICK_LIB_IMAGEMAGICK
-        .def("colorize", (void (Magick::Image::*)(const size_t, const size_t, const size_t, const Magick::Color&) )&Magick::Image::colorize)
-        .def("colorize", (void (Magick::Image::*)(const size_t, const Magick::Color&) )&Magick::Image::colorize)
-#else
         .def("colorize", (void (Magick::Image::*)(const unsigned int, const unsigned int, const unsigned int, const Magick::Color&) )&Magick::Image::colorize)
         .def("colorize", (void (Magick::Image::*)(const unsigned int, const Magick::Color&) )&Magick::Image::colorize)
-#endif
         .def("comment", (void (Magick::Image::*)(const std::string&) )&Magick::Image::comment)
         .def("compare", &Magick::Image::compare)
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
+        .def("composite", (void (Magick::Image::*)(const Magick::Image&, const ::ssize_t, const ::ssize_t, const Magick::CompositeOperator))&Magick::Image::composite, Magick_Image_composite_overloads_3_4())
+#else
         .def("composite", (void (Magick::Image::*)(const Magick::Image&, const int, const int, const Magick::CompositeOperator))&Magick::Image::composite, Magick_Image_composite_overloads_3_4())
+#endif
         .def("composite", (void (Magick::Image::*)(const Magick::Image&, const Magick::Geometry&, Magick::CompositeOperator))&Magick::Image::composite, Magick_Image_composite_overloads_2_3())
         .def("composite", (void (Magick::Image::*)(const Magick::Image&, const Magick::GravityType, Magick::CompositeOperator))&Magick::Image::composite,
              Magick_Image_composite_overloads_2_3())
@@ -131,7 +130,11 @@ void __Image()
         .def("floodFillTexture", (void (Magick::Image::*)(const Magick::Geometry&, const Magick::Image&, const Magick::Color&) )&Magick::Image::floodFillTexture)
         .def("flop", &Magick::Image::flop)
         .def("frame", (void (Magick::Image::*)(const Magick::Geometry&) )&Magick::Image::frame, Magick_Image_frame_overloads_0_1())
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
+        .def("frame", (void (Magick::Image::*)(const size_t, const size_t, const ::ssize_t, const ::ssize_t) )&Magick::Image::frame, Magick_Image_frame_overloads_2_4())
+#else
         .def("frame", (void (Magick::Image::*)(const unsigned int, const unsigned int, const int, const int) )&Magick::Image::frame, Magick_Image_frame_overloads_2_4())
+#endif
         .def("gamma", (void (Magick::Image::*)(const double) )&Magick::Image::gamma)
         .def("gamma", (void (Magick::Image::*)(const double, const double, const double) )&Magick::Image::gamma)
         .def("gaussianBlur", &Magick::Image::gaussianBlur)
@@ -186,13 +189,22 @@ void __Image()
         .def("read", (void (Magick::Image::*)(const Magick::Geometry&, const std::string&) )&Magick::Image::read)
         .def("read", (void (Magick::Image::*)(const Magick::Blob&) )&Magick::Image::read)
         .def("read", (void (Magick::Image::*)(const Magick::Blob&, const Magick::Geometry&) )&Magick::Image::read)
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
+        .def("read", (void (Magick::Image::*)(const Magick::Blob&, const Magick::Geometry&, const size_t) )&Magick::Image::read)
+        .def("read", (void (Magick::Image::*)(const Magick::Blob&, const Magick::Geometry&, const size_t, const std::string&) )&Magick::Image::read)
+#else
         .def("read", (void (Magick::Image::*)(const Magick::Blob&, const Magick::Geometry&, const unsigned int) )&Magick::Image::read)
         .def("read", (void (Magick::Image::*)(const Magick::Blob&, const Magick::Geometry&, const unsigned int, const std::string&) )&Magick::Image::read)
+#endif
         .def("read", (void (Magick::Image::*)(const Magick::Blob&, const Magick::Geometry&, const std::string&) )&Magick::Image::read)
         .def("reduceNoise", (void (Magick::Image::*)() )&Magick::Image::reduceNoise)
         .def("reduceNoise", (void (Magick::Image::*)(const double) )&Magick::Image::reduceNoise)
         .def("roll", (void (Magick::Image::*)(const Magick::Geometry&) )&Magick::Image::roll)
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
+        .def("roll", (void (Magick::Image::*)(const size_t, const size_t) )&Magick::Image::roll)
+#else
         .def("roll", (void (Magick::Image::*)(const unsigned int, const unsigned int) )&Magick::Image::roll)
+#endif
         .def("rotate", &Magick::Image::rotate)
         .def("sample", &Magick::Image::sample)
         .def("scale", &Magick::Image::scale)
@@ -240,16 +252,27 @@ void __Image()
         .def("write", (void (Magick::Image::*)(const std::string&) )&Magick::Image::write)
         .def("write", (void (Magick::Image::*)(Magick::Blob*) )&Magick::Image::write)
         .def("write", (void (Magick::Image::*)(Magick::Blob*, const std::string&) )&Magick::Image::write)
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
+        .def("write", (void (Magick::Image::*)(Magick::Blob*, const std::string&, const size_t) )&Magick::Image::write)
+#else
         .def("write", (void (Magick::Image::*)(Magick::Blob*, const std::string&, const unsigned int) )&Magick::Image::write)
+#endif
         .def("zoom", &Magick::Image::zoom)
         .def("adjoin", (void (Magick::Image::*)(const bool) )&Magick::Image::adjoin)
         .def("adjoin", (bool (Magick::Image::*)() const)&Magick::Image::adjoin)
         .def("antiAlias", (void (Magick::Image::*)(const bool) )&Magick::Image::antiAlias)
         .def("antiAlias", (bool (Magick::Image::*)() )&Magick::Image::antiAlias)
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
+        .def("animationDelay", (void (Magick::Image::*)(const size_t) )&Magick::Image::animationDelay)
+        .def("animationDelay", (size_t (Magick::Image::*)() const)&Magick::Image::animationDelay)
+        .def("animationIterations", (void (Magick::Image::*)(const size_t) )&Magick::Image::animationIterations)
+        .def("animationIterations", (size_t (Magick::Image::*)() const)&Magick::Image::animationIterations)
+#else
         .def("animationDelay", (void (Magick::Image::*)(const unsigned int) )&Magick::Image::animationDelay)
         .def("animationDelay", (unsigned int (Magick::Image::*)() const)&Magick::Image::animationDelay)
         .def("animationIterations", (void (Magick::Image::*)(const unsigned int) )&Magick::Image::animationIterations)
         .def("animationIterations", (unsigned int (Magick::Image::*)() const)&Magick::Image::animationIterations)
+#endif
         .def("attribute", (void (Magick::Image::*)(const std::string, const std::string) )&Magick::Image::attribute)
         .def("attribute", (std::string (Magick::Image::*)(const std::string) )&Magick::Image::attribute)
         .def("backgroundColor", (void (Magick::Image::*)(const Magick::Color&) )&Magick::Image::backgroundColor)
@@ -279,10 +302,17 @@ void __Image()
         .def("clipMask", (Magick::Image (Magick::Image::*)() const)&Magick::Image::clipMask)
         .def("colorFuzz", (void (Magick::Image::*)(const double) )&Magick::Image::colorFuzz)
         .def("colorFuzz", (double (Magick::Image::*)() const)&Magick::Image::colorFuzz)
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
+        .def("colorMap", (void (Magick::Image::*)(const size_t, const Magick::Color&) )&Magick::Image::colorMap)
+        .def("colorMap", (Magick::Color (Magick::Image::*)(const size_t) const)&Magick::Image::colorMap)
+        .def("colorMapSize", (void (Magick::Image::*)(const size_t) )&Magick::Image::colorMapSize)
+        .def("colorMapSize", (size_t (Magick::Image::*)() )&Magick::Image::colorMapSize)
+#else
         .def("colorMap", (void (Magick::Image::*)(const unsigned int, const Magick::Color&) )&Magick::Image::colorMap)
         .def("colorMap", (Magick::Color (Magick::Image::*)(const unsigned int) const)&Magick::Image::colorMap)
         .def("colorMapSize", (void (Magick::Image::*)(const unsigned int) )&Magick::Image::colorMapSize)
         .def("colorMapSize", (unsigned int (Magick::Image::*)() )&Magick::Image::colorMapSize)
+#endif
         .def("colorSpace", (void (Magick::Image::*)(const Magick::ColorspaceType))&Magick::Image::colorSpace)
         .def("colorSpace", (Magick::ColorspaceType (Magick::Image::*)() const)&Magick::Image::colorSpace)
         .def("columns", &Magick::Image::columns)
