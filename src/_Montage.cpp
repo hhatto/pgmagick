@@ -83,10 +83,17 @@ void __Montage()
              &Magick::MontageFramed::borderColor)
         .def("borderColor", (Magick::Color (Magick::MontageFramed::*)() const)
              &Magick::MontageFramed::borderColor)
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
+        .def("borderWidth", (void (Magick::MontageFramed::*)(size_t))
+             &Magick::MontageFramed::borderWidth)
+        .def("borderWidth", (size_t (Magick::MontageFramed::*)() const)
+             &Magick::MontageFramed::borderWidth)
+#else
         .def("borderWidth", (void (Magick::MontageFramed::*)(unsigned int))
              &Magick::MontageFramed::borderWidth)
         .def("borderWidth", (unsigned int (Magick::MontageFramed::*)() const)
              &Magick::MontageFramed::borderWidth)
+#endif
         .def("frameGeometry",
              (void (Magick::MontageFramed::*)(const Magick::Geometry&))
              &Magick::MontageFramed::geometry)
