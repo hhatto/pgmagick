@@ -45,10 +45,19 @@ void __Image()
         .def(init< const Magick::Geometry&, const Magick::Color& >())
         .def(init< const Magick::Blob& >())
         .def(init< const Magick::Blob&, const Magick::Geometry& >())
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
+        .def(init< const Magick::Blob&, const Magick::Geometry&, const size_t >())
+        .def(init< const Magick::Blob&, const Magick::Geometry&, const size_t, const std::string& >())
+#else
         .def(init< const Magick::Blob&, const Magick::Geometry&, const unsigned int >())
         .def(init< const Magick::Blob&, const Magick::Geometry&, const unsigned int, const std::string& >())
+#endif
         .def(init< const Magick::Blob&, const Magick::Geometry&, const std::string& >())
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
+        .def(init< const size_t, const size_t, const std::string&, const Magick::StorageType, const void* >())
+#else
         .def(init< const unsigned int, const unsigned int, const std::string&, const Magick::StorageType, const void* >())
+#endif
         .def(init< const Magick::Image& >())
 #ifdef PGMAGICK_LIB_IMAGEMAGICK
         .def("adaptiveBlur", &Magick::Image::adaptiveBlur, Magick_Image_adaptiveBlur_overloads_0_2())
@@ -69,12 +78,22 @@ void __Image()
 #endif
         .def("border", &Magick::Image::border, Magick_Image_border_overloads_0_1())
         .def("channel", &Magick::Image::channel)
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
+        .def("channelDepth", (void (Magick::Image::*)(const Magick::ChannelType, const size_t) )&Magick::Image::channelDepth)
+        .def("channelDepth", (size_t (Magick::Image::*)(const Magick::ChannelType) )&Magick::Image::channelDepth)
+#else
         .def("channelDepth", (void (Magick::Image::*)(const Magick::ChannelType, const unsigned int) )&Magick::Image::channelDepth)
         .def("channelDepth", (unsigned int (Magick::Image::*)(const Magick::ChannelType) )&Magick::Image::channelDepth)
+#endif
         .def("charcoal", &Magick::Image::charcoal, Magick_Image_charcoal_overloads_0_2())
         .def("chop", &Magick::Image::chop)
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
+        .def("colorize", (void (Magick::Image::*)(const size_t, const size_t, const size_t, const Magick::Color&) )&Magick::Image::colorize)
+        .def("colorize", (void (Magick::Image::*)(const size_t, const Magick::Color&) )&Magick::Image::colorize)
+#else
         .def("colorize", (void (Magick::Image::*)(const unsigned int, const unsigned int, const unsigned int, const Magick::Color&) )&Magick::Image::colorize)
         .def("colorize", (void (Magick::Image::*)(const unsigned int, const Magick::Color&) )&Magick::Image::colorize)
+#endif
         .def("comment", (void (Magick::Image::*)(const std::string&) )&Magick::Image::comment)
         .def("compare", &Magick::Image::compare)
         .def("composite", (void (Magick::Image::*)(const Magick::Image&, const int, const int, const Magick::CompositeOperator))&Magick::Image::composite, Magick_Image_composite_overloads_3_4())
@@ -118,8 +137,6 @@ void __Image()
         .def("gaussianBlur", &Magick::Image::gaussianBlur)
 #ifdef PGMAGICK_LIB_GRAPHICSMAGICK_1_3_x
         .def("gaussianBlurChannel", &Magick::Image::gaussianBlurChannel)
-#endif
-#ifdef PGMAGICK_LIB_GRAPHICSMAGICK_1_3_x
         .def("haldClut", &Magick::Image::haldClut)
 #endif
 #ifdef PGMAGICK_LIB_IMAGEMAGICK
@@ -282,8 +299,13 @@ void __Image()
         .def("defineSet", (bool (Magick::Image::*)(const std::string&, const std::string&) const)&Magick::Image::defineSet)
         .def("density", (void (Magick::Image::*)(const Magick::Geometry&) )&Magick::Image::density)
         .def("density", (Magick::Geometry (Magick::Image::*)() const)&Magick::Image::density)
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
+        .def("depth", (void (Magick::Image::*)(const size_t) )&Magick::Image::depth)
+        .def("depth", (size_t (Magick::Image::*)() const)&Magick::Image::depth)
+#else
         .def("depth", (void (Magick::Image::*)(const unsigned int) )&Magick::Image::depth)
         .def("depth", (unsigned int (Magick::Image::*)() const)&Magick::Image::depth)
+#endif
         .def("directory", &Magick::Image::directory)
         .def("endian", (void (Magick::Image::*)(const Magick::EndianType))&Magick::Image::endian)
         .def("endian", (Magick::EndianType (Magick::Image::*)() const)&Magick::Image::endian)
@@ -309,8 +331,13 @@ void __Image()
         .def("format", &Magick::Image::format)
         .def("gamma", (double (Magick::Image::*)() const)&Magick::Image::gamma)
         .def("geometry", &Magick::Image::geometry)
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
+        .def("gifDisposeMethod", (void (Magick::Image::*)(const size_t) )&Magick::Image::gifDisposeMethod)
+        .def("gifDisposeMethod", (size_t (Magick::Image::*)() const)&Magick::Image::gifDisposeMethod)
+#else
         .def("gifDisposeMethod", (void (Magick::Image::*)(const unsigned int) )&Magick::Image::gifDisposeMethod)
         .def("gifDisposeMethod", (unsigned int (Magick::Image::*)() const)&Magick::Image::gifDisposeMethod)
+#endif
         .def("iccColorProfile", (void (Magick::Image::*)(const Magick::Blob&) )&Magick::Image::iccColorProfile)
         .def("iccColorProfile", (Magick::Blob (Magick::Image::*)() const)&Magick::Image::iccColorProfile)
         .def("interlaceType", (void (Magick::Image::*)(const Magick::InterlaceType))&Magick::Image::interlaceType)
@@ -329,8 +356,13 @@ void __Image()
         .def("matteColor", (void (Magick::Image::*)(const Magick::Color&) )&Magick::Image::matteColor)
         .def("matteColor", (Magick::Color (Magick::Image::*)() const)&Magick::Image::matteColor)
         .def("meanErrorPerPixel", &Magick::Image::meanErrorPerPixel)
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
+        .def("modulusDepth", (void (Magick::Image::*)(const size_t) )&Magick::Image::modulusDepth)
+        .def("modulusDepth", (size_t (Magick::Image::*)() const)&Magick::Image::modulusDepth)
+#else
         .def("modulusDepth", (void (Magick::Image::*)(const unsigned int) )&Magick::Image::modulusDepth)
         .def("modulusDepth", (unsigned int (Magick::Image::*)() const)&Magick::Image::modulusDepth)
+#endif
         .def("montageGeometry", &Magick::Image::montageGeometry)
         .def("monochrome", (void (Magick::Image::*)(const bool) )&Magick::Image::monochrome)
         .def("monochrome", (bool (Magick::Image::*)() const)&Magick::Image::monochrome)
@@ -355,23 +387,40 @@ void __Image()
 #endif
         .def("profile", (void (Magick::Image::*)(const std::string, const Magick::Blob&))&Magick::Image::profile)
         .def("profile", (Magick::Blob (Magick::Image::*)(const std::string) const)&Magick::Image::profile)
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
+        .def("quality", (void (Magick::Image::*)(const size_t) )&Magick::Image::quality)
+        .def("quality", (size_t (Magick::Image::*)() const)&Magick::Image::quality)
+        .def("quantizeColors", (void (Magick::Image::*)(const size_t) )&Magick::Image::quantizeColors)
+        .def("quantizeColors", (size_t (Magick::Image::*)() const)&Magick::Image::quantizeColors)
+#else
         .def("quality", (void (Magick::Image::*)(const unsigned int) )&Magick::Image::quality)
         .def("quality", (unsigned int (Magick::Image::*)() const)&Magick::Image::quality)
         .def("quantizeColors", (void (Magick::Image::*)(const unsigned int) )&Magick::Image::quantizeColors)
         .def("quantizeColors", (unsigned int (Magick::Image::*)() const)&Magick::Image::quantizeColors)
+#endif
         .def("quantizeColorSpace", (void (Magick::Image::*)(const Magick::ColorspaceType) )&Magick::Image::quantizeColorSpace)
         .def("quantizeColorSpace", (Magick::ColorspaceType (Magick::Image::*)() const)&Magick::Image::quantizeColorSpace)
         .def("quantizeDither", (void (Magick::Image::*)(const bool) )&Magick::Image::quantizeDither)
         .def("quantizeDither", (bool (Magick::Image::*)() const)&Magick::Image::quantizeDither)
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
+        .def("quantizeTreeDepth", (void (Magick::Image::*)(const size_t) )&Magick::Image::quantizeTreeDepth)
+        .def("quantizeTreeDepth", (size_t (Magick::Image::*)() const)&Magick::Image::quantizeTreeDepth)
+#else
         .def("quantizeTreeDepth", (void (Magick::Image::*)(const unsigned int) )&Magick::Image::quantizeTreeDepth)
         .def("quantizeTreeDepth", (unsigned int (Magick::Image::*)() const)&Magick::Image::quantizeTreeDepth)
+#endif
         .def("renderingIntent", (void (Magick::Image::*)(const Magick::RenderingIntent) )&Magick::Image::renderingIntent)
         .def("renderingIntent", (Magick::RenderingIntent (Magick::Image::*)() const)&Magick::Image::renderingIntent)
         .def("resolutionUnits", (void (Magick::Image::*)(const Magick::ResolutionType) )&Magick::Image::resolutionUnits)
         .def("resolutionUnits", (Magick::ResolutionType (Magick::Image::*)() const)&Magick::Image::resolutionUnits)
         .def("rows", &Magick::Image::rows)
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
+        .def("scene", (void (Magick::Image::*)(const size_t) )&Magick::Image::scene)
+        .def("scene", (size_t (Magick::Image::*)() const)&Magick::Image::scene)
+#else
         .def("scene", (void (Magick::Image::*)(const unsigned int) )&Magick::Image::scene)
         .def("scene", (unsigned int (Magick::Image::*)() const)&Magick::Image::scene)
+#endif
         .def("signature", &Magick::Image::signature, Magick_Image_signature_overloads_0_1())
         .def("size", (void (Magick::Image::*)(const Magick::Geometry&) )&Magick::Image::size)
         .def("size", (Magick::Geometry (Magick::Image::*)() const)&Magick::Image::size)
@@ -390,16 +439,28 @@ void __Image()
         .def("strokeLineCap", (Magick::LineCap (Magick::Image::*)() const)&Magick::Image::strokeLineCap)
         .def("strokeLineJoin", (void (Magick::Image::*)(const Magick::LineJoin) )&Magick::Image::strokeLineJoin)
         .def("strokeLineJoin", (Magick::LineJoin (Magick::Image::*)() const)&Magick::Image::strokeLineJoin)
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
+        .def("strokeMiterLimit", (void (Magick::Image::*)(const size_t) )&Magick::Image::strokeMiterLimit)
+        .def("strokeMiterLimit", (size_t (Magick::Image::*)() const)&Magick::Image::strokeMiterLimit)
+#else
         .def("strokeMiterLimit", (void (Magick::Image::*)(const unsigned int) )&Magick::Image::strokeMiterLimit)
         .def("strokeMiterLimit", (unsigned int (Magick::Image::*)() const)&Magick::Image::strokeMiterLimit)
+#endif
         .def("strokePattern", (void (Magick::Image::*)(const Magick::Image&) )&Magick::Image::strokePattern)
         .def("strokePattern", (Magick::Image (Magick::Image::*)() const)&Magick::Image::strokePattern)
         .def("strokeWidth", (void (Magick::Image::*)(const double) )&Magick::Image::strokeWidth)
         .def("strokeWidth", (double (Magick::Image::*)() const)&Magick::Image::strokeWidth)
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
+        .def("subImage", (void (Magick::Image::*)(const size_t) )&Magick::Image::subImage)
+        .def("subImage", (size_t (Magick::Image::*)() const)&Magick::Image::subImage)
+        .def("subRange", (void (Magick::Image::*)(const size_t) )&Magick::Image::subRange)
+        .def("subRange", (size_t (Magick::Image::*)() const)&Magick::Image::subRange)
+#else
         .def("subImage", (void (Magick::Image::*)(const unsigned int) )&Magick::Image::subImage)
         .def("subImage", (unsigned int (Magick::Image::*)() const)&Magick::Image::subImage)
         .def("subRange", (void (Magick::Image::*)(const unsigned int) )&Magick::Image::subRange)
         .def("subRange", (unsigned int (Magick::Image::*)() const)&Magick::Image::subRange)
+#endif
         .def("textEncoding", (void (Magick::Image::*)(const std::string&) )&Magick::Image::textEncoding)
         .def("textEncoding", (std::string (Magick::Image::*)() const)&Magick::Image::textEncoding)
         .def("tileName", (void (Magick::Image::*)(const std::string&) )&Magick::Image::tileName)
