@@ -1,7 +1,7 @@
 import sys
 import unittest
 import pgmagick
-from pgmagick import Blob, Image, Geometry, Color, LineJoin
+from pgmagick import Blob, Image, Geometry, Color, LineJoin, StorageType
 from pgmagick import ChannelType
 from pgmagick import gminfo
 if gminfo.library == 'ImageMagick':
@@ -28,6 +28,14 @@ class TestImage(unittest.TestCase):
         im.strokeLineJoin(LineJoin.MiterJoin)
         im.strokeLineJoin(LineJoin.RoundJoin)
         im.strokeLineJoin(LineJoin.BevelJoin)
+
+    #def test_image_getpixels(self):
+    #    img = Image(Geometry(300, 200), Color('transparent'))
+    #    img.getPixels(10, 10, 10, 10)
+
+    def test_image_init_storagetype(self):
+        data = ["0" for i in range(10000)]
+        img = Image(100, 100, "RGB", StorageType.CharPixel, "".join(data))
 
     #def test_haldClut(self):
     #    img = Image()
