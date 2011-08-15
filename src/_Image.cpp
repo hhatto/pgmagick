@@ -54,9 +54,9 @@ void __Image()
 #endif
         .def(init< const Magick::Blob&, const Magick::Geometry&, const std::string& >())
 #ifdef PGMAGICK_LIB_IMAGEMAGICK
-        .def(init< const size_t, const size_t, const std::string&, const Magick::StorageType, const void* >())
+        .def(init< const size_t, const size_t, const std::string&, const Magick::StorageType, const char* >())
 #else
-        .def(init< const unsigned int, const unsigned int, const std::string&, const Magick::StorageType, const void* >())
+        .def(init< const unsigned int, const unsigned int, const std::string&, const Magick::StorageType, const char* >())
 #endif
         .def(init< const Magick::Image& >())
 #ifdef PGMAGICK_LIB_IMAGEMAGICK
