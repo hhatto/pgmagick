@@ -104,6 +104,7 @@ void __SparseColorMethod();
 void __StorageType();
 void __StretchType();
 void __StyleType();
+void __STL();
 void __TypeMetric();
 void __VirtualPixelMethod();
 void __VPath();
@@ -214,6 +215,7 @@ BOOST_PYTHON_MODULE(_pgmagick)
     __StorageType();
     __StretchType();
     __StyleType();
+    __STL();
     __TypeMetric();
     __VirtualPixelMethod();
     __VPath();

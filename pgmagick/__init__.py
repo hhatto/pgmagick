@@ -216,6 +216,9 @@ GravityType = _pgmagick.GravityType
 class Image(_pgmagick.Image):
     pass
 
+class ImageList(_pgmagick.ImageList):
+    pass
+
 ImageType = _pgmagick.ImageType
 
 InterlaceType = _pgmagick.InterlaceType

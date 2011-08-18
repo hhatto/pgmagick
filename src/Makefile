@@ -10,6 +10,7 @@ OBJS = _Blob.o \
        _CompressionType.o \
        _Coordinate.o \
        _DecorationType.o \
+       _DistortImageMethod.o \
        _Drawable.o \
        _DrawableAffine.o \
        _DrawableArc.o \
@@ -100,10 +101,13 @@ OBJS = _Blob.o \
        _QuantumType.o \
        _RenderingIntent.o \
        _ResolutionType.o \
+       _SparseColorMethod.o \
        _StorageType.o \
        _StretchType.o \
        _StyleType.o \
+       _STL.o \
        _TypeMetric.o \
+       _VirtualPixelMethod.o \
        _VPath.o \
        _gminfo.o \
        _main.o
