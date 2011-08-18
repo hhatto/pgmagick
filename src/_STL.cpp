@@ -90,7 +90,7 @@ void __STL()
         .def("readImages", (void (_ImageList::*)(const std::string&))&_ImageList::_readImages)
         .def("writeImages", (void (_ImageList::*)(const std::string&))&_ImageList::_writeImages)
 
-        .def("animationDelayImage", (void (_ImageList::*)(const unsigned int))&_ImageList::_animationDelayImage)
-        .def("scaleImage", (void (_ImageList::*)(const Magick::Geometry&))&_ImageList::_scaleImage)
+        .def("animationDelayImages", (void (_ImageList::*)(const unsigned int))&_ImageList::_animationDelayImage)
+        .def("scaleImages", (void (_ImageList::*)(const Magick::Geometry&))&_ImageList::_scaleImage)
     ;
 }
