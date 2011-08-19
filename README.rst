@@ -93,6 +93,17 @@ blob access::
     >>> img.scale('300x200')
     >>> img.write('out.jpg')
 
+create animated-GIF::
+
+    from pgmagick import Image, ImageList, Geometry, Color
+
+    imgs = ImageList()
+    for color in ('red', 'blue', 'green', 'black', 'yellow'):
+        imgs.append(Image(Geometry(200, 200), Color(color)))
+    imgs.animationDelayImages(100)
+    imgs.scaleImages(Geometry(100, 100))
+    imgs.writeImages('output.gif')
+
 more API detail... read to `Magick++ API for GraphicsMagick`_ document.
 
 .. _`Magick++ API for GraphicsMagick`: http://www.graphicsmagick.org/Magick++/
