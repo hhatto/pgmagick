@@ -16,10 +16,10 @@ Python2.5++, GraphicsMagick and Boost.Python.
 
 package install on Ubuntu(test on Ubuntu10.04+)::
 
-    # Ubuntu11.10+
+    ### Ubuntu11.10+ ###
     $ apt-get install python-pgmagick
 
-    # Ubuntu10.04+
+    ### Ubuntu10.04+ ###
     $ apt-get install libgraphicsmagick++1-dev
     $ apt-get install libboost-python1.40-dev
 
