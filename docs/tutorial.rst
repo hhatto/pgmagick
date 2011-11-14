@@ -23,6 +23,7 @@ pgmagick is available on UNIX-like systems. and depend on the following librarie
 - `GraphicsMagick(Magick++)`_ : graphing library. 1.3.5 and higher version.
 - `Boost.Python`_ : wrap C++ code. 1.40 and higher version.
 
+.. _`GraphicsMagick(Magick++)`: http://www.graphicsmagick.org/Magick++/
 .. _`Boost.Python`: http://www.boost.org/doc/libs/1_44_0/libs/python/doc/index.html
 
 Ubuntu11.10
