@@ -16,7 +16,7 @@ creating a color of red background JPEG image
     img = Image((300, 200), 'red')
     img.write('bg-red.jpg')
 
-.. image:: _static/bg-red.jpg
+.. image:: _images/bg-red.jpg
 
 
 creating a transparency PNG image
@@ -29,7 +29,7 @@ creating a transparency PNG image
     img = Image((300, 200), 'transparent')
     img.write('transparent.png')
 
-.. image:: _static/transparent.png
+.. image:: _images/transparent.png
 
 
 creating a gradient image
@@ -42,7 +42,7 @@ creating a gradient image
     img = Image((300, 200), 'gradient:#ffffff-#000000')
     img.write('gradient.png')
 
-.. image:: _static/gradient.png
+.. image:: _images/gradient.png
 
 
 draw text
@@ -56,7 +56,7 @@ draw text
     img.annotate('Hello World')
     img.write('helloworld.png')
 
-.. image:: _static/helloworld.png
+.. image:: _images/helloworld.png
 
 
 斜め45度に傾いた文字を描く
@@ -71,7 +71,7 @@ draw text of rotated 45 degrees
     img.annotate('Hello World', angle=45)
     img.write('helloworld45.png')
 
-.. image:: _static/helloworld45.png
+.. image:: _images/helloworld45.png
 
 
 draw text of 2byte code
@@ -88,7 +88,7 @@ draw text of 2byte code
     img.annotate('ようこそpgmagickへ!!')
     img.write('japanese-text.png')
 
-.. image:: _static/japanese-text.png
+.. image:: _images/japanese-text.png
 
 
 scaling a image
@@ -102,7 +102,7 @@ scaling a image
     img.scale(0.5)
     img.write('halfscale.png')
 
-.. image:: _static/halfscale.png
+.. image:: _images/halfscale.png
 
 .. code-block:: python
 
@@ -112,7 +112,7 @@ scaling a image
     img.scale((150, 100), 'lanczos')
     img.write('halfscale2.png')
 
-.. image:: _static/halfscale2.png
+.. image:: _images/halfscale2.png
 
 
 scaling a JPEG image
@@ -126,8 +126,8 @@ scaling a JPEG image
     img.scale('200x200')
     img.write('lena_scale.jpg')
 
-.. image:: _static/lena_std.jpg
-.. image:: _static/lena_scale.jpg
+.. image:: _images/lena_std.jpg
+.. image:: _images/lena_scale.jpg
 
 
 
@@ -150,21 +150,19 @@ get image size
     300 200
 
 
+..    画像を半透明にする
+..    ------------------
 ..
-
-    画像を半透明にする
-    ------------------
-
-    .. code-block:: python
-
-        from pgmagick.api import Image
-
-        img = Image('lena.jpg')
-        img.opacity(80)
-        img.write('lena_opacity80.jpg')
-
-    .. image:: _static/lena.jpg
-    .. image:: _static/lena_opacity80.png
+..    .. code-block:: python
+..
+..        from pgmagick.api import Image
+..
+..        img = Image('lena.jpg')
+..        img.opacity(80)
+..        img.write('lena_opacity80.jpg')
+..
+..    .. image:: _images/lena.jpg
+..    .. image:: _images/lena_opacity80.png
 
 
 sharpen filtering
@@ -178,8 +176,8 @@ sharpen filtering
     img.sharpen(1)
     img.write('lena_sharpen1.jpg')
 
-.. image:: _static/lena.jpg
-.. image:: _static/lena_sharpen1.jpg
+.. image:: _images/lena.jpg
+.. image:: _images/lena_sharpen1.jpg
 
 
 blur filtering
@@ -193,8 +191,8 @@ blur filtering
     img.blur(10, 5)
     img.write('lena_blur.jpg')
 
-.. image:: _static/lena.jpg
-.. image:: _static/lena_blur.jpg
+.. image:: _images/lena.jpg
+.. image:: _images/lena_blur.jpg
 
 
 Edge extraction
@@ -208,8 +206,8 @@ Edge extraction
     img.edge(2)
     img.write('lena_edge.jpg')
 
-.. image:: _static/lena.jpg
-.. image:: _static/lena_edge.jpg
+.. image:: _images/lena.jpg
+.. image:: _images/lena_edge.jpg
 
 
 removing a EXIF information
@@ -225,7 +223,7 @@ removing a EXIF information
     img.profile("*", blob)
     img.write('exif-strip.jpg')
 
-.. image:: _static/exif-sample.jpg
+.. image:: _images/exif-sample.jpg
     :width: 300px
-.. image:: _static/exif-strip.jpg
+.. image:: _images/exif-strip.jpg
     :width: 300px
