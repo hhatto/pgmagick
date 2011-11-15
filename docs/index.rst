@@ -32,6 +32,7 @@ User's Guide
 
    tutorial
    cookbook
+   api
 
 
 Development
