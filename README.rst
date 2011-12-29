@@ -35,9 +35,10 @@ GraphicsMagick from source package::
 
 MacOSX
 ------
-install reported on MacOSX, Thanks Simon Harrison.
+install reported on MacOSX, Thanks Rohan Singh and Simon Harrison.
 
-http://simonharrison.info/talk/2011/01/17/pgmagick-on-mac-os/
+- http://rohanradio.com/blog/2011/12/02/installing-pgmagick-on-os-x/
+- http://simonharrison.info/talk/2011/01/17/pgmagick-on-mac-os/ (old)
 
 ImageMagick support
 -------------------
