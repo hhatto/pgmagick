@@ -10,7 +10,6 @@ IMCPP_PC = 'ImageMagick++.pc'
 LIBRARY = 'GraphicsMagick'  # default value
 include_dirs = [get_python_inc()]
 library_dirs = []
-libraries = ['boost_python']
 
 search_include_dirs = ['/usr/local/include/GraphicsMagick/',
                        '/usr/include/GraphicsMagick/']
@@ -73,20 +72,32 @@ def find_file(filename, search_dirs):
 header_path = find_file('Magick++', search_include_dirs)
 if not header_path:
     raise Exception("Magick++ not found")
-print "include header path:", header_path
+print("include header path: %s" % header_path)
 include_dirs.append(header_path)
 
-# find to library path
+# find to library path for boost_python
+# TODO: only test on Ubuntu11.10
+_version = sys.version_info
+if _version >= (3, ):
+    boost_lib = "boost_python-py%s%s" % (_version[0], _version[1])
+    lib_path = find_file('lib' + boost_lib, search_library_dirs)
+    if not lib_path:
+        boost_lib = "boost_python"
+else:
+    boost_lib = "boost_python"
+libraries = [boost_lib]
+
+# find to library path for Magick
 lib_path = find_file('libGraphicsMagick++', search_library_dirs)
 if lib_path:
     libraries.append('GraphicsMagick++')
-    print "library path: %s%s" % (lib_path, "libGraphicsMagick++")
+    print("library path: %s%s" % (lib_path, "libGraphicsMagick++"))
 else:
     lib_path = find_file('libMagick++', search_library_dirs)
     if lib_path:
         LIBRARY = 'ImageMagick'
         libraries.append('Magick++')
-        print "library path: %s%s" % (lib_path, "libMagick++")
+        print("library path: %s%s" % (lib_path, "libMagick++"))
     else:
         raise Exception("libGraphicsMagick++ (or libMagick++) not found")
 library_dirs.append(lib_path)
@@ -100,7 +111,7 @@ else:
 if not _version:
     _version = get_version_from_devheaders(include_dirs)
 if _version:
-    print "%s version: %s" % (LIBRARY, _version)
+    print("%s version: %s" % (LIBRARY, _version))
     _version = _version.split('.')
     if LIBRARY == 'GraphicsMagick' and \
        not (_version[0] == str(1) and _version[1] == str(1)):

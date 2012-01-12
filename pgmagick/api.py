@@ -1,3 +1,4 @@
+import sys
 import pgmagick
 
 _EXIF_TAGS = [
@@ -521,7 +522,9 @@ class Image(object):
 
     def __init__(self, filename=None, color=None, *args, **kargs):
         self.img = None
-        if isinstance(filename, (unicode, str)):
+        if sys.version_info >= (3, ) and isinstance(filename, (str)):
+            self.img = pgmagick.Image(str(filename))
+        elif sys.version_info < (3, ) and isinstance(filename, (unicode, str)):
             self.img = pgmagick.Image(str(filename))
         elif isinstance(filename, (list, tuple)):
             size = filename

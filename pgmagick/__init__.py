@@ -1,4 +1,4 @@
-import _pgmagick
+from pgmagick import _pgmagick
 __version__ = '0.4.2'
 
 
