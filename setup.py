@@ -146,6 +146,7 @@ setup(name='pgmagick',
         'Operating System :: POSIX',
         'Programming Language :: C++',
         'Programming Language :: Python',
+        'Programming Language :: Python :: 3',
         'Topic :: Multimedia :: Graphics'],
     keywords="GraphicsMagick ImageMagick graphics boost image",
 )
