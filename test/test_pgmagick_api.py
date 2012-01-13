@@ -12,9 +12,15 @@ class ImageTestCase(unittest.TestCase):
 
     def test_unicodefilename(self):
         self.img.write('unicode.png')
-        img = Image(u'unicode.png')
+        if sys.version_info >= (3, ):
+            img = Image('unicode.png')
+        else:
+            img = Image(unicode('unicode.png'))
         img.scale(0.5)
-        img.write(u'unicode.jpg')
+        if sys.version_info >= (3, ):
+            img.write('unicode.jpg')
+        else:
+            img.write(unicode('unicode.jpg'))
 
     def test_nonarg(self):
         im = Image()
