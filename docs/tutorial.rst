@@ -16,8 +16,8 @@ or
     $ pip install --upgrade pgmagick
 
 
-Require
--------
+Requirements
+------------
 pgmagick is available on UNIX-like systems. and depend on the following libraries.
 
 - `GraphicsMagick(Magick++)`_ : graphing library. 1.3.5 and higher version.
