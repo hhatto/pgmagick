@@ -50,6 +50,13 @@ Fedora
     $ yum install GraphicsMagick-c++-devel
     $ yum install boost-devel
 
+Debian
+^^^^^^
+
+.. code-block:: bash
+
+    $ apt-get install libboost-python-dev
+    $ apt-get install libgraphicsmagick++1-dev
 
 GraphicsMagick from source package
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
