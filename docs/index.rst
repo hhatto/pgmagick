@@ -35,9 +35,21 @@ User's Guide
    api
 
 
+Community
+=========
+There is mailinglist for discussion about pgmagick hosted on librelist_.
+
+To subscribe, send a mail to pgmagick@librelist.com and reply to
+the confirmation mail.
+
+`[pgmagick] archives`_
+
+.. _librelist: http://librelist.com/
+.. _`[pgmagick] archives`: http://librelist.com/browser/pgmagick/
+
 Development
 ===========
-pgmagick is written by `Hideo Hattori`_ .
+pgmagick is written by `Hideo Hattori`_.
 contact the author by e-mail to hhatto.jp@gmail.com
 
 - `Source Code (on bitbucket)`_
@@ -50,15 +62,7 @@ contact the author by e-mail to hhatto.jp@gmail.com
 
 License
 =======
-pgmagick is under the MIT License. see the `LICENSE file`_ .
+pgmagick is under the MIT License. see the `LICENSE file`_.
 
 .. _`LICENSE file`: https://bitbucket.org/hhatto/pgmagick/src/tip/LICENSE
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
 
