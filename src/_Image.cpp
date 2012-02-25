@@ -89,6 +89,9 @@ void __Image()
         .def("chop", &Magick::Image::chop)
         .def("colorize", (void (Magick::Image::*)(const unsigned int, const unsigned int, const unsigned int, const Magick::Color&) )&Magick::Image::colorize)
         .def("colorize", (void (Magick::Image::*)(const unsigned int, const Magick::Color&) )&Magick::Image::colorize)
+#ifdef PGMAGICK_LIB_GRAPHICSMAGICK_1_3_x
+        .def("colorMatrix", (void (Magick::Image::*)(const unsigned int, const double*) )&Magick::Image::colorMatrix)
+#endif
         .def("comment", (void (Magick::Image::*)(const std::string&) )&Magick::Image::comment)
         .def("compare", &Magick::Image::compare)
 #ifdef PGMAGICK_LIB_IMAGEMAGICK
