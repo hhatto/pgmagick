@@ -655,8 +655,8 @@ class Image(object):
             width, height = geometry[0], geometry[1]
             x, y = geometry[2], geometry[3]
             g = pgmagick.Geometry(x, y, width, height)
-        elif isinstance(geometry, pgmagick.Geometry):
-            g = geometry
+        elif len(geometry) == 1 and isinstance(geometry[0], pgmagick.Geometry):
+            g = geometry[0]
         else:
             raise Exception("not support object", geometry)
         self.img.crop(g)
