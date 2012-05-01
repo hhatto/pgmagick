@@ -40,6 +40,13 @@ install reported on MacOSX, Thanks Rohan Singh and Simon Harrison.
 - http://rohanradio.com/blog/2011/12/02/installing-pgmagick-on-os-x/
 - http://simonharrison.info/talk/2011/01/17/pgmagick-on-mac-os/ (old)
 
+Windows
+-------
+Now, not official support.
+However, *unofficial* binary packages exists.
+
+- http://www.lfd.uci.edu/~gohlke/pythonlibs/#pgmagick
+
 ImageMagick support
 -------------------
 pgmagick is supported to ImageMagick library. (*version:0.4+*)
