@@ -15,7 +15,7 @@ search_include_dirs = ['/usr/local/include/GraphicsMagick/',
                        '/usr/include/GraphicsMagick/']
 search_library_dirs = ['/usr/local/lib64/', '/usr/lib64/',
                        '/usr/local/lib/', '/usr/lib/']
-if sys.platform == 'Darwin':
+if sys.platform.lower() == 'darwin':
     include_dirs.append('/opt/local/include/')
     search_include_dirs.extend(['/opt/local/include/GraphicsMagick/',
                                 '/opt/local/include/'])
@@ -23,7 +23,7 @@ if sys.platform == 'Darwin':
 # for ImageMagick
 search_include_dirs.extend(['/usr/local/include/ImageMagick/',
                             '/usr/include/ImageMagick/'])
-if sys.platform == 'Darwin':
+if sys.platform.lower() == 'darwin':
     search_include_dirs.append('/opt/local/include/ImageMagick/')
 
 
@@ -39,7 +39,7 @@ def get_version_from_devheaders(search_dirs):
         for root, dirs, files in os.walk(dirname):
             for f in files:
                 if f == 'Image.h':
-                    if _grep(target_api_name, dirname + 'Magick++/Image.h'):
+                    if _grep(target_api_name, os.path.join(root, 'Image.h')):
                         return '1.2.x'
 
 
