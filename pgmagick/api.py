@@ -713,7 +713,7 @@ class Image(object):
         if filter_type:
             filter_type = getattr(pgmagick.FilterTypes,
                                   "%sFilter" % filter_type.title())
-            pgmagick.Image.filterType(self, filter_type)
+            pgmagick.Image.filterType(self.img, filter_type)
         geometry = pgmagick.Geometry(size)
         self.img.scale(geometry)
 
