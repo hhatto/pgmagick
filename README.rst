@@ -127,3 +127,13 @@ Python APIs(*NOTICE!! this api is alpha version!!*)::
     >>> img.scale(0.8)
     >>> img.write('out.png')
 
+
+Links
+=====
+* PyPI_
+* bitbucket_
+* `CI(Jenkins)`_
+
+.. _PyPI: http://pypi.python.org/pypi/pgmagick/
+.. _bitbucket: https://bitbucket.org/hhatto/pgmagick/
+.. _`CI(Jenkins)`: http://jenkins.hexacosa.net/job/pgmagick/_
