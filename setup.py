@@ -112,11 +112,18 @@ if not _version:
     _version = get_version_from_devheaders(include_dirs)
 if _version:
     print("%s version: %s" % (LIBRARY, _version))
-    _version = _version.split('.')
-    if LIBRARY == 'GraphicsMagick' and \
-       not (_version[0] == str(1) and _version[1] == str(1)):
-        # for GM version 1.3.x and higher
-        ext_compile_args = ["-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_x"]
+    _version = map(int, _version.split('.'))
+    if len(_version) == 2:
+        # ex) 1.2 -> 1.2.0
+        _version.append(0)
+    if LIBRARY == 'GraphicsMagick':
+        if _version[0] == 1 and _version[1] == 3 and _version[2] >= 6:
+            # for not Ubuntu10.04
+            ext_compile_args = ["-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_6",
+                                "-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_x"]
+        elif not (_version[0] == 1 and _version[1] == 1):
+            # for GM version 1.3.x and higher
+            ext_compile_args = ["-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_x"]
     elif LIBRARY == 'ImageMagick':
         ext_compile_args = ["-DPGMAGICK_LIB_IMAGEMAGICK"]
 else:

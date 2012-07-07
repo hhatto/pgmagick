@@ -89,7 +89,7 @@ void __Image()
         .def("chop", &Magick::Image::chop)
         .def("colorize", (void (Magick::Image::*)(const unsigned int, const unsigned int, const unsigned int, const Magick::Color&) )&Magick::Image::colorize)
         .def("colorize", (void (Magick::Image::*)(const unsigned int, const Magick::Color&) )&Magick::Image::colorize)
-#ifdef PGMAGICK_LIB_GRAPHICSMAGICK_1_3_x
+#ifdef PGMAGICK_LIB_GRAPHICSMAGICK_1_3_6
         .def("colorMatrix", (void (Magick::Image::*)(const unsigned int, const double*) )&Magick::Image::colorMatrix)
 #endif
         .def("comment", (void (Magick::Image::*)(const std::string&) )&Magick::Image::comment)
@@ -143,6 +143,8 @@ void __Image()
         .def("gaussianBlur", &Magick::Image::gaussianBlur)
 #ifdef PGMAGICK_LIB_GRAPHICSMAGICK_1_3_x
         .def("gaussianBlurChannel", &Magick::Image::gaussianBlurChannel)
+#endif
+#ifdef PGMAGICK_LIB_GRAPHICSMAGICK_1_3_6
         .def("haldClut", &Magick::Image::haldClut)
 #endif
 #ifdef PGMAGICK_LIB_IMAGEMAGICK
