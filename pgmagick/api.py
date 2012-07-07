@@ -696,6 +696,12 @@ class Image(object):
         # TODO: not implemented
         pass
 
+    def font(self, font=None):
+        if font:
+            self.img.font(font)
+        else:
+            return self.img.font()
+
     def scale(self, size, filter_type=None):
         if isinstance(size, float):
             scaled_height = self.img.rows() * size
