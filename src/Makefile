@@ -1,5 +1,6 @@
+CC = g++
 FLAGS = -Wall
-INCS = -I/usr/include/python2.6 -I/usr/include/GraphicsMagick
+INCS = -I/usr/include/python2.7 -I/usr/include/GraphicsMagick
 SO = _pgmagick.so
 LIBS = -lboost_python -lGraphicsMagick++
 OBJS = _Blob.o \
@@ -115,10 +116,10 @@ OBJS = _Blob.o \
 .SUFFIXES: .cpp .o
 
 $(SO): $(OBJS)
-	g++ $(LIBS) -fPIC -shared -o $(SO) $^
+	$(CC) $(LIBS) -fPIC -shared -o $(SO) $^
 
 .cpp.o:
-	g++ $(FLAGS) $(INCS) -o $@ -c $<
+	$(CC) $(FLAGS) $(INCS) -o $@ -c $<
 
 clean:
 	rm -rf $(OBJS) $(SO)

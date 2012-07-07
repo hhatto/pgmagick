@@ -5,6 +5,9 @@ all:
 	cd $(SRC_DIR) && make
 	cp -p src/*.so pgmagick/
 
+fastbuild:
+	cd $(SRC_DIR) && make CC="ccache g++"
+	cp -p src/*.so pgmagick/
 
 TEST_DIR=test
 .PHONY: test
