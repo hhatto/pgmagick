@@ -34,3 +34,4 @@ clean:
 	cd $(SRC_DIR) && make clean
 	rm -rf pgmagick/_pgmagick.so
 	rm -rf pgmagick/*.pyc
+	rm -rf test/*.png test/*.jpg
