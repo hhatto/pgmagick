@@ -201,7 +201,8 @@ class DrawableViewbox(_pgmagick.DrawableViewbox):
 
 EndianType = _pgmagick.EndianType
 
-class Exception(_pgmagick.Exception):
+class MagickException(_pgmagick.Exception):
+    """Exception Class"""
     pass
 
 FillRule = _pgmagick.FillRule
