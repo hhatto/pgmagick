@@ -1,5 +1,5 @@
 from pgmagick import _pgmagick
-__version__ = '0.5.2'
+__version__ = '0.5.3'
 
 
 def __init():
