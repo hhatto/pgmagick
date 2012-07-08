@@ -5,29 +5,25 @@
 
 using namespace boost::python;
 
+namespace {
+BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_ImageList__writeImages_overloads_1_2, _writeImages, 1, 2)
+}
 
 class _ImageList {
 public:
     _ImageList(void);
-    _ImageList(const std::string &imageSpec);
+    _ImageList(const std::string&);
 
     int _length(void);
-
-    void _append(Magick::Image _image);
-
-    void _appendImages(Magick::Image *_image);
-
+    void _append(Magick::Image);
+    void _appendImages(Magick::Image*);
     void _coalesceImages(void);
-
     void _readImages(const std::string&);
     void _readImages(Magick::Blob&);
-
     void _writeImages(const std::string&, bool);
     void _writeImages(Magick::Blob*, bool);
-
-    void _animationDelayImage(const unsigned int delay);
-
-    void _scaleImage(const Magick::Geometry &geometry);
+    void _animationDelayImage(const unsigned int);
+    void _scaleImage(const Magick::Geometry&);
 
 private:
     std::list<Magick::Image> _images;
@@ -99,8 +95,8 @@ void __STL()
         .def("coalesceImags", (void (_ImageList::*)(void))&_ImageList::_coalesceImages)
         .def("readImages", (void (_ImageList::*)(const std::string&))&_ImageList::_readImages)
         .def("readImages", (void (_ImageList::*)(Magick::Blob&))&_ImageList::_readImages)
-        .def("writeImages", (void (_ImageList::*)(const std::string&, bool))&_ImageList::_writeImages)
-        .def("writeImages", (void (_ImageList::*)(Magick::Blob*, bool))&_ImageList::_writeImages)
+        .def("writeImages", (void (_ImageList::*)(const std::string&, bool))&_ImageList::_writeImages, Magick_ImageList__writeImages_overloads_1_2())
+        .def("writeImages", (void (_ImageList::*)(Magick::Blob*, bool))&_ImageList::_writeImages, Magick_ImageList__writeImages_overloads_1_2())
 
         .def("animationDelayImages", (void (_ImageList::*)(const unsigned int))&_ImageList::_animationDelayImage)
         .def("scaleImages", (void (_ImageList::*)(const Magick::Geometry&))&_ImageList::_scaleImage)
