@@ -19,9 +19,11 @@ public:
 
     void _coalesceImages(void);
 
-    void _readImages(const std::string &imageSpec);
+    void _readImages(const std::string&);
+    void _readImages(Magick::Blob&);
 
-    void _writeImages(const std::string &imageSpec);
+    void _writeImages(const std::string&, bool);
+    void _writeImages(Magick::Blob*, bool);
 
     void _animationDelayImage(const unsigned int delay);
 
@@ -63,10 +65,18 @@ void _ImageList::_readImages(const std::string &imageSpec)
 {
     Magick::readImages(&_images, imageSpec);
 }
-
-void _ImageList::_writeImages(const std::string &imageSpec)
+void _ImageList::_readImages(Magick::Blob &blob)
 {
-    Magick::writeImages(_images.begin(), _images.end(), imageSpec);
+    Magick::readImages(&_images, blob);
+}
+
+void _ImageList::_writeImages(const std::string &imageSpec, bool adjoin=true)
+{
+    Magick::writeImages(_images.begin(), _images.end(), imageSpec, adjoin);
+}
+void _ImageList::_writeImages(Magick::Blob *blob, bool adjoin=true)
+{
+    Magick::writeImages(_images.begin(), _images.end(), blob, adjoin);
 }
 
 void _ImageList::_animationDelayImage(const unsigned int delay)
@@ -88,7 +98,9 @@ void __STL()
         .def("appendImages", (void (_ImageList::*)(Magick::Image*))&_ImageList::_appendImages)
         .def("coalesceImags", (void (_ImageList::*)(void))&_ImageList::_coalesceImages)
         .def("readImages", (void (_ImageList::*)(const std::string&))&_ImageList::_readImages)
-        .def("writeImages", (void (_ImageList::*)(const std::string&))&_ImageList::_writeImages)
+        .def("readImages", (void (_ImageList::*)(Magick::Blob&))&_ImageList::_readImages)
+        .def("writeImages", (void (_ImageList::*)(const std::string&, bool))&_ImageList::_writeImages)
+        .def("writeImages", (void (_ImageList::*)(Magick::Blob*, bool))&_ImageList::_writeImages)
 
         .def("animationDelayImages", (void (_ImageList::*)(const unsigned int))&_ImageList::_animationDelayImage)
         .def("scaleImages", (void (_ImageList::*)(const Magick::Geometry&))&_ImageList::_scaleImage)
