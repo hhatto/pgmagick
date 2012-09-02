@@ -40,7 +40,7 @@ def get_version_from_devheaders(search_dirs):
             for f in files:
                 if f == 'Image.h':
                     if _grep(target_api_name, os.path.join(root, 'Image.h')):
-                        return '1.2.x'
+                        return '1.2.0'
 
 
 def get_version_from_pc(search_dirs, target):
