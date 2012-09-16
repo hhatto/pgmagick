@@ -3,6 +3,8 @@
 #include <Magick++.h>
 #include <Magick++/STL.h>
 
+#include <iterator>
+
 using namespace boost::python;
 
 namespace {
@@ -15,6 +17,9 @@ public:
     _ImageList(const std::string&);
 
     int _length(void);
+    Magick::Image _get(const unsigned int);
+    std::list<Magick::Image>::iterator _begin(void);
+    std::list<Magick::Image>::iterator _end(void);
     void _append(Magick::Image);
     void _appendImages(Magick::Image*);
     void _coalesceImages(void);
@@ -24,6 +29,9 @@ public:
     void _writeImages(Magick::Blob*, bool);
     void _animationDelayImage(const unsigned int);
     void _scaleImage(const Magick::Geometry&);
+
+    std::list<Magick::Image>::iterator _it;
+
 
 private:
     std::list<Magick::Image> _images;
@@ -40,6 +48,21 @@ _ImageList::_ImageList(const std::string &imageSpec)
 int _ImageList::_length(void)
 {
     return _images.size();
+}
+Magick::Image _ImageList::_get(const unsigned int item_no)
+{
+    std::list<Magick::Image>::iterator it = _images.begin();
+    std::advance(it, item_no);
+    return *it;
+}
+std::list<Magick::Image>::iterator _ImageList::_begin(void)
+{
+    return _images.begin();
+}
+
+std::list<Magick::Image>::iterator _ImageList::_end(void)
+{
+    return _images.end();
 }
 
 void _ImageList::_append(Magick::Image _image)
@@ -90,6 +113,8 @@ void __STL()
 {
     class_< _ImageList >("ImageList", init< >())
         .def("__len__", &_ImageList::_length)
+	.def("__getitem__", (Magick::Image (_ImageList::*)(const unsigned int))&_ImageList::_get)
+	.def("__iter__", range(&_ImageList::_begin, &_ImageList::_end))
         .def("append", (void (_ImageList::*)(Magick::Image))&_ImageList::_append)
         .def("appendImages", (void (_ImageList::*)(Magick::Image*))&_ImageList::_appendImages)
         .def("coalesceImags", (void (_ImageList::*)(void))&_ImageList::_coalesceImages)
