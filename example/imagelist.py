@@ -7,3 +7,7 @@ imgs.animationDelayImages(100)
 imgs.scaleImages(Geometry(100, 100))
 print len(imgs)
 imgs.writeImages('output.gif')
+
+imgs.readImages('output.gif')
+for img in imgs:
+    print img
