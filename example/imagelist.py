@@ -8,6 +8,7 @@ imgs.scaleImages(Geometry(100, 100))
 print len(imgs)
 imgs.writeImages('output.gif')
 
+imgs = ImageList()
 imgs.readImages('output.gif')
 for img in imgs:
     print img
