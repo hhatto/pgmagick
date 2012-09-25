@@ -112,7 +112,7 @@ if not _version:
     _version = get_version_from_devheaders(include_dirs)
 if _version:
     print("%s version: %s" % (LIBRARY, _version))
-    _version = map(int, _version.split('.'))
+    _version = list(map(int, _version.split('.')))
     if len(_version) == 2:
         # ex) 1.2 -> 1.2.0
         _version.append(0)
@@ -130,30 +130,28 @@ else:
     _version = '%s version: ???' % (LIBRARY)
 
 setup(name='pgmagick',
-    version="0.5.3",
-    description="Yet Another Python wrapper for GraphicsMagick",
-    long_description=open('README.rst').read(),
-    author='Hideo Hattori',
-    author_email='hhatto.jp@gmail.com',
-    url='http://bitbucket.org/hhatto/pgmagick',
-    license='MIT',
-    packages=find_packages(),
-    ext_modules=[
-        Extension('pgmagick._pgmagick',
+      version="0.5.3",
+      description="Yet Another Python wrapper for GraphicsMagick",
+      long_description=open('README.rst').read(),
+      author='Hideo Hattori',
+      author_email='hhatto.jp@gmail.com',
+      url='http://bitbucket.org/hhatto/pgmagick',
+      license='MIT',
+      packages=find_packages(),
+      ext_modules=[
+          Extension('pgmagick._pgmagick',
                   sources=glob.glob('./src/*.cpp'),
                   include_dirs=include_dirs,
                   library_dirs=library_dirs,
                   libraries=libraries,
-                  extra_compile_args=ext_compile_args,
-                 )],
-    classifiers=[
-        'Development Status :: 4 - Beta',
-        'Intended Audience :: Developers',
-        'License :: OSI Approved :: MIT License',
-        'Operating System :: POSIX',
-        'Programming Language :: C++',
-        'Programming Language :: Python',
-        'Programming Language :: Python :: 3',
-        'Topic :: Multimedia :: Graphics'],
-    keywords="GraphicsMagick ImageMagick graphics boost image",
-)
+                  extra_compile_args=ext_compile_args)],
+      classifiers=[
+          'Development Status :: 4 - Beta',
+          'Intended Audience :: Developers',
+          'License :: OSI Approved :: MIT License',
+          'Operating System :: POSIX',
+          'Programming Language :: C++',
+          'Programming Language :: Python',
+          'Programming Language :: Python :: 3',
+          'Topic :: Multimedia :: Graphics'],
+      keywords="GraphicsMagick ImageMagick graphics boost image")
