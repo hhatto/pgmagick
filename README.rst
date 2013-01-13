@@ -136,4 +136,4 @@ Links
 
 .. _PyPI: http://pypi.python.org/pypi/pgmagick/
 .. _bitbucket: https://bitbucket.org/hhatto/pgmagick/
-.. _`CI(Jenkins)`: http://jenkins.hexacosa.net/job/pgmagick/_
+.. _`CI(Jenkins)`: http://jenkins.hexacosa.net/job/pgmagick/
