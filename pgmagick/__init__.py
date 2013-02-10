@@ -20,8 +20,10 @@ class Blob(_pgmagick.Blob):
 
 ChannelType = _pgmagick.ChannelType
 
+
 class Color(_pgmagick.Color):
     pass
+
 
 class ColorGray(_pgmagick.ColorGray):
     pass
@@ -340,17 +342,21 @@ StretchType = _pgmagick.StretchType
 
 StyleType = _pgmagick.StyleType
 
+
 class TypeMetric(_pgmagick.TypeMetric):
     pass
 
 if hasattr(_pgmagick, "VirtualPixelMethod"):
     VirtualPixelMethod = _pgmagick.VirtualPixelMethod
 
+
 class VPath(_pgmagick.VPath):
     pass
 
+
 class VPathList(_pgmagick.VPathList):
     pass
+
 
 class gminfo:
     version = _pgmagick.get_version()
