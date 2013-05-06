@@ -17,7 +17,7 @@ void __QuantumOperator()
 #endif
         .value("DivideQuantumOp", Magick::DivideQuantumOp)
         .value("LShiftQuantumOp", Magick::LShiftQuantumOp)
-        .value("MultiplyQuantumOp)", Magick::MultiplyQuantumOp)
+        .value("MultiplyQuantumOp", Magick::MultiplyQuantumOp)
         .value("OrQuantumOp", Magick::OrQuantumOp)
         .value("RShiftQuantumOp", Magick::RShiftQuantumOp)
         .value("SubtractQuantumOp", Magick::SubtractQuantumOp)
