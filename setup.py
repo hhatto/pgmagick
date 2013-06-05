@@ -90,7 +90,11 @@ if not lib_path:
         if not lib_path:
             boost_lib = "boost_python"
     else:
-        boost_lib = "boost_python"
+        boost_lib = "boost_python-mt"
+        lib_path = find_file('lib' + boost_lib, search_library_dirs)
+        if not lib_path:
+            boost_lib = "boost_python"
+
 
 libraries = [boost_lib]
 
