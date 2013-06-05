@@ -79,22 +79,22 @@ include_dirs.append(header_path)
 # TODO: only test on Ubuntu11.10
 _version = sys.version_info
 
+boost_lib_target_files = []
+if _version >= (3, ):
+    boost_lib_target_files.append("boost_python-py%s%s" % (_version[0], _version[1]))
+boost_lib_target_files.append("boost_python-mt-py%s%s" % (_version[0], _version[1]))
 #gentoo appends the python version numbers to the boost_python libraries
-boost_lib = "boost_python-%s.%s" % (_version[0], _version[1])
-lib_path = find_file('lib' + boost_lib, search_library_dirs)
+boost_lib_target_files.append("boost_python-%s.%s" % (_version[0], _version[1]))
+boost_lib_target_files.append("boost_python-mt")
+
+for boost_lib in boost_lib_target_files:
+    lib_path = find_file('lib' + boost_lib, search_library_dirs)
+    if lib_path:
+        break
 
 if not lib_path:
-    if _version >= (3, ):
-        boost_lib = "boost_python-py%s%s" % (_version[0], _version[1])
-        lib_path = find_file('lib' + boost_lib, search_library_dirs)
-        if not lib_path:
-            boost_lib = "boost_python"
-    else:
-        boost_lib = "boost_python-mt"
-        lib_path = find_file('lib' + boost_lib, search_library_dirs)
-        if not lib_path:
-            boost_lib = "boost_python"
-
+    boost_lib = "boost_python"
+print("boost lib: %s" % boost_lib)
 
 libraries = [boost_lib]
 
