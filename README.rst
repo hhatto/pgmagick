@@ -35,10 +35,19 @@ GraphicsMagick from source package::
 
 MacOSX
 ------
+*update 2013.08.31*
+with Homebrew_ ::
+
+    $ brew install graphicsmagick     # or imagemagick
+    $ brew install boost --with-thread-unsafe --build-from-source
+    $ pip install pgmagick
+
 install reported on MacOSX, Thanks Rohan Singh and Simon Harrison.
 
 - http://rohanradio.com/blog/2011/12/02/installing-pgmagick-on-os-x/
 - http://simonharrison.info/talk/2011/01/17/pgmagick-on-mac-os/ (old)
+
+.. _Homebrew: http://brew.sh/
 
 Windows
 -------
