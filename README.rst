@@ -3,15 +3,15 @@ About
 pgmagick is a yet another boost.python based wrapper for GraphicsMagick.
 
 
-Install
-=======
+Installation
+============
 install to::
 
     $ pip install pgmagick
 
 
-Require
-=======
+Requirements
+============
 Python2.5++, GraphicsMagick and Boost.Python.
 
 package install on Ubuntu(test on Ubuntu10.04+)::
