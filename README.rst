@@ -35,6 +35,18 @@ GraphicsMagick from source package::
 
 MacOSX
 ------
+
+via homebrew-cask(homebrew-pgmagick)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+use `homebrew-pgmagick`_ ::
+
+    $ brew tap hhatto/pgmagick
+    $ brew install pgmagick
+
+.. _`homebrew-pgmagick`: https://github.com/hhatto/homebrew-pgmagick
+
+via homebrew and pip
+~~~~~~~~~~~~~~~~~~~~
 *update 2013.08.31*
 with Homebrew_ ::
 
