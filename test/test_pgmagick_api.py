@@ -339,7 +339,7 @@ class DrawTestCase(unittest.TestCase):
     def test_stroke_linejoin(self):
         self.d.stroke_color('lime')
         self.d.stroke_linejoin('round')
-        self.d.stroke_linejoin('bevel')     # FIXME: Unit Test Error
+        self.d.stroke_linejoin('bevel')
         self.d.stroke_linejoin('miter')
         self.d.line(10, 10, 40, 200)
         self.im.draw(self.d)
