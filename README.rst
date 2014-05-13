@@ -35,6 +35,13 @@ GraphicsMagick from source package::
 
 MacOSX
 ------
+*update 2014.05.12*
+on MacOSX 10.9.2 (add ARCHFLAGS)::
+
+    $ brew install graphicsmagick
+    $ brew install boost --with-python
+    $ ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future pip install pgmagick
+
 *update 2013.08.31*
 with Homebrew_ ::
 
