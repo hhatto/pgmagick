@@ -18,7 +18,8 @@ search_library_dirs = ['/usr/local/lib64/', '/usr/lib64/',
 if sys.platform.lower() == 'darwin':
     include_dirs.append('/opt/local/include/')
     search_include_dirs.extend(['/opt/local/include/GraphicsMagick/',
-                                '/opt/local/include/'])
+                                '/opt/local/include/',
+                                '/usr/local/Cellar/graphicsmagick'])
     search_library_dirs.append('/opt/local/lib/')
 # for ImageMagick
 search_include_dirs.extend(['/usr/local/include/ImageMagick/',
