@@ -53,7 +53,7 @@ def get_version_from_pc(search_dirs, target):
         for root, dirs, files in os.walk(dirname):
             for f in files:
                 if f == target:
-                    _tmp = _grep("\Version: ", dirname + target)
+                    _tmp = _grep("\Version: ", os.path.join(root, target))
                     return _tmp.split()[1]
 
 
@@ -62,16 +62,16 @@ def find_file(filename, search_dirs):
         for root, dirs, files in os.walk(dirname):
             for f in files:
                 if filename in f:
-                    return dirname
+                    return root
             for d in dirs:
                 if filename in d:
-                    return dirname
+                    return root
             if filename in root:
-                return dirname
+                return root
     return False
 
 # find to header path
-header_path = find_file('Magick++', search_include_dirs)
+header_path = find_file('Magick++.h', search_include_dirs)
 if not header_path:
     raise Exception("Magick++ not found")
 print("include header path: %s" % header_path)
@@ -104,13 +104,13 @@ libraries = [boost_lib]
 lib_path = find_file('libGraphicsMagick++', search_library_dirs)
 if lib_path:
     libraries.append('GraphicsMagick++')
-    print("library path: %s%s" % (lib_path, "libGraphicsMagick++"))
+    print("library path: %s" % (os.path.join(lib_path, "libGraphicsMagick++")))
 else:
     lib_path = find_file('libMagick++', search_library_dirs)
     if lib_path:
         LIBRARY = 'ImageMagick'
         libraries.append('Magick++')
-        print("library path: %s%s" % (lib_path, "libMagick++"))
+        print("library path: %s" % (os.path.join(lib_path, "libMagick++")))
     else:
         raise Exception("libGraphicsMagick++ (or libMagick++) not found")
 library_dirs.append(lib_path)
