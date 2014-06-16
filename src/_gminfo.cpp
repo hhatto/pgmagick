@@ -8,6 +8,10 @@ using namespace boost::python;
     #undef _LIB_VERSION
     #define _LIB_VERSION "1.3.x"
 #endif
+#ifdef PGMAGICK_LIB_GRAPHICSMAGICK_1_3_19
+    #undef _LIB_VERSION
+    #define _LIB_VERSION "1.3.19"
+#endif
 #ifdef PGMAGICK_LIB_IMAGEMAGICK
     #undef _LIB_VERSION
     #define _LIB_VERSION "6.x.x"

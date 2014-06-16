@@ -211,6 +211,9 @@ void __Image()
         .def("roll", (void (Magick::Image::*)(const unsigned int, const unsigned int) )&Magick::Image::roll)
 #endif
         .def("rotate", &Magick::Image::rotate)
+#ifdef PGMAGICK_LIB_GRAPHICSMAGICK_1_3_19
+        .def("thumbnail", &Magick::Image::thumbnail)
+#endif
         .def("sample", &Magick::Image::sample)
         .def("scale", &Magick::Image::scale)
         .def("segment", &Magick::Image::segment, Magick_Image_segment_overloads_0_2())

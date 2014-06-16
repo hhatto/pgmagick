@@ -128,7 +128,11 @@ if _version:
         # ex) 1.2 -> 1.2.0
         _version.append(0)
     if LIBRARY == 'GraphicsMagick':
-        if _version[0] == 1 and _version[1] == 3 and _version[2] >= 6:
+        if _version[0] == 1 and _version[1] == 3 and _version[2] >= 19:
+            ext_compile_args = ["-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_6",
+                                "-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_x",
+                                "-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_19"]
+        elif _version[0] == 1 and _version[1] == 3 and _version[2] >= 6:
             # for not Ubuntu10.04
             ext_compile_args = ["-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_6",
                                 "-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_x"]
