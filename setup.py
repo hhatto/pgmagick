@@ -85,7 +85,7 @@ boost_lib_target_files = []
 if _version >= (3, ):
     boost_lib_target_files.append("boost_python-py%s%s" % (_version[0], _version[1]))
 boost_lib_target_files.append("boost_python-mt-py%s%s" % (_version[0], _version[1]))
-#gentoo appends the python version numbers to the boost_python libraries
+# gentoo appends the python version numbers to the boost_python libraries
 boost_lib_target_files.append("boost_python-%s.%s" % (_version[0], _version[1]))
 boost_lib_target_files.append("boost_python-mt")
 
@@ -164,11 +164,11 @@ setup(name='pgmagick',
       packages=find_packages(),
       ext_modules=[
           Extension('pgmagick._pgmagick',
-                  sources=glob.glob('./src/*.cpp'),
-                  include_dirs=include_dirs,
-                  library_dirs=library_dirs,
-                  libraries=libraries,
-                  extra_compile_args=ext_compile_args)],
+                    sources=glob.glob('./src/*.cpp'),
+                    include_dirs=include_dirs,
+                    library_dirs=library_dirs,
+                    libraries=libraries,
+                    extra_compile_args=ext_compile_args)],
       classifiers=[
           'Development Status :: 4 - Beta',
           'Intended Audience :: Developers',
