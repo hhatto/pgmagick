@@ -185,7 +185,7 @@ void __Image()
         .def("quantumOperator", (void (Magick::Image::*)(const int, const int, const unsigned int, const unsigned int, const Magick::ChannelType, const Magick::QuantumOperator, Magick::Quantum))&Magick::Image::quantumOperator)
 #endif
         .def("process", &Magick::Image::process)
-        .def("raise", &Magick::Image::raise, Magick_Image_raise_overloads_0_2())
+        .def("raiseEdge", &Magick::Image::raise, Magick_Image_raise_overloads_0_2())
 #ifdef PGMAGICK_LIB_GRAPHICSMAGICK_1_3_x
         .def("randomThreshold", &Magick::Image::randomThreshold)
         .def("randomThresholdChannel", &Magick::Image::randomThresholdChannel)
