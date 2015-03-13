@@ -84,6 +84,8 @@ _version = sys.version_info
 boost_lib_target_files = []
 if _version >= (3, ):
     boost_lib_target_files.append("boost_python-py%s%s" % (_version[0], _version[1]))
+    # ArchLinux uses boost_python3
+    boost_lib_target_files.append("boost_python3")
 boost_lib_target_files.append("boost_python-mt-py%s%s" % (_version[0], _version[1]))
 # gentoo appends the python version numbers to the boost_python libraries
 boost_lib_target_files.append("boost_python-%s.%s" % (_version[0], _version[1]))
