@@ -15,6 +15,8 @@ search_include_dirs = ['/usr/local/include/GraphicsMagick/',
                        '/usr/include/GraphicsMagick/']
 search_library_dirs = ['/usr/local/lib64/', '/usr/lib64/',
                        '/usr/local/lib/', '/usr/lib/']
+search_pkgconfig_dirs = ['/usr/local/lib/pkgconfig/', '/usr/local/lib64/pkgconfig/',
+                         '/usr/lib/pkgconfig/', '/usr/lib64/pkgconfig']
 if sys.platform.lower() == 'darwin':
     include_dirs.append('/opt/local/include/')
     search_include_dirs.extend(['/opt/local/include/GraphicsMagick/',
@@ -47,8 +49,6 @@ def get_version_from_devheaders(search_dirs):
 
 def get_version_from_pc(search_dirs, target):
     """similar to 'pkg-config --modversion GraphicsMagick++'"""
-    search_dirs.append('/usr/local/lib/pkgconfig/')
-    search_dirs.append('/usr/lib/pkgconfig/')
     for dirname in search_dirs:
         for root, dirs, files in os.walk(dirname):
             for f in files:
@@ -120,9 +120,9 @@ library_dirs.append(lib_path)
 # get version and extra compile argument
 ext_compile_args = []
 if LIBRARY == 'GraphicsMagick':
-    _version = get_version_from_pc(search_include_dirs, GMCPP_PC)
+    _version = get_version_from_pc(search_include_dirs + search_pkgconfig_dirs, GMCPP_PC)
 else:
-    _version = get_version_from_pc(search_include_dirs, IMCPP_PC)
+    _version = get_version_from_pc(search_include_dirs + search_pkgconfig_dirs, IMCPP_PC)
 if not _version:
     _version = get_version_from_devheaders(include_dirs)
 if _version:
