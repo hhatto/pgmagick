@@ -43,7 +43,7 @@ void __Color()
         .def("to_Magick_PixelPacket", &Magick::Color::operator Magick::PixelPacket)
     ;
 
-    class_< Magick::ColorHSL >("ColorHSL", init<  >())
+    class_< Magick::ColorHSL, bases<Magick::Color> >("ColorHSL", init<  >())
         .def(init< double, double, double >())
         .def(init< const Magick::Color& >())
         .def("hue", (double (Magick::ColorHSL::*)() const)&Magick::ColorHSL::hue)
@@ -54,21 +54,21 @@ void __Color()
         .def("luminosity", (void (Magick::ColorHSL::*)(double) )&Magick::ColorHSL::luminosity)
     ;
 
-    class_< Magick::ColorGray >("ColorGray", init<  >())
+    class_< Magick::ColorGray, bases<Magick::Color> >("ColorGray", init<  >())
         .def(init< double >())
         .def(init< const Magick::Color& >())
         .def("shade", (double (Magick::ColorGray::*)() const)&Magick::ColorGray::shade)
         .def("shade", (void (Magick::ColorGray::*)(double) )&Magick::ColorGray::shade)
     ;
 
-    class_< Magick::ColorMono >("ColorMono", init<  >())
+    class_< Magick::ColorMono, bases<Magick::Color> >("ColorMono", init<  >())
         .def(init< bool >())
         .def(init< const Magick::Color& >())
         .def("mono", (void (Magick::ColorMono::*)(bool) )&Magick::ColorMono::mono)
         .def("mono", (bool (Magick::ColorMono::*)() const)&Magick::ColorMono::mono)
     ;
 
-    class_< Magick::ColorRGB >("ColorRGB", init<  >())
+    class_< Magick::ColorRGB, bases<Magick::Color> >("ColorRGB", init<  >())
         .def(init< double, double, double >())
         .def(init< const Magick::Color& >())
         .def("red", (void (Magick::ColorRGB::*)(double) )&Magick::ColorRGB::red)
@@ -79,7 +79,7 @@ void __Color()
         .def("blue", (double (Magick::ColorRGB::*)() const)&Magick::ColorRGB::blue)
     ;
 
-    class_< Magick::ColorYUV >("ColorYUV", init<  >())
+    class_< Magick::ColorYUV, bases<Magick::Color> >("ColorYUV", init<  >())
         .def(init< double, double, double >())
         .def(init< const Magick::Color& >())
         .def("u", (void (Magick::ColorYUV::*)(double) )&Magick::ColorYUV::u)
