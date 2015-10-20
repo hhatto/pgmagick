@@ -18,7 +18,10 @@ search_library_dirs = ['/usr/local/lib64/', '/usr/lib64/',
 search_pkgconfig_dirs = ['/usr/local/lib/pkgconfig/', '/usr/local/lib64/pkgconfig/',
                          '/usr/lib/pkgconfig/', '/usr/lib64/pkgconfig']
 if sys.platform.lower() == 'darwin':
-    include_dirs.append('/opt/local/include/')
+    if os.path.exists('/opt/local/include'):
+        include_dirs.append('/opt/local/include/')
+    else:
+        include_dirs.append('/usr/local/include/')
     search_include_dirs.extend(['/opt/local/include/GraphicsMagick/',
                                 '/opt/local/include/',
                                 '/usr/local/Cellar/graphicsmagick'])
