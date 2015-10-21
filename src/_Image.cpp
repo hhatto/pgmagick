@@ -62,7 +62,11 @@ void __Image()
 #ifdef PGMAGICK_LIB_IMAGEMAGICK
         .def("adaptiveBlur", &Magick::Image::adaptiveBlur, Magick_Image_adaptiveBlur_overloads_0_2())
 #endif
+#ifdef PGMAGICK_LIB_GRAPHICSMAGICK_1_3_22
+        .def("adaptiveThreshold", (void (Magick::Image::*)(const unsigned int, const unsigned int, const double) )&Magick::Image::adaptiveThreshold)
+#else
         .def("adaptiveThreshold", &Magick::Image::adaptiveThreshold, Magick_Image_adaptiveThreshold_overloads_2_3())
+#endif
         .def("addNoise", &Magick::Image::addNoise)
 #ifdef PGMAGICK_LIB_GRAPHICSMAGICK_1_3_x
         .def("addNoiseChannel", &Magick::Image::addNoiseChannel)
@@ -181,8 +185,8 @@ void __Image()
         .def("quantumOperator", (void (Magick::Image::*)(const Magick::ChannelType, const Magick::MagickEvaluateOperator, double))&Magick::Image::quantumOperator)
         .def("quantumOperator", (void (Magick::Image::*)(const ::ssize_t, const ::ssize_t, const size_t, const size_t, const Magick::ChannelType, const Magick::MagickEvaluateOperator, const double))&Magick::Image::quantumOperator)
 #else
-        .def("quantumOperator", (void (Magick::Image::*)(const Magick::ChannelType, const Magick::QuantumOperator, Magick::Quantum))&Magick::Image::quantumOperator)
-        .def("quantumOperator", (void (Magick::Image::*)(const int, const int, const unsigned int, const unsigned int, const Magick::ChannelType, const Magick::QuantumOperator, Magick::Quantum))&Magick::Image::quantumOperator)
+        .def("quantumOperator", (void (Magick::Image::*)(const Magick::ChannelType, const Magick::QuantumOperator, const double))&Magick::Image::quantumOperator)
+        .def("quantumOperator", (void (Magick::Image::*)(const int, const int, const unsigned int, const unsigned int, const Magick::ChannelType, const Magick::QuantumOperator, const double))&Magick::Image::quantumOperator)
 #endif
         .def("process", &Magick::Image::process)
         .def("raiseEdge", &Magick::Image::raise, Magick_Image_raise_overloads_0_2())
