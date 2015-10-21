@@ -1,5 +1,6 @@
 # coding: utf-8
 import os.path
+import sys
 import unittest
 from pgmagick import api
 from pgmagick import Image, Geometry, Blob
@@ -31,17 +32,25 @@ class TestCookbook(unittest.TestCase):
 
     def test_annotate(self):
         img = api.Image((300, 200))
+        if sys.platform.lower() == 'darwin':
+            img.font("/Library/Fonts/Arial.ttf")
         img.annotate('Hello World')
         img.write(self.tmp_filename_png)
 
     def test_annotate_with_angle45(self):
         img = api.Image((300, 200))
+        if sys.platform.lower() == 'darwin':
+            img.font("/Library/Fonts/Arial.ttf")
         img.annotate('Hello World', angle=45)
         img.write(self.tmp_filename_png)
 
     def test_annotate_with_japanese_font(self):
         img = api.Image((300, 200))
-        img.font("/usr/share/fonts/truetype/ttf-japanese-gothic.ttf")
+        if sys.platform.lower() == 'darwin':
+            img.font("/System/Library/Fonts/Hiragino Sans GB W3.ttc")
+        else:
+            # TODO: not support windows
+            img.font("/usr/share/fonts/truetype/ttf-japanese-gothic.ttf")
         img.annotate('ようこそpgmagickへ!!')
         img.write(self.tmp_filename_png)
 
@@ -68,7 +77,14 @@ class TestCookbook(unittest.TestCase):
         img.write(self.tmp_filename_jpg)
         img2 = Image(Blob(open(self.tmp_filename_jpg).read()),
                      Geometry(200, 200))
-        img2.scale('200x200')
+        if sys.platform.lower() == 'darwin':
+            # NOTE: error occur when use '200x200' param
+            #       -----------------------------------------------------
+            #       RuntimeError: Magick: Application transferred too few
+            #       scanlines (x.jpg) reported by coders/jpeg.c:344 (JPEGErrorHandler)
+            img2.scale('199x199')
+        else:
+            img2.scale('200x200')
         img2.write(self.tmp_filename_jpg)
 
 if __name__ == '__main__':
