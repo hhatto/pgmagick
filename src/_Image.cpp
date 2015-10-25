@@ -540,7 +540,7 @@ void __Image()
         .def("writePixels", &Magick::Image::writePixels)
         /* no user-serviceable parts */
         .def("modifyImage", &Magick::Image::modifyImage)
-#ifndef PGMAGICK_LIB_GRAPHICSMAGICK_1_3_20
+#if !defined(PGMAGICK_LIB_GRAPHICSMAGICK_1_3_20) && !defined(PGMAGICK_LIB_GRAPHICSMAGICK_1_3_22)
         .def("throwImageException", &Magick::Image::throwImageException)
 #endif
         .def("registerId", &Magick::Image::registerId)
