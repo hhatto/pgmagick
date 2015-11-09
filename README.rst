@@ -164,9 +164,11 @@ Python APIs(*NOTICE!! this api is alpha version!!*)::
 Links
 =====
 * PyPI_
-* bitbucket_
+* `Project Page`_
+* `Project Page (Old)`_
 * `CI(Jenkins)`_
 
 .. _PyPI: http://pypi.python.org/pypi/pgmagick/
-.. _bitbucket: https://bitbucket.org/hhatto/pgmagick/
+.. _`Project Page`: https://github.com/hhatto/pgmagick/
+.. _`Project Page (Old)`: https://bitbucket.org/hhatto/pgmagick/
 .. _`CI(Jenkins)`: http://jenkins.hexacosa.net/job/pgmagick/
