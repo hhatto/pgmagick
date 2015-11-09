@@ -82,16 +82,16 @@ include_dirs.append(header_path)
 
 # find to library path for boost_python
 # TODO: only test on Ubuntu11.10
-_version = sys.version_info
+_python_version = sys.version_info
 
 boost_lib_target_files = []
-if _version >= (3, ):
-    boost_lib_target_files.append("boost_python-py%s%s" % (_version[0], _version[1]))
+if _python_version >= (3, ):
+    boost_lib_target_files.append("boost_python-py%s%s" % (_python_version[0], _python_version[1]))
     # ArchLinux uses boost_python3
     boost_lib_target_files.append("boost_python3")
-boost_lib_target_files.append("boost_python-mt-py%s%s" % (_version[0], _version[1]))
+boost_lib_target_files.append("boost_python-mt-py%s%s" % (_python_version[0], _python_version[1]))
 # gentoo appends the python version numbers to the boost_python libraries
-boost_lib_target_files.append("boost_python-%s.%s" % (_version[0], _version[1]))
+boost_lib_target_files.append("boost_python-%s.%s" % (_python_version[0], _python_version[1]))
 boost_lib_target_files.append("boost_python-mt")
 
 for boost_lib in boost_lib_target_files:
