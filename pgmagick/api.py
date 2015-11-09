@@ -785,9 +785,10 @@ class Draw(object):
                   op=pgmagick.CompositeOperator.OverCompositeOp):
         # FIXME: unable to composite pgmagick.Image object.
         if width == 0 or height == 0:
-            composite = pgmagick.DrawableCompositeImage(x, y, image)
+            composite = pgmagick.DrawableCompositeImage(float(x), float(y), image)
         else:
-            composite = pgmagick.DrawableCompositeImage(x, y, width, height,
+            composite = pgmagick.DrawableCompositeImage(float(x), float(y),
+                                                        float(width), float(height),
                                                         image, op)
         self.drawer.append(composite)
 
