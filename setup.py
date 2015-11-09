@@ -129,6 +129,7 @@ else:
 if not _version:
     _version = get_version_from_devheaders(include_dirs)
 if _version:
+    _str_version = _version
     print("%s version: %s" % (LIBRARY, _version))
     _version = list(map(int, _version.split('.')))
     if len(_version) == 2:
@@ -159,6 +160,7 @@ if _version:
             ext_compile_args = ["-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_x"]
     elif LIBRARY == 'ImageMagick':
         ext_compile_args = ["-DPGMAGICK_LIB_IMAGEMAGICK"]
+    ext_compile_args.append("-D_LIBRARY_VERSION=\"%s\"" % (_str_version))
 else:
     _version = '%s version: ???' % (LIBRARY)
 
