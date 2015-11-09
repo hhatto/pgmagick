@@ -5,7 +5,9 @@ sys.path.append('./')
 import pgmagick
 from pgmagick.api import Image, Draw
 
+
 libgm_version = [int(v) for v in pgmagick.gminfo().version.split('.')]
+print(libgm_version)
 
 
 class ImageTestCase(unittest.TestCase):
@@ -26,13 +28,13 @@ class ImageTestCase(unittest.TestCase):
             img.write(unicode('unicode.jpg'))
 
     def test_nonarg(self):
-        im = Image()
+        Image()
 
     def test_arg(self):
-        im = Image((600, 400), 'red')
+        Image((600, 400), 'red')
 
     def test_arg_float(self):
-        im = Image((600.5, 400.4), 'red')
+        Image((600.5, 400.4), 'red')
 
     def test_blur(self):
         self.img.blur(2, 2.3)
