@@ -6,8 +6,8 @@ import pgmagick
 from pgmagick.api import Image, Draw
 
 
+print(pgmagick.gminfo().version)
 libgm_version = [int(v) for v in pgmagick.gminfo().version.split('.')]
-print(libgm_version)
 
 
 class ImageTestCase(unittest.TestCase):
