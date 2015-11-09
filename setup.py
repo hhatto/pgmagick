@@ -4,6 +4,8 @@ import glob
 import os
 import re
 import sys
+import ast
+import io
 
 GMCPP_PC = 'GraphicsMagick++.pc'
 IMCPP_PC = 'ImageMagick++.pc'
@@ -164,10 +166,16 @@ if _version:
 else:
     _version = '%s version: ???' % (LIBRARY)
 
-exec(open('pgmagick/_version.py').read())
+
+def version():
+    """Return version string."""
+    with io.open('pgmagick/_version.py') as input_file:
+        for line in input_file:
+            if line.startswith('__version__'):
+                return ast.parse(line).body[0].value.s
 
 setup(name='pgmagick',
-      version=__version__,
+      version=version(),
       description="Yet Another Python wrapper for GraphicsMagick",
       long_description=open('README.rst').read(),
       author='Hideo Hattori',
