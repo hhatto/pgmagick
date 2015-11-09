@@ -1,8 +1,8 @@
 About
 =====
 
-.. image:: https://drone.io/bitbucket.org/hhatto/pgmagick/status.png
-    :target: https://drone.io/bitbucket.org/hhatto/pgmagick
+.. image:: https://travis-ci.org/hhatto/pgmagick.svg?branch=master
+    :target: https://travis-ci.org/hhatto/pgmagick
     :alt: Build status
 
 pgmagick is a yet another boost.python based wrapper for GraphicsMagick.
