@@ -2,26 +2,19 @@
 using namespace boost::python;
 
 
-#define _LIB_VERSION "1.1.x"
 #define _LIB_NAME "GraphicsMagick"
-#ifdef PGMAGICK_LIB_GRAPHICSMAGICK_1_3_x
-    #undef _LIB_VERSION
-    #define _LIB_VERSION "1.3.x"
-#endif
-#ifdef PGMAGICK_LIB_GRAPHICSMAGICK_1_3_19
-    #undef _LIB_VERSION
-    #define _LIB_VERSION "1.3.19"
-#endif
-#ifdef PGMAGICK_LIB_IMAGEMAGICK
-    #undef _LIB_VERSION
-    #define _LIB_VERSION "6.x.x"
-    #undef _LIB_NAME
-    #define _LIB_NAME "ImageMagick"
+#ifndef _LIBRARY_VERSION
+    #define _LIBRARY_VERSION "0.0.0"
+
+    #ifdef PGMAGICK_LIB_IMAGEMAGICK
+        #undef _LIB_NAME
+        #define _LIB_NAME "ImageMagick"
+    #endif
 #endif
 
 const char* get_version(void)
 {
-    return _LIB_VERSION;
+    return _LIBRARY_VERSION;
 }
 const char* get_library(void)
 {

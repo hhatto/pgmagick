@@ -542,6 +542,7 @@ class Image(object):
                     self.img = pgmagick.Image(geometry, color)
             else:
                 self.img = pgmagick.Image(geometry, pgmagick.Color())
+            self.img.write(pgmagick.Blob(), 'MIFF')
         else:
             self.img = pgmagick.Image()
 
@@ -618,6 +619,7 @@ class Image(object):
 
     def composite(self, composite_img, offset,
                   compose=pgmagick.CompositeOperator.InCompositeOp):
+        img = composite_img.img if type(composite_img) == Image else composite_img
         if isinstance(offset, (list, tuple)):
             x = int(offset[0])
             y = int(offset[1])
@@ -640,7 +642,7 @@ class Image(object):
         else:   # other string
             compose = getattr(pgmagick.CompositeOperator,
                               "%sCompositeOp" % compose.title())
-        self.img.composite(composite_img, offset, compose)
+        self.img.composite(img, offset, compose)
 
     def contrast(self, sharpen):
         # TODO: not implemented
@@ -783,13 +785,16 @@ class Draw(object):
 
     def composite(self, x, y, width, height, image,
                   op=pgmagick.CompositeOperator.OverCompositeOp):
-        # FIXME: unable to composite pgmagick.Image object.
+        if type(image) == Image:
+            img = image.img
+        else:
+            img = image
         if width == 0 or height == 0:
-            composite = pgmagick.DrawableCompositeImage(float(x), float(y), image)
+            composite = pgmagick.DrawableCompositeImage(float(x), float(y), img)
         else:
             composite = pgmagick.DrawableCompositeImage(float(x), float(y),
                                                         float(width), float(height),
-                                                        image, op)
+                                                        img, op)
         self.drawer.append(composite)
 
     def ellipse(self, org_x, org_y, radius_x, radius_y, arc_start, arc_end):

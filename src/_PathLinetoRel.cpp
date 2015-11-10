@@ -29,7 +29,7 @@ struct Magick_PathLinetoRel_Wrapper: Magick::PathLinetoRel
 
 void __PathLinetoRel()
 {
-    class_< Magick::PathLinetoRel, Magick_PathLinetoRel_Wrapper >("PathLinetoRel", init< const Magick::Coordinate& >())
+    class_< Magick::PathLinetoRel, bases<Magick::VPathBase>, Magick_PathLinetoRel_Wrapper >("PathLinetoRel", init< const Magick::Coordinate& >())
         .def(init< const Magick::CoordinateList& >())
         .def(init< const Magick::PathLinetoRel& >())
     ;

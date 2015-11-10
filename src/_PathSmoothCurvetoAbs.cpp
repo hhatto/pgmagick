@@ -29,7 +29,7 @@ struct Magick_PathSmoothCurvetoAbs_Wrapper: Magick::PathSmoothCurvetoAbs
 
 void __PathSmoothCurvetoAbs()
 {
-    class_< Magick::PathSmoothCurvetoAbs, Magick_PathSmoothCurvetoAbs_Wrapper >("PathSmoothCurvetoAbs", init< const Magick::Coordinate& >())
+    class_< Magick::PathSmoothCurvetoAbs, bases<Magick::VPathBase>, Magick_PathSmoothCurvetoAbs_Wrapper >("PathSmoothCurvetoAbs", init< const Magick::Coordinate& >())
         .def(init< const Magick::CoordinateList& >())
         .def(init< const Magick::PathSmoothCurvetoAbs& >())
     ;
