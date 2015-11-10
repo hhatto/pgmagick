@@ -72,20 +72,22 @@ class TestCookbook(unittest.TestCase):
         self.assertEqual(img2.width, 150)
         self.assertEqual(img2.height, 100)
 
+    @unittest.skipIf(sys.version_info[0] == 3, "not support python3.x")
     def test_scale_jpeg(self):
         img = api.Image((400, 400), 'blue')
         img.write(self.tmp_filename_jpg)
-        img2 = Image(Blob(open(self.tmp_filename_jpg).read()),
-                     Geometry(200, 200))
-        if sys.platform.lower() == 'darwin':
-            # NOTE: error occur when use '200x200' param
-            #       -----------------------------------------------------
-            #       RuntimeError: Magick: Application transferred too few
-            #       scanlines (x.jpg) reported by coders/jpeg.c:344 (JPEGErrorHandler)
-            img2.scale('199x199')
-        else:
-            img2.scale('200x200')
-        img2.write(self.tmp_filename_jpg)
+        with open(self.tmp_filename_jpg, 'rb') as fp:
+            b = Blob(str(fp.read()))
+            img2 = Image(b, Geometry(200, 200))
+            if sys.platform.lower() == 'darwin':
+                # NOTE: error occur when use '200x200' param
+                #       -----------------------------------------------------
+                #       RuntimeError: Magick: Application transferred too few
+                #       scanlines (x.jpg) reported by coders/jpeg.c:344 (JPEGErrorHandler)
+                img2.scale('199x199')
+            else:
+                img2.scale('200x200')
+            img2.write(self.tmp_filename_jpg)
 
 if __name__ == '__main__':
     unittest.main()
