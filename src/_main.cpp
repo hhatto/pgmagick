@@ -121,6 +121,7 @@ BOOST_PYTHON_MODULE(_pgmagick)
     __Coordinate();
     __DecorationType();
     __DistortImageMethod();
+    __VPath();
     __Drawable();
     __DrawableAffine();
     __DrawableArc();
@@ -218,6 +219,5 @@ BOOST_PYTHON_MODULE(_pgmagick)
     __STL();
     __TypeMetric();
     __VirtualPixelMethod();
-    __VPath();
     __gminfo();
 }

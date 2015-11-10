@@ -29,7 +29,7 @@ struct Magick_PathCurvetoAbs_Wrapper: Magick::PathCurvetoAbs
 
 void __PathCurvetoAbs()
 {
-    class_< Magick::PathCurvetoAbs, Magick_PathCurvetoAbs_Wrapper >("PathCurvetoAbs", init< const Magick::PathCurvetoArgs& >())
+    class_< Magick::PathCurvetoAbs, bases<Magick::VPathBase>, Magick_PathCurvetoAbs_Wrapper >("PathCurvetoAbs", init< const Magick::PathCurvetoArgs& >())
         .def(init< const Magick::PathCurveToArgsList& >())
         .def(init< const Magick::PathCurvetoAbs& >())
     ;

@@ -29,7 +29,7 @@ struct Magick_PathMovetoAbs_Wrapper: Magick::PathMovetoAbs
 
 void __PathMovetoAbs()
 {
-    class_< Magick::PathMovetoAbs, Magick_PathMovetoAbs_Wrapper >("PathMovetoAbs", init< const Magick::Coordinate& >())
+    class_< Magick::PathMovetoAbs, bases<Magick::VPathBase>, Magick_PathMovetoAbs_Wrapper >("PathMovetoAbs", init< const Magick::Coordinate& >())
         .def(init< const Magick::CoordinateList& >())
         .def(init< const Magick::PathMovetoAbs& >())
     ;

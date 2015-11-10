@@ -29,7 +29,7 @@ struct Magick_PathArcAbs_Wrapper: Magick::PathArcAbs
 
 void __PathArcAbs()
 {
-    class_< Magick::PathArcAbs, Magick_PathArcAbs_Wrapper >("PathArcAbs", init< const Magick::PathArcArgs& >())
+    class_< Magick::PathArcAbs, bases<Magick::VPathBase>, Magick_PathArcAbs_Wrapper >("PathArcAbs", init< const Magick::PathArcArgs& >())
         .def(init< const Magick::PathArcArgsList& >())
         .def(init< const Magick::PathArcAbs& >())
     ;

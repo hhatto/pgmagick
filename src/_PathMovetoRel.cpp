@@ -29,7 +29,7 @@ struct Magick_PathMovetoRel_Wrapper: Magick::PathMovetoRel
 
 void __PathMovetoRel()
 {
-    class_< Magick::PathMovetoRel, Magick_PathMovetoRel_Wrapper >("PathMovetoRel", init< const Magick::Coordinate& >())
+    class_< Magick::PathMovetoRel, bases<Magick::VPathBase>, Magick_PathMovetoRel_Wrapper >("PathMovetoRel", init< const Magick::Coordinate& >())
         .def(init< const Magick::CoordinateList& >())
         .def(init< const Magick::PathMovetoRel& >())
     ;

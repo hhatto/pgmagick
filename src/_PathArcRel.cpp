@@ -29,7 +29,7 @@ struct Magick_PathArcRel_Wrapper: Magick::PathArcRel
 
 void __PathArcRel()
 {
-    class_< Magick::PathArcRel, Magick_PathArcRel_Wrapper >("PathArcRel", init< const Magick::PathArcArgs& >())
+    class_< Magick::PathArcRel, bases<Magick::VPathBase>, Magick_PathArcRel_Wrapper >("PathArcRel", init< const Magick::PathArcArgs& >())
         .def(init< const Magick::PathArcArgsList& >())
         .def(init< const Magick::PathArcRel& >())
     ;

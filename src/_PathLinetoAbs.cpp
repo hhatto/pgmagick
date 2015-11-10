@@ -29,7 +29,7 @@ struct Magick_PathLinetoAbs_Wrapper: Magick::PathLinetoAbs
 
 void __PathLinetoAbs()
 {
-    class_< Magick::PathLinetoAbs, Magick_PathLinetoAbs_Wrapper >("PathLinetoAbs", init< const Magick::Coordinate& >())
+    class_< Magick::PathLinetoAbs, bases<Magick::VPathBase>, Magick_PathLinetoAbs_Wrapper >("PathLinetoAbs", init< const Magick::Coordinate& >())
         .def(init< const Magick::CoordinateList& >())
         .def(init< const Magick::PathLinetoAbs& >())
     ;
