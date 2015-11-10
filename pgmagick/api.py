@@ -619,6 +619,7 @@ class Image(object):
 
     def composite(self, composite_img, offset,
                   compose=pgmagick.CompositeOperator.InCompositeOp):
+        img = composite_img.img if type(composite_img) == Image else composite_img
         if isinstance(offset, (list, tuple)):
             x = int(offset[0])
             y = int(offset[1])
@@ -641,7 +642,7 @@ class Image(object):
         else:   # other string
             compose = getattr(pgmagick.CompositeOperator,
                               "%sCompositeOp" % compose.title())
-        self.img.composite(composite_img, offset, compose)
+        self.img.composite(img, offset, compose)
 
     def contrast(self, sharpen):
         # TODO: not implemented
