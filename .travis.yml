@@ -17,10 +17,4 @@ install:
     - sudo /usr/bin/python setup.py install
 
 script:
-    - sudo /usr/bin/python test_cookbook.py
-	- sudo /usr/bin/python test_pgmagick_blob.py
-	- sudo /usr/bin/python test_pgmagick_color.py
-	- sudo /usr/bin/python test_pgmagick_image.py
-	- sudo /usr/bin/python test_pgmagick_geometry.py
-	- sudo /usr/bin/python test_pgmagick_montage.py
-	- sudo /usr/bin/python test_pgmagick_api.py
+    - make test
