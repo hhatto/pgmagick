@@ -9,7 +9,7 @@ python:
 
 before_install:
     - sudo apt-get update && sudo apt-get -y install libboost-python-dev libgraphicsmagick++1-dev
-    - sudo ldconfig
+    - python -c "import sysconfig;print(sysconfig.get_config_vars()['CONFIG_ARGS'])"
 
 install:
     # - pip install --upgrade .
