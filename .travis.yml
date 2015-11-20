@@ -8,7 +8,8 @@ python:
     - "3.2" # for ubuntu12.04
 
 before_install:
-    - sudo apt-get update && sudo apt-get -y install python-dev libboost-python-dev libgraphicsmagick++1-dev
+    - sudo apt-get update && sudo apt-get -y install libboost-python-dev libgraphicsmagick++1-dev
+    - sudo ldconfig
 
 install:
     # - pip install --upgrade .
