@@ -1,5 +1,7 @@
 language: python
 
+dist: trusty
+
 python:
     - "2.7"
     - "3.2" # for ubuntu12.04
