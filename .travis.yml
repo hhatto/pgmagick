@@ -11,7 +11,8 @@ before_install:
     - sudo apt-get update && sudo apt-get -y install python-dev libboost-python-dev libgraphicsmagick++1-dev
 
 install:
-    - pip install --upgrade .
+    # - pip install --upgrade .
+    - python setup.py install
 
 script:
     - make test
