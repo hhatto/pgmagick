@@ -15,6 +15,7 @@ before_install:
 install:
     # - pip install --upgrade .
     - sudo /usr/bin/python setup.py install
+    - /usr/bin/python test/test_cookbook.py
 
 script:
     - make test
