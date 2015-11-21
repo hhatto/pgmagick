@@ -17,11 +17,11 @@ install:
     # - pip install --upgrade .
     - sudo /usr/bin/python setup.py install
     - /usr/bin/python test/test_cookbook.py
-    - /usr/bin/python test_pgmagick_api.py
-    - /usr/bin/python test_pgmagick_blob.py
-    - /usr/bin/python test_pgmagick_color.py
-    - /usr/bin/python test_pgmagick_geometry.py
-    - /usr/bin/python test_pgmagick_image.py
-    - /usr/bin/python test_pgmagick_imagelist.py
-    - /usr/bin/python test_pgmagick_libinfo.py
-    - /usr/bin/python test_pgmagick_montage.py
+    - /usr/bin/python test/test_pgmagick_api.py
+    - /usr/bin/python test/test_pgmagick_blob.py
+    - /usr/bin/python test/test_pgmagick_color.py
+    - /usr/bin/python test/test_pgmagick_geometry.py
+    - /usr/bin/python test/test_pgmagick_image.py
+    - /usr/bin/python test/test_pgmagick_imagelist.py
+    - /usr/bin/python test/test_pgmagick_libinfo.py
+    - /usr/bin/python test/test_pgmagick_montage.py
