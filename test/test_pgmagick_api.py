@@ -341,7 +341,7 @@ class DrawTestCase(unittest.TestCase):
         self.im.draw(self.d)
         self.im.write('t.png')
 
-    @unittest.skipIf(libgm_version <= [1, 3, 12], "bug in gm version: %s" % str(libgm_version))
+    @unittest.skipIf(libgm_version <= [1, 3, 18], "bug in gm version: %s" % str(libgm_version))
     def test_stroke_linejoin(self):
         self.d.stroke_color('lime')
         self.d.stroke_linejoin('round')
