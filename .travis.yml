@@ -25,3 +25,6 @@ install:
     - /usr/bin/python test/test_pgmagick_imagelist.py
     - /usr/bin/python test/test_pgmagick_libinfo.py
     - /usr/bin/python test/test_pgmagick_montage.py
+
+script:
+    - ls setup.py
