@@ -125,9 +125,9 @@ library_dirs.append(lib_path)
 # get version and extra compile argument
 ext_compile_args = []
 if LIBRARY == 'GraphicsMagick':
-    _version = get_version_from_pc(search_include_dirs + search_pkgconfig_dirs, GMCPP_PC)
+    _version = get_version_from_pc(search_pkgconfig_dirs + search_include_dirs, GMCPP_PC)
 else:
-    _version = get_version_from_pc(search_include_dirs + search_pkgconfig_dirs, IMCPP_PC)
+    _version = get_version_from_pc(search_pkgconfig_dirs + search_include_dirs, IMCPP_PC)
 if not _version:
     _version = get_version_from_devheaders(include_dirs)
 if _version:
