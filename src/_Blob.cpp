@@ -5,8 +5,13 @@
 
 using namespace boost::python;
 
-namespace  {
-BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Blob_updateNoCopy_overloads_2_3, updateNoCopy, 2, 3)
+static void updateNoCopy_wrapper(Magick::Blob& blob, std::string& data) {
+    // NOTE: this is valid?
+    std::string str;
+    char* w = new char[data.size() + 1];
+    std::copy(str.begin(), str.end(), w);
+    w[str.size()] = '\0';
+    blob.updateNoCopy(w,data.size(),Magick::Blob::NewAllocator);
 }
 
 static void update_wrapper(Magick::Blob& blob, const std::string& data) {
@@ -24,12 +29,12 @@ void __Blob()
 {
     scope* Magick_Blob_scope = new scope(
     class_< Magick::Blob >("Blob", init<  >())
-        .def(init< const void*, size_t >())
+        .def("__init__", &update_wrapper)       // NOTE: valid?
         .def(init< const Magick::Blob& >())
         .def("base64", (void (Magick::Blob::*)(const std::string) )&Magick::Blob::base64)
         .def("base64", (std::string (Magick::Blob::*)() )&Magick::Blob::base64)
         .def("update", &update_wrapper)
-        .def("updateNoCopy", &Magick::Blob::updateNoCopy, Magick_Blob_updateNoCopy_overloads_2_3())
+        .def("updateNoCopy", &updateNoCopy_wrapper)
         .def("length", &Magick::Blob::length)
     );
 
