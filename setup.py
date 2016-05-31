@@ -138,28 +138,21 @@ if _version:
         # ex) 1.2 -> 1.2.0
         _version.append(0)
     if LIBRARY == 'GraphicsMagick':
+        ext_compile_args = []
+        if _version[0] == 1 and _version[1] == 3 and _version[2] >= 24:
+            ext_compile_args.append("-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_24")
         if _version[0] == 1 and _version[1] == 3 and _version[2] >= 22:
-            ext_compile_args = ["-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_6",
-                                "-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_x",
-                                "-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_19",
-                                "-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_20",
-                                "-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_22"]
-        elif _version[0] == 1 and _version[1] == 3 and _version[2] >= 20:
-            ext_compile_args = ["-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_6",
-                                "-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_x",
-                                "-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_19",
-                                "-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_20"]
-        elif _version[0] == 1 and _version[1] == 3 and _version[2] == 19:
-            ext_compile_args = ["-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_6",
-                                "-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_x",
-                                "-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_19"]
-        elif _version[0] == 1 and _version[1] == 3 and _version[2] >= 6:
+            ext_compile_args.append("-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_22")
+        if _version[0] == 1 and _version[1] == 3 and _version[2] >= 20:
+            ext_compile_args.append("-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_20")
+        if _version[0] == 1 and _version[1] == 3 and _version[2] == 19:
+            ext_compile_args.append("-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_19")
+        if _version[0] == 1 and _version[1] == 3 and _version[2] >= 6:
             # for not Ubuntu10.04
-            ext_compile_args = ["-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_6",
-                                "-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_x"]
-        elif not (_version[0] == 1 and _version[1] == 1):
+            ext_compile_args.append("-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_6")
+        if not (_version[0] == 1 and _version[1] == 1):
             # for GM version 1.3.x and higher
-            ext_compile_args = ["-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_x"]
+            ext_compile_args.append("-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_x")
     elif LIBRARY == 'ImageMagick':
         ext_compile_args = ["-DPGMAGICK_LIB_IMAGEMAGICK"]
     ext_compile_args.append("-D_LIBRARY_VERSION=\"%s\"" % (_str_version))
