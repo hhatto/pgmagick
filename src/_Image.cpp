@@ -526,8 +526,15 @@ void __Image()
 #endif
         .def("x11Display", (void (Magick::Image::*)(const std::string&) )&Magick::Image::x11Display)
         .def("x11Display", (std::string (Magick::Image::*)() const)&Magick::Image::x11Display)
+#if defined(PGMAGICK_LIB_GRAPHICSMAGICK_1_3_24)
+        .def("xResolution", (void (Magick::Image::*)(const double) )&Magick::Image::xResolution)
+        .def("xResolution", (double (Magick::Image::*)() const)&Magick::Image::xResolution)
+        .def("yResolution", (void (Magick::Image::*)(const double) )&Magick::Image::yResolution)
+        .def("yResolution", (double (Magick::Image::*)() const)&Magick::Image::yResolution)
+#else
         .def("xResolution", &Magick::Image::xResolution)
         .def("yResolution", &Magick::Image::yResolution)
+#endif
 #if 0
         .def("getConstPixels",)
         .def("getIndexes",)
