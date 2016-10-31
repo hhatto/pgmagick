@@ -1,6 +1,10 @@
 About
 =====
 
+.. image:: https://badges.gitter.im/hhatto/pgmagick.svg
+   :alt: Join the chat at https://gitter.im/hhatto/pgmagick
+   :target: https://gitter.im/hhatto/pgmagick?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
+
 .. image:: https://travis-ci.org/hhatto/pgmagick.svg?branch=master
     :target: https://travis-ci.org/hhatto/pgmagick
     :alt: Build status
