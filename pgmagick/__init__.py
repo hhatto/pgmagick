@@ -407,6 +407,9 @@ class PathSmoothQuadraticCurvetoRel(_pgmagick.PathSmoothQuadraticCurvetoRel):
 class Pixels(_pgmagick.Pixels):
     pass
 
+class PixelPacket(_pgmagick.PixelPacket):
+    pass
+
 if hasattr(_pgmagick, "SparseColorMethod"):
     SparseColorMethod = _pgmagick.SparseColorMethod
 
