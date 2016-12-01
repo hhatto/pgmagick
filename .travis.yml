@@ -7,6 +7,10 @@ python:
     - "2.7"
     - "3.2" # for ubuntu12.04
 
+matrix:
+    allow_failures:
+        - python: "3.2"
+
 before_install:
     - sudo apt-get update -qq
     - sudo apt-get -y install libboost-python-dev libgraphicsmagick++1-dev

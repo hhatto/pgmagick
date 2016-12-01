@@ -15,4 +15,11 @@ void __Pixels()
         .def("columns", &Magick::Pixels::columns)
         .def("rows", &Magick::Pixels::rows)
     ;
+
+    class_< Magick::PixelPacket, boost::noncopyable >("PixelPacket", no_init)
+        .def_readwrite("red", &Magick::PixelPacket::red)
+        .def_readwrite("green", &Magick::PixelPacket::green)
+        .def_readwrite("blue", &Magick::PixelPacket::blue)
+        .def_readwrite("opacity", &Magick::PixelPacket::opacity)
+    ;
 }
