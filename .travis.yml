@@ -1,3 +1,6 @@
+sudo: required
+dist: trusty
+
 language: python
 
 python:
@@ -10,10 +13,20 @@ matrix:
 
 before_install:
     - sudo apt-get update -qq
-    - sudo apt-get install libboost-python-dev libgraphicsmagick++1-dev
+    - sudo apt-get -y install libboost-python-dev libgraphicsmagick++1-dev
 
 install:
-    - pip install --upgrade .
+    # - pip install --upgrade .
+    - sudo /usr/bin/python setup.py install
+    - /usr/bin/python test/test_cookbook.py
+    - /usr/bin/python test/test_pgmagick_api.py
+    - /usr/bin/python test/test_pgmagick_blob.py
+    - /usr/bin/python test/test_pgmagick_color.py
+    - /usr/bin/python test/test_pgmagick_geometry.py
+    - /usr/bin/python test/test_pgmagick_image.py
+    - /usr/bin/python test/test_pgmagick_imagelist.py
+    - /usr/bin/python test/test_pgmagick_libinfo.py
+    - /usr/bin/python test/test_pgmagick_montage.py
 
 script:
-    - make test
+    - ls setup.py
