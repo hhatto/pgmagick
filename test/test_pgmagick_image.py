@@ -96,4 +96,16 @@ class TestIMImage(unittest.TestCase):
             self.assertEqual(type(ret),
                              type(pgmagick._pgmagick.VirtualPixelMethod()))
 
+
+class TestImageWithBlob(unittest.TestCase):
+
+    def test_fromblob(self):
+        with open('../example/X.jpg', 'rb') as f:
+            data = f.read()
+            b = Blob(data)
+            img = Image(b)
+            img.write('X2.jpg')
+            self.assertEqual(type(img), Image)
+
+
 unittest.main()
