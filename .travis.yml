@@ -6,27 +6,24 @@ language: python
 python:
     - "2.7"
     - "3.2" # for ubuntu12.04
+    - "3.4"
 
 matrix:
     allow_failures:
         - python: "3.2"
 
-before_install:
-    - sudo apt-get update -qq
-    - sudo apt-get -y install libboost-python-dev libgraphicsmagick++1-dev
+addons:
+    apt:
+        packages:
+            - libboost-python-dev
+            - libgraphicsmagick++1-dev
+            - python3-setuptools
 
 install:
-    # - pip install --upgrade .
-    - sudo /usr/bin/python setup.py install
-    - /usr/bin/python test/test_cookbook.py
-    - /usr/bin/python test/test_pgmagick_api.py
-    - /usr/bin/python test/test_pgmagick_blob.py
-    - /usr/bin/python test/test_pgmagick_color.py
-    - /usr/bin/python test/test_pgmagick_geometry.py
-    - /usr/bin/python test/test_pgmagick_image.py
-    - /usr/bin/python test/test_pgmagick_imagelist.py
-    - /usr/bin/python test/test_pgmagick_libinfo.py
-    - /usr/bin/python test/test_pgmagick_montage.py
+    - if [[ "$TRAVIS_PYTHON_VERSION" == "2."* ]]; then sudo /usr/bin/python setup.py install; fi
+    - if [[ "$TRAVIS_PYTHON_VERSION" == "3."* ]]; then sudo mkdir -p /usr/lib/python3.4/site-packages/ ; sudo /usr/bin/python3 setup.py install; fi
 
 script:
+    - if [[ "$TRAVIS_PYTHON_VERSION" == "2."* ]]; then PYTHON=/usr/bin/python make test; fi
+    - if [[ "$TRAVIS_PYTHON_VERSION" == "3."* ]]; then PYTHON=/usr/bin/python3 make test; fi
     - ls setup.py
