@@ -9,7 +9,7 @@ __init()
 class Blob(_pgmagick.Blob):
 
     def __init__(self, *args):
-        if len(args) == 1 and isinstance(args[0], str):
+        if len(args) == 1 and isinstance(args[0], (str, bytes)):
             _pgmagick.Blob.__init__(self)
             self.update(args[0])
         else:
