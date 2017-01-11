@@ -58,7 +58,7 @@ def get_version_from_pc(search_dirs, target):
         for root, dirs, files in os.walk(dirname):
             for f in files:
                 if f == target:
-                    _tmp = _grep("\Version: ", os.path.join(root, target))
+                    _tmp = _grep("Version: ", os.path.join(root, target))
                     return _tmp.split()[1]
 
 
