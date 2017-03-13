@@ -216,7 +216,7 @@ class DrawTestCase(unittest.TestCase):
         self.im.write('t.png')
 
     def test_miterlimit(self):
-        self.d.miterlimit(0)
+        self.d.miterlimit(1)
         self.d.stroke_color('black')
         self.d.stroke_width(3)
         self.d.line(10, 200, 100, 10)
@@ -291,7 +291,8 @@ class DrawTestCase(unittest.TestCase):
         self.im.write('t.png')
 
     def test_round_rectangle(self):
-        self.d.round_rectangle(200, 200, 30, 30, 15, 15)
+        self.d = Draw()
+        self.d.round_rectangle(20, 20, 30, 30, 150, 150)
         self.im.draw(self.d)
         self.im.write('t.png')
 
