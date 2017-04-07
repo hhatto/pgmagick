@@ -292,7 +292,11 @@ void __Image()
         .def("animationIterations", (void (Magick::Image::*)(const unsigned int) )&Magick::Image::animationIterations)
         .def("animationIterations", (unsigned int (Magick::Image::*)() const)&Magick::Image::animationIterations)
 #endif
+#ifdef PGMAGICK_LIB_GRAPHICSMAGICK_1_3_26
+        .def("attribute", (void (Magick::Image::*)(const std::string, const char*) )&Magick::Image::attribute)
+#else
         .def("attribute", (void (Magick::Image::*)(const std::string, const std::string) )&Magick::Image::attribute)
+#endif
         .def("attribute", (std::string (Magick::Image::*)(const std::string) )&Magick::Image::attribute)
         .def("backgroundColor", (void (Magick::Image::*)(const Magick::Color&) )&Magick::Image::backgroundColor)
         .def("backgroundColor", (Magick::Color (Magick::Image::*)() const)&Magick::Image::backgroundColor)
