@@ -41,8 +41,8 @@ GraphicsMagick from source package::
 MacOSX
 ------
 
-via homebrew-cask(homebrew-pgmagick)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+via homebrew-cask(homebrew-pgmagick) with Python2
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 use `homebrew-pgmagick`_ ::
 
     $ brew tap hhatto/pgmagick
@@ -50,8 +50,29 @@ use `homebrew-pgmagick`_ ::
 
 .. _`homebrew-pgmagick`: https://github.com/hhatto/homebrew-pgmagick
 
-via homebrew and pip
-~~~~~~~~~~~~~~~~~~~~
+via homebrew-cask(homebrew-pgmagick) with Python2
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+with `--with-python3` option::
+
+    $ brew install pgmagick --with-python3
+
+via homebrew and pip with Python3
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+on MacOSX 10.11.6::
+
+    $ brew install graphicsmagick
+    $ brew install boost-python --with-python3
+    $ pip install pgmagick
+
+via homebrew and pip with Python2
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+*update 2017.05.17*
+on MacOSX 10.11.6::
+
+    $ brew install graphicsmagick
+    $ brew install boost-python
+    $ pip install pgmagick
+
 *update 2014.05.12*
 on MacOSX 10.9.2 (add ARCHFLAGS)::
 
@@ -59,19 +80,6 @@ on MacOSX 10.9.2 (add ARCHFLAGS)::
     $ brew install boost --with-python
     $ ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future pip install pgmagick
 
-*update 2013.08.31*
-with Homebrew_ ::
-
-    $ brew install graphicsmagick     # or imagemagick
-    $ brew install boost --with-thread-unsafe --build-from-source
-    $ pip install pgmagick
-
-install reported on MacOSX, Thanks Rohan Singh and Simon Harrison.
-
-- http://rohanradio.com/blog/2011/12/02/installing-pgmagick-on-os-x/
-- http://simonharrison.info/talk/2011/01/17/pgmagick-on-mac-os/ (old)
-
-.. _Homebrew: http://brew.sh/
 
 Windows
 -------
@@ -166,9 +174,7 @@ Links
 * PyPI_
 * `Project Page`_
 * `Project Page (Old)`_
-* `CI(Jenkins)`_
 
 .. _PyPI: http://pypi.python.org/pypi/pgmagick/
 .. _`Project Page`: https://github.com/hhatto/pgmagick/
 .. _`Project Page (Old)`: https://bitbucket.org/hhatto/pgmagick/
-.. _`CI(Jenkins)`: http://jenkins.hexacosa.net/job/pgmagick/
