@@ -50,7 +50,7 @@ use `homebrew-pgmagick`_ ::
 
 .. _`homebrew-pgmagick`: https://github.com/hhatto/homebrew-pgmagick
 
-via homebrew-cask(homebrew-pgmagick) with Python2
+via homebrew-cask(homebrew-pgmagick) with Python3
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 with `--with-python3` option::
 
