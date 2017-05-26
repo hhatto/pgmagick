@@ -111,6 +111,7 @@ class TestImageWithBlob(unittest.TestCase):
     def test_fromblob(self):
         with open('../example/X.jpg', 'rb') as f:
             data = f.read()
+            self.assertEqual(True, type(data) in (bytes, str))
             b = Blob(data)
             img = Image(b)
             img.write('X2.jpg')
