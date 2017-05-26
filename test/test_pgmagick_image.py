@@ -94,7 +94,7 @@ class TestIMImage(unittest.TestCase):
                                  SparseColorMethod.PolynomialColorInterpolate,
                                  1, 1.)
 
-    def test_sparseColor(self):
+    def test_exif_profile(self):
         if self.is_imagemagick:
             ret = self.img.exifProfile()
             self.assertEqual(type(ret), type(pgmagick._pgmagick.Blob()))
