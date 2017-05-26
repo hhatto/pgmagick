@@ -1,7 +1,7 @@
 import sys
 import unittest
 import pgmagick
-from pgmagick import Blob, Image, Geometry, Color, LineJoin, StorageType
+from pgmagick import Blob, Image, Geometry, Color, LineJoin, StorageType, FilterTypes
 from pgmagick import ChannelType
 from pgmagick import gminfo
 if gminfo.library == 'ImageMagick':
@@ -43,6 +43,15 @@ class TestImage(unittest.TestCase):
     #        clutimg = Image(Geometry(400, 300), Color("transparent"))
     #        clutimg.read("gradient:white-black")
     #        img.haldClut(clutimg)
+
+    def test_image_resize(self):
+        im = Image(Geometry(300, 200), Color('transparent'))
+        g = Geometry(150, 100)
+        ft = FilterTypes.BlackmanFilter
+        blur = 0.5
+        im.resize(g, ft, blur)
+        im.resize(g, ft)
+        im.resize(g)
 
 
 class TestIMImage(unittest.TestCase):

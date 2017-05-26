@@ -208,6 +208,11 @@ void __Image()
         .def("read", (void (Magick::Image::*)(const Magick::Blob&, const Magick::Geometry&, const std::string&) )&Magick::Image::read)
         .def("reduceNoise", (void (Magick::Image::*)() )&Magick::Image::reduceNoise)
         .def("reduceNoise", (void (Magick::Image::*)(const double) )&Magick::Image::reduceNoise)
+#ifdef PGMAGICK_LIB_GRAPHICSMAGICK_1_3_22   // from 1.3.21
+        .def("resize", (void (Magick::Image::*)(const Magick::Geometry&, const Magick::FilterTypes, const double) )&Magick::Image::resize)
+        .def("resize", (void (Magick::Image::*)(const Magick::Geometry&, const Magick::FilterTypes) )&Magick::Image::resize)
+        .def("resize", (void (Magick::Image::*)(const Magick::Geometry&) )&Magick::Image::resize)
+#endif
         .def("roll", (void (Magick::Image::*)(const Magick::Geometry&) )&Magick::Image::roll)
 #ifdef PGMAGICK_LIB_IMAGEMAGICK
         .def("roll", (void (Magick::Image::*)(const size_t, const size_t) )&Magick::Image::roll)
