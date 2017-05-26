@@ -75,6 +75,7 @@ def find_file(filename, search_dirs):
                 return root
     return False
 
+
 # find to header path
 header_path = find_file('Magick++.h', search_include_dirs)
 if not header_path:
@@ -91,6 +92,7 @@ if _python_version >= (3, ):
     boost_lib_target_files.append("boost_python-py%s%s" % (_python_version[0], _python_version[1]))
     # ArchLinux uses boost_python3
     boost_lib_target_files.append("boost_python3")
+    boost_lib_target_files.append("boost_python3-mt")
 boost_lib_target_files.append("boost_python-mt-py%s%s" % (_python_version[0], _python_version[1]))
 # gentoo appends the python version numbers to the boost_python libraries
 boost_lib_target_files.append("boost_python-%s.%s" % (_python_version[0], _python_version[1]))
@@ -166,6 +168,7 @@ def version():
         for line in input_file:
             if line.startswith('__version__'):
                 return ast.parse(line).body[0].value.s
+
 
 setup(name='pgmagick',
       version=version(),
