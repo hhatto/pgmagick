@@ -3,12 +3,18 @@ dist: trusty
 
 language: python
 
-python:
-    - "2.7"
-    - "3.2" # for ubuntu12.04
-    - "3.4"
-
 matrix:
+    include:
+        - os: osx
+          python: "2.7"
+          env: TARGET=macosx
+        - os: osx
+          python: "3.6"
+          env: TARGET=macosx
+        - python: "2.7"
+          env: TARGET=linux
+        - python: "3.4"
+          env: TARGET=linux
     allow_failures:
         - python: "3.2"
 
@@ -18,6 +24,12 @@ addons:
             - libboost-python-dev
             - libgraphicsmagick++1-dev
             - python3-setuptools
+
+before_install:
+    - if [[ "$TARGET" == "macosx" ]]; then
+          brew update;
+          brew upgrade boost-python graphicsmagick
+      fi
 
 install:
     - if [[ "$TRAVIS_PYTHON_VERSION" == "2."* ]]; then sudo /usr/bin/python setup.py install; fi
