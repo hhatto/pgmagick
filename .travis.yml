@@ -6,11 +6,9 @@ language: python
 matrix:
     include:
         - os: osx
-          python: "2.7"
-          env: TARGET=macosx
+          env: TARGET=macosx2
         - os: osx
-          python: "3.6"
-          env: TARGET=macosx
+          env: TARGET=macosx3
         - python: "2.7"
           env: TARGET=linux
         - python: "3.4"
@@ -26,16 +24,23 @@ addons:
             - python3-setuptools
 
 before_install:
-    - if [[ "$TARGET" == "macosx" ]]; then
+    - if [[ "$TARGET" == "macosx"* ]]; then
           brew update;
-          brew upgrade boost-python graphicsmagick;
+          brew outdated boost-python || brew upgrade boost-python --with-python3;
+          brew outdated graphicsmagick || brew upgrade graphicsmagick;
+          brew outdated python || brew upgrade python;
+          brew outdated python3 || brew upgrade python3;
       fi
 
 install:
     - if [[ "$TRAVIS_PYTHON_VERSION" == "2."* ]]; then sudo /usr/bin/python setup.py install; fi
     - if [[ "$TRAVIS_PYTHON_VERSION" == "3."* ]]; then sudo mkdir -p /usr/lib/python3.4/site-packages/ ; sudo /usr/bin/python3 setup.py install; fi
+    - if [[ "$TARGET" == "macosx2" ]]; then python setup.py install; fi
+    - if [[ "$TARGET" == "macosx3" ]]; then python3 setup.py install; fi
 
 script:
     - if [[ "$TRAVIS_PYTHON_VERSION" == "2."* ]]; then PYTHON=/usr/bin/python make test; fi
     - if [[ "$TRAVIS_PYTHON_VERSION" == "3."* ]]; then PYTHON=/usr/bin/python3 make test; fi
+    - if [[ "$TARGET" == "macosx2" ]]; then PYTHON=`which python` make test; fi
+    - if [[ "$TARGET" == "macosx3" ]]; then PYTHON=`which python3` make test; fi
     - ls setup.py
