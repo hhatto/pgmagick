@@ -3,6 +3,8 @@ FLAGS = -Wall
 INCS = -I/usr/include/python2.7 -I/usr/include/GraphicsMagick
 SO = _pgmagick.so
 LIBS = -lboost_python -lGraphicsMagick++
+LINK_FLAGS = -fPIC -shared
+#LINK_FLAGS = -bundle -undefined dynamic_lookup		# for macOS
 OBJS = _Blob.o \
        _ChannelType.o \
        _Color.o \
@@ -116,7 +118,7 @@ OBJS = _Blob.o \
 .SUFFIXES: .cpp .o
 
 $(SO): $(OBJS)
-	$(CC) $(LIBS) -fPIC -shared -o $(SO) $^
+	$(CC) $(LIBS) $(LINK_FLAGS) -o $(SO) $^
 
 .cpp.o:
 	$(CC) $(FLAGS) $(INCS) -o $@ -c $<
