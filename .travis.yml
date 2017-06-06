@@ -1,8 +1,6 @@
 sudo: required
 dist: trusty
 
-language: python
-
 matrix:
     include:
         - os: osx
@@ -10,8 +8,10 @@ matrix:
         - os: osx
           env: TARGET=macosx3
         - python: "2.7"
+          language: python
           env: TARGET=linux
         - python: "3.4"
+          language: python
           env: TARGET=linux
     allow_failures:
         - python: "3.2"
