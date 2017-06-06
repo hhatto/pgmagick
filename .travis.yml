@@ -26,6 +26,8 @@ addons:
 before_install:
     - if [[ "$TARGET" == "macosx"* ]]; then
           brew update;
+          brew install boost-python --with-python3;
+          brew install graphicsmagick python python3;
           brew outdated boost-python || brew upgrade boost-python --with-python3;
           brew outdated graphicsmagick || brew upgrade graphicsmagick;
           brew outdated python || brew upgrade python;
