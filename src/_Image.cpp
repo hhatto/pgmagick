@@ -6,15 +6,12 @@
 using namespace boost::python;
 
 namespace  {
-BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_adaptiveBlur_overloads_0_2, adaptiveBlur, 0, 2)
-BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_adaptiveThreshold_overloads_2_3, adaptiveThreshold, 2, 3)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_blur_overloads_0_2, blur, 0, 2)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_blurChannel_overloads_1_3, blurChannel, 1, 3)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_border_overloads_0_1, border, 0, 1)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_charcoal_overloads_0_2, charcoal, 0, 2)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_composite_overloads_3_4, composite, 3, 4)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_composite_overloads_2_3, composite, 2, 3)
-BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_distort_overloads_3_4, distort, 3, 4)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_edge_overloads_0_1, edge, 0, 1)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_emboss_overloads_0_2, emboss, 0, 2)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_frame_overloads_0_1, frame, 0, 1)
@@ -29,11 +26,16 @@ BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_segment_overloads_0_2, segme
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_shade_overloads_0_3, shade, 0, 3)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_sharpen_overloads_0_2, sharpen, 0, 2)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_sharpenChannel_overloads_1_3, sharpenChannel, 1, 3)
-BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_sigmoidalContrast_overloads_2_3, sigmoidalContrast, 2, 3)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_solarize_overloads_0_1, solarize, 0, 1)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_spread_overloads_0_1, spread, 0, 1)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_wave_overloads_0_2, wave, 0, 2)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_signature_overloads_0_1, signature, 0, 1)
+#ifdef PGMAGICK_LIB_IMAGEMAGICK
+BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_adaptiveBlur_overloads_0_2, adaptiveBlur, 0, 2)
+BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_adaptiveThreshold_overloads_2_3, adaptiveThreshold, 2, 3)
+BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_distort_overloads_3_4, distort, 3, 4)
+BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_sigmoidalContrast_overloads_2_3, sigmoidalContrast, 2, 3)
+#endif
 }
 
 
