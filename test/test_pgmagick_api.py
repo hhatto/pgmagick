@@ -166,42 +166,56 @@ class DrawTestCase(unittest.TestCase):
         self.im.write('t.png')
 
     def test_font_style_italic(self):
+        if sys.platform.lower() == 'darwin':
+            self.skipTest("DrawableFont() is broken")
         self.d.font('vera.ttf', 'italic')
         self.d.text(30, 30, "hello pgmagick")
         self.im.draw(self.d)
         self.im.write('t.png')
 
     def test_font_style_oblique(self):
+        if sys.platform.lower() == 'darwin':
+            self.skipTest("DrawableFont() is broken")
         self.d.font('vera.ttf', 'oblique')
         self.d.text(30, 30, "hello pgmagick")
         self.im.draw(self.d)
         self.im.write('t.png')
 
     def test_font_stretch_ultracondensed(self):
+        if sys.platform.lower() == 'darwin':
+            self.skipTest("DrawableFont() is broken")
         self.d.font('vera.ttf', 'oblique', stretch='ultracondensed')
         self.d.text(30, 30, "hello pgmagick")
         self.im.draw(self.d)
         self.im.write('t.png')
 
     def test_font_stretch_extraexpanded(self):
+        if sys.platform.lower() == 'darwin':
+            self.skipTest("DrawableFont() is broken")
         self.d.font('vera.ttf', 'oblique', stretch='extraexpanded')
         self.d.text(30, 30, "hello pgmagick")
         self.im.draw(self.d)
         self.im.write('t.png')
 
     def test_font_weight100(self):
+        if sys.platform.lower() == 'darwin':
+            self.skipTest("DrawableFont() is broken")
         self.d.font('vera.ttf', weight=100)
         self.d.text(30, 30, "hello pgmagick")
         self.im.draw(self.d)
         self.im.write('t.png')
 
     def test_font_bold(self):
+        if sys.platform.lower() == 'darwin':
+            self.skipTest("DrawableFont() is broken")
         self.d.font('vera.ttf', weight='bold')
         self.d.text(30, 30, "hello pgmagick")
         self.im.draw(self.d)
         self.im.write('t.png')
 
     def test_gravity(self):
+        if sys.platform.lower() == 'darwin':
+            self.skipTest("DrawableFont() is broken")
         self.d.gravity('center')
         self.d.text(0, 0, "hello pgmagick")
         self.im.draw(self.d)
@@ -367,11 +381,15 @@ class DrawTestCase(unittest.TestCase):
         self.im.write('t.png')
 
     def test_text(self):
+        if sys.platform.lower() == 'darwin':
+            self.skipTest("DrawableFont() is broken")
         self.d.text(30, 30, "hello pgmagick")
         self.im.draw(self.d)
         self.im.write('t.png')
 
     def test_text_antialias(self):
+        if sys.platform.lower() == 'darwin':
+            self.skipTest("DrawableFont() is broken")
         self.d.font('courier', weight='bold')
         self.d.pointsize(70)
         self.d.text_antialias(False)
@@ -382,6 +400,8 @@ class DrawTestCase(unittest.TestCase):
         self.im.write('t.png')
 
     def test_text_decoration(self):
+        if sys.platform.lower() == 'darwin':
+            self.skipTest("DrawableFont() is broken")
         self.d.pointsize(70)
         self.d.text_decoration('overline')
         self.d.text(30, 100, "hello pgmagick")
@@ -393,6 +413,8 @@ class DrawTestCase(unittest.TestCase):
         self.im.write('t.png')
 
     def test_text_undercolor(self):
+        if sys.platform.lower() == 'darwin':
+            self.skipTest("DrawableFont() is broken")
         self.d.pointsize(70)
         self.d.text_undercolor('lime')
         self.d.text(30, 100, "hello pgmagick")
