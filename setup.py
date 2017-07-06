@@ -141,6 +141,8 @@ if _version:
         _version.append(0)
     if LIBRARY == 'GraphicsMagick':
         ext_compile_args = []
+        if _version[0] == 1 and _version[1] == 3 and _version[2] >= 26:
+            ext_compile_args.append("-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_26")
         if _version[0] == 1 and _version[1] == 3 and _version[2] >= 24:
             ext_compile_args.append("-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_24")
         if _version[0] == 1 and _version[1] == 3 and _version[2] >= 22:
