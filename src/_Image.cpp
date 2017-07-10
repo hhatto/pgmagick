@@ -558,7 +558,7 @@ void __Image()
         .def("writePixels", &Magick::Image::writePixels)
         /* no user-serviceable parts */
         .def("modifyImage", &Magick::Image::modifyImage)
-#if !defined(PGMAGICK_LIB_GRAPHICSMAGICK_1_3_20) && !defined(PGMAGICK_LIB_GRAPHICSMAGICK_1_3_22)
+#if !defined(PGMAGICK_LIB_GRAPHICSMAGICK_1_3_20) && !defined(PGMAGICK_LIB_GRAPHICSMAGICK_1_3_22) && !defined(PGMAGICK_LIB_GRAPHICSMAGICK_1_3_26)
         .def("throwImageException", &Magick::Image::throwImageException)
 #endif
         .def("registerId", &Magick::Image::registerId)
