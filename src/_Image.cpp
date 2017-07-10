@@ -30,9 +30,11 @@ BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_solarize_overloads_0_1, sola
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_spread_overloads_0_1, spread, 0, 1)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_wave_overloads_0_2, wave, 0, 2)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_signature_overloads_0_1, signature, 0, 1)
+#ifndef PGMAGICK_LIB_GRAPHICSMAGICK_1_3_22
+BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_adaptiveThreshold_overloads_2_3, adaptiveThreshold, 2, 3)
+#endif
 #ifdef PGMAGICK_LIB_IMAGEMAGICK
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_adaptiveBlur_overloads_0_2, adaptiveBlur, 0, 2)
-BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_adaptiveThreshold_overloads_2_3, adaptiveThreshold, 2, 3)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_distort_overloads_3_4, distort, 3, 4)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_sigmoidalContrast_overloads_2_3, sigmoidalContrast, 2, 3)
 #endif
