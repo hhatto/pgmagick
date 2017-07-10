@@ -30,9 +30,11 @@ BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_solarize_overloads_0_1, sola
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_spread_overloads_0_1, spread, 0, 1)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_wave_overloads_0_2, wave, 0, 2)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_signature_overloads_0_1, signature, 0, 1)
+#ifndef PGMAGICK_LIB_GRAPHICSMAGICK_1_3_22
+BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_adaptiveThreshold_overloads_2_3, adaptiveThreshold, 2, 3)
+#endif
 #ifdef PGMAGICK_LIB_IMAGEMAGICK
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_adaptiveBlur_overloads_0_2, adaptiveBlur, 0, 2)
-BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_adaptiveThreshold_overloads_2_3, adaptiveThreshold, 2, 3)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_distort_overloads_3_4, distort, 3, 4)
 BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_sigmoidalContrast_overloads_2_3, sigmoidalContrast, 2, 3)
 #endif
@@ -292,7 +294,11 @@ void __Image()
         .def("animationIterations", (void (Magick::Image::*)(const unsigned int) )&Magick::Image::animationIterations)
         .def("animationIterations", (unsigned int (Magick::Image::*)() const)&Magick::Image::animationIterations)
 #endif
+#ifdef PGMAGICK_LIB_GRAPHICSMAGICK_1_3_26
+        .def("attribute", (void (Magick::Image::*)(const std::string, const char*) )&Magick::Image::attribute)
+#else
         .def("attribute", (void (Magick::Image::*)(const std::string, const std::string) )&Magick::Image::attribute)
+#endif
         .def("attribute", (std::string (Magick::Image::*)(const std::string) )&Magick::Image::attribute)
         .def("backgroundColor", (void (Magick::Image::*)(const Magick::Color&) )&Magick::Image::backgroundColor)
         .def("backgroundColor", (Magick::Color (Magick::Image::*)() const)&Magick::Image::backgroundColor)
@@ -554,7 +560,7 @@ void __Image()
         .def("writePixels", &Magick::Image::writePixels)
         /* no user-serviceable parts */
         .def("modifyImage", &Magick::Image::modifyImage)
-#if !defined(PGMAGICK_LIB_GRAPHICSMAGICK_1_3_20) && !defined(PGMAGICK_LIB_GRAPHICSMAGICK_1_3_22)
+#if !defined(PGMAGICK_LIB_GRAPHICSMAGICK_1_3_20)
         .def("throwImageException", &Magick::Image::throwImageException)
 #endif
         .def("registerId", &Magick::Image::registerId)
