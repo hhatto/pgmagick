@@ -1,4 +1,3 @@
-import sys
 import unittest
 import pgmagick
 from pgmagick import Blob, Image, Geometry, Color, LineJoin, StorageType, FilterTypes
@@ -6,6 +5,8 @@ from pgmagick import ChannelType
 from pgmagick import gminfo
 if gminfo.library == 'ImageMagick':
     from pgmagick import DistortImageMethod, SparseColorMethod
+
+libgm_version = [int(v) for v in pgmagick.gminfo().version.split('.')]
 
 
 class TestImage(unittest.TestCase):
@@ -36,6 +37,7 @@ class TestImage(unittest.TestCase):
     def test_image_init_storagetype(self):
         data = ["0" for i in range(10000)]
         img = Image(100, 100, "RGB", StorageType.CharPixel, "".join(data))
+        del(img)
 
     #def test_haldClut(self):
     #    img = Image()
@@ -44,6 +46,7 @@ class TestImage(unittest.TestCase):
     #        clutimg.read("gradient:white-black")
     #        img.haldClut(clutimg)
 
+    @unittest.skipIf(libgm_version < [1, 3, 22], "bug in gm version: %s" % str(libgm_version))
     def test_image_resize(self):
         im = Image(Geometry(300, 200), Color('transparent'))
         g = Geometry(150, 100)
