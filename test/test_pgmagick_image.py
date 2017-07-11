@@ -46,6 +46,12 @@ class TestImage(unittest.TestCase):
     #        clutimg.read("gradient:white-black")
     #        img.haldClut(clutimg)
 
+    @unittest.skipIf(libgm_version < [1, 3, 19], "not support gm version: %s" % str(libgm_version))
+    def test_image_thumbnail(self):
+        im = Image(Geometry(300, 200), Color('transparent'))
+        g = Geometry(150, 100)
+        im.thumbnail(g)
+
     @unittest.skipIf(libgm_version < [1, 3, 22], "bug in gm version: %s" % str(libgm_version))
     def test_image_resize(self):
         im = Image(Geometry(300, 200), Color('transparent'))
