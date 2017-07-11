@@ -149,7 +149,7 @@ if _version:
             ext_compile_args.append("-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_22")
         if _version[0] == 1 and _version[1] == 3 and _version[2] >= 20:
             ext_compile_args.append("-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_20")
-        if _version[0] == 1 and _version[1] == 3 and _version[2] == 19:
+        if _version[0] == 1 and _version[1] == 3 and _version[2] >= 19:
             ext_compile_args.append("-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_19")
         if _version[0] == 1 and _version[1] == 3 and _version[2] >= 6:
             # for not Ubuntu10.04
