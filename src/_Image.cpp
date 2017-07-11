@@ -224,7 +224,7 @@ void __Image()
         .def("roll", (void (Magick::Image::*)(const unsigned int, const unsigned int) )&Magick::Image::roll)
 #endif
         .def("rotate", &Magick::Image::rotate)
-#ifdef PGMAGICK_LIB_GRAPHICSMAGICK_1_3_19_OVER
+#ifdef PGMAGICK_LIB_GRAPHICSMAGICK_1_3_19
         .def("thumbnail", &Magick::Image::thumbnail)
 #endif
         .def("sample", &Magick::Image::sample)
