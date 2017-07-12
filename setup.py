@@ -75,6 +75,23 @@ def find_file(filename, search_dirs):
                 return root
     return False
 
+def library_supports_api(library_version, api_version, different_major_breaks_support=True):
+    """
+    Returns whether api_version is supported by given library version.
+    E. g.  library_version (1,3,21) returns True for api_version (1,3,21), (1,3,19), (1,3,'x'), (1,2,'x'), (1, 'x')
+           False for (1,3,24), (1,4,'x'), (2,'x')
+
+    different_major_breaks_support - if enabled and library and api major versions are different always return False
+           ex) with library_version (2,0,0) and for api_version(1,3,24) returns False if enabled, True if disabled
+    """
+    assert isinstance(library_version, (tuple, list))  # won't work with e.g. generators
+    assert len(library_version) == 3
+    sequence_type = type(library_version)  # assure we will compare same types
+    api_version = sequence_type(0 if num == 'x' else num for num in api_version)
+    if different_major_breaks_support and library_version[0] != api_version[0]:
+        return False
+    assert len(api_version) <= 3     # otherwise following comparision won't work as intended, e.g. (2, 0, 0) > (2, 0, 0, 0)
+    return library_version >= api_version
 
 # find to header path
 header_path = find_file('Magick++.h', search_include_dirs)
@@ -140,20 +157,10 @@ if _version:
         # ex) 1.2 -> 1.2.0
         _version.append(0)
     if LIBRARY == 'GraphicsMagick':
-        ext_compile_args = []
-        if _version[0] == 1 and _version[1] == 3 and _version[2] >= 26:
-            ext_compile_args.append("-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_26")
-        if _version[0] == 1 and _version[1] == 3 and _version[2] >= 24:
-            ext_compile_args.append("-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_24")
-        if _version[0] == 1 and _version[1] == 3 and _version[2] >= 22:
-            ext_compile_args.append("-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_22")
-        if _version[0] == 1 and _version[1] == 3 and _version[2] >= 20:
-            ext_compile_args.append("-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_20")
-        if _version[0] == 1 and _version[1] == 3 and _version[2] >= 19:
-            ext_compile_args.append("-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_19")
-        if _version[0] == 1 and _version[1] == 3 and _version[2] >= 6:
-            # for not Ubuntu10.04
-            ext_compile_args.append("-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_6")
+        # 1.3.6 for not Ubuntu10.04
+        _tested_api_versions = ((1,3,26), (1,3,24), (1,3,22), (1,3,20), (1,3,19), (1,3,6))
+        _supportedApiVersions = (v for v in _tested_api_versions if library_supports_api(_version, v))
+        ext_compile_args = ["-DPGMAGICK_LIB_GRAPHICSMAGICK_" + '_'.join(map(str, version)) for version in _supportedApiVersions]
         if not (_version[0] == 1 and _version[1] == 1):
             # for GM version 1.3.x and higher
             ext_compile_args.append("-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_x")
