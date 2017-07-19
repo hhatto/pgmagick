@@ -159,8 +159,8 @@ if _version:
     if LIBRARY == 'GraphicsMagick':
         # 1.3.6 for not Ubuntu10.04
         _tested_api_versions = ((1,3,26), (1,3,24), (1,3,22), (1,3,20), (1,3,19), (1,3,6))
-        _supportedApiVersions = (v for v in _tested_api_versions if library_supports_api(_version, v))
-        ext_compile_args = ["-DPGMAGICK_LIB_GRAPHICSMAGICK_" + '_'.join(map(str, version)) for version in _supportedApiVersions]
+        _supported_api_versions = (v for v in _tested_api_versions if library_supports_api(_version, v))
+        ext_compile_args = ["-DPGMAGICK_LIB_GRAPHICSMAGICK_" + '_'.join(map(str, version)) for version in _supported_api_versions]
         if not (_version[0] == 1 and _version[1] == 1):
             # for GM version 1.3.x and higher
             ext_compile_args.append("-DPGMAGICK_LIB_GRAPHICSMAGICK_1_3_x")
