@@ -43,6 +43,6 @@ install:
 script:
     - if [[ "$TRAVIS_PYTHON_VERSION" == "2."* ]]; then PYTHON=/usr/bin/python make test; fi
     - if [[ "$TRAVIS_PYTHON_VERSION" == "3."* ]]; then PYTHON=/usr/bin/python3 make test; fi
-    - if [[ "$TARGET" == "macosx2" ]]; then PYTHON=`which python` make test; fi
+    - if [[ "$TARGET" == "macosx2" ]]; then PYTHON=`which python2` make test; fi
     - if [[ "$TARGET" == "macosx3" ]]; then PYTHON=`which python3` make test; fi
     - ls setup.py
