@@ -37,7 +37,7 @@ before_install:
 install:
     - if [[ "$TRAVIS_PYTHON_VERSION" == "2."* ]]; then sudo /usr/bin/python setup.py install; fi
     - if [[ "$TRAVIS_PYTHON_VERSION" == "3."* ]]; then sudo mkdir -p /usr/lib/python3.4/site-packages/ ; sudo /usr/bin/python3 setup.py install; fi
-    - if [[ "$TARGET" == "macosx2" ]]; then python setup.py install; fi
+    - if [[ "$TARGET" == "macosx2" ]]; then python2 setup.py install; fi
     - if [[ "$TARGET" == "macosx3" ]]; then python3 setup.py install; fi
 
 script:
