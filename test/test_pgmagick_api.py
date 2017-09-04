@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import unittest
 import sys
 sys.path.append('../')
@@ -17,15 +19,9 @@ class ImageTestCase(unittest.TestCase):
 
     def test_unicodefilename(self):
         self.img.write('unicode.png')
-        if sys.version_info >= (3, ):
-            img = Image('unicode.png')
-        else:
-            img = Image(unicode('unicode.png'))
+        img = Image(u'unicode.png')
         img.scale(0.5)
-        if sys.version_info >= (3, ):
-            img.write('unicode.jpg')
-        else:
-            img.write(unicode('unicode.jpg'))
+        img.write(u'unicode.jpg')
 
     def test_nonarg(self):
         Image()
