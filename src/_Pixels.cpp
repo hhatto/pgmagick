@@ -1,10 +1,10 @@
 #include <boost/python.hpp>
 #include <boost/cstdint.hpp>
 
-#include <Magick++/Pixels.h>
+
+#include "_Pixels.h"
 
 using namespace boost::python;
-
 
 void __Pixels()
 {
@@ -21,5 +21,18 @@ void __Pixels()
         .def_readwrite("green", &Magick::PixelPacket::green)
         .def_readwrite("blue", &Magick::PixelPacket::blue)
         .def_readwrite("opacity", &Magick::PixelPacket::opacity)
+    ;
+
+    class_< PixelPacketProxy >("PixelPacketProxy", init< Magick::PixelPacket& >())
+        .add_property("red", &PixelPacketProxy::get_red, &PixelPacketProxy::set_red)
+        .add_property("green", &PixelPacketProxy::get_green, &PixelPacketProxy::set_green)
+        .add_property("blue", &PixelPacketProxy::get_blue, &PixelPacketProxy::set_blue)
+        .add_property("opacity", &PixelPacketProxy::get_opacity, &PixelPacketProxy::set_opacity)
+    ;
+
+    class_< PixelPacketArrayProxy >("PixelPacketArrayProxy", no_init)
+        .def("__getitem__", &PixelPacketArrayProxy::get_item)
+        .def("__setitem__", &PixelPacketArrayProxy::set_item)
+        .def("__len__", &PixelPacketArrayProxy::size)
     ;
 }

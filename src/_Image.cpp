@@ -3,6 +3,8 @@
 
 #include <Magick++/Image.h>
 
+#include "_Pixels.h"
+
 using namespace boost::python;
 
 namespace  {
@@ -40,6 +42,15 @@ BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_sigmoidalContrast_overloads_
 #endif
 }
 
+PixelPacketArrayProxy get_pixels(Magick::Image* image, int x, int y, unsigned int columns, unsigned int rows) {
+    Magick::PixelPacket* cache = image->getPixels(x, y, columns, rows);
+    return PixelPacketArrayProxy(cache, columns*rows);
+}
+
+PixelPacketArrayProxy set_pixels(Magick::Image* image, int x, int y, unsigned int columns, unsigned int rows) {
+    Magick::PixelPacket* cache = image->setPixels(x, y, columns, rows);
+    return PixelPacketArrayProxy(cache, columns*rows);
+}
 
 void __Image()
 {
@@ -552,9 +563,9 @@ void __Image()
         .def("getConstPixels",)
         .def("getIndexes",)
         .def("getConstIndexes",)
-        .def("getPixels",)
-        .def("setPixels",)
 #endif
+        .def("getPixels", get_pixels)
+        .def("setPixels", set_pixels)
         .def("syncPixels", &Magick::Image::syncPixels)
         .def("readPixels", &Magick::Image::readPixels)
         .def("writePixels", &Magick::Image::writePixels)
