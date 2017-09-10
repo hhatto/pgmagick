@@ -42,6 +42,11 @@ BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_sigmoidalContrast_overloads_
 #endif
 }
 
+PixelPacketConstArrayProxy get_const_pixels(const Magick::Image* image, int x, int y, unsigned int columns, unsigned int rows) {
+    const Magick::PixelPacket* cache = image->getConstPixels(x, y, columns, rows);
+    return PixelPacketConstArrayProxy(cache, columns*rows);
+}
+
 PixelPacketArrayProxy get_pixels(Magick::Image* image, int x, int y, unsigned int columns, unsigned int rows) {
     Magick::PixelPacket* cache = image->getPixels(x, y, columns, rows);
     return PixelPacketArrayProxy(cache, columns*rows);
@@ -560,10 +565,10 @@ void __Image()
         .def("yResolution", &Magick::Image::yResolution)
 #endif
 #if 0
-        .def("getConstPixels",)
         .def("getIndexes",)
         .def("getConstIndexes",)
 #endif
+        .def("getConstPixels", get_const_pixels)
         .def("getPixels", get_pixels)
         .def("setPixels", set_pixels)
         .def("syncPixels", &Magick::Image::syncPixels)

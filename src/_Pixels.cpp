@@ -16,7 +16,7 @@ void __Pixels()
         .def("rows", &Magick::Pixels::rows)
     ;
 
-    class_< Magick::PixelPacket, boost::noncopyable >("PixelPacket", no_init)
+    class_< Magick::PixelPacket>("PixelPacket", init<Magick::PixelPacket>())
         .def_readwrite("red", &Magick::PixelPacket::red)
         .def_readwrite("green", &Magick::PixelPacket::green)
         .def_readwrite("blue", &Magick::PixelPacket::blue)
@@ -28,6 +28,11 @@ void __Pixels()
         .add_property("green", &PixelPacketProxy::get_green, &PixelPacketProxy::set_green)
         .add_property("blue", &PixelPacketProxy::get_blue, &PixelPacketProxy::set_blue)
         .add_property("opacity", &PixelPacketProxy::get_opacity, &PixelPacketProxy::set_opacity)
+    ;
+
+    class_< PixelPacketConstArrayProxy >("PixelPacketConstArrayProxy", no_init)
+        .def("__getitem__", &PixelPacketConstArrayProxy::get_item)
+        .def("__len__", &PixelPacketConstArrayProxy::size)
     ;
 
     class_< PixelPacketArrayProxy >("PixelPacketArrayProxy", no_init)

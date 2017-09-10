@@ -30,9 +30,10 @@ class TestImage(unittest.TestCase):
         im.strokeLineJoin(LineJoin.RoundJoin)
         im.strokeLineJoin(LineJoin.BevelJoin)
 
-    def test_image_getpixels(self):
+    def getpixels_test_template(self, use_const):
         img = Image(Geometry(300, 200), Color('transparent'))
-        pixels = img.getPixels(40, 50, 10, 10)
+        getPixelsMethod = img.getConstPixels if use_const else img.getPixels
+        pixels = getPixelsMethod(40, 50, 10, 10)
         self.assertEqual(10 * 10, len(pixels))
         with self.assertRaises(IndexError):
             pixels[2000]
@@ -42,6 +43,19 @@ class TestImage(unittest.TestCase):
         self.assertEqual(0, pixels[0].green)
         self.assertEqual(colorMax, pixels[0].opacity)
         return img, pixels
+
+    def test_image_getpixels(self):
+        self.getpixels_test_template(use_const=False)
+
+    def test_image_getconstpixels(self):
+        _, pixels = self.getpixels_test_template(use_const=True)
+        # either throw AttributeError (write to readonly field)
+        # or at least don't update original data (elements returned by indexing are cloned)
+        try:
+            pixels[0].red = 50
+            self.assertEqual(pixels[0].red, 0)
+        except AttributeError:
+            pass
 
     def test_image_setpixels(self):
         img = Image(Geometry(300, 200), Color('transparent'))

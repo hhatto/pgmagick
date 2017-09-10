@@ -23,5 +23,6 @@ public:
 };
 
 typedef ArrayProxy<Magick::PixelPacket, PixelPacketProxy> PixelPacketArrayProxy;
+typedef ArrayProxy<const Magick::PixelPacket, Magick::PixelPacket> PixelPacketConstArrayProxy;
 
 #endif //_PIXELS_HEADER_
