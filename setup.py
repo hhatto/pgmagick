@@ -36,6 +36,20 @@ if sys.platform.lower() == 'darwin':
     search_include_dirs.append('/opt/local/include/ImageMagick/')
 
 
+if 'MAGICK_HOME' in os.environ:
+    extra_include_dir = os.path.join(os.environ['MAGICK_HOME'], 'include')
+    print('adding extra include directory %s' % extra_include_dir)
+    search_include_dirs.insert(0, extra_include_dir)
+
+    extra_library_dir = os.path.join(os.environ['MAGICK_HOME'], 'lib')
+    print('adding extra library directory %s' % extra_library_dir)
+    search_library_dirs.insert(0, extra_library_dir)
+
+    extra_pkgconfig_dir = os.path.join(extra_library_dir, 'pkgconfig')
+    print('adding extra pkgconfig directory %s' % extra_pkgconfig_dir)
+    search_pkgconfig_dirs.insert(0, extra_pkgconfig_dir)
+
+
 def _grep(regex, filename):
     for line in open(filename):
         if re.search(regex, line):
@@ -58,8 +72,11 @@ def get_version_from_pc(search_dirs, target):
         for root, dirs, files in os.walk(dirname):
             for f in files:
                 if f == target:
-                    _tmp = _grep("Version: ", os.path.join(root, target))
-                    return _tmp.split()[1]
+                    file_path = os.path.join(root, target)
+                    _tmp = _grep("Version: ", file_path)
+                    version = _tmp.split()[1]
+                    print("Found version %s in file %s" % (version, file_path))
+                    return version
 
 
 def find_file(filename, search_dirs):
@@ -74,6 +91,7 @@ def find_file(filename, search_dirs):
             if filename in root:
                 return root
     return False
+
 
 def library_supports_api(library_version, api_version, different_major_breaks_support=True):
     """
