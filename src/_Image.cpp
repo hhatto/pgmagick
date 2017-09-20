@@ -44,17 +44,17 @@ BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(Magick_Image_sigmoidalContrast_overloads_
 
 PixelPacketConstArrayProxy get_const_pixels(const Magick::Image* image, int x, int y, unsigned int columns, unsigned int rows) {
     const Magick::PixelPacket* cache = image->getConstPixels(x, y, columns, rows);
-    return PixelPacketConstArrayProxy(cache, columns*rows);
+    return PixelPacketConstArrayProxy(cache, columns*rows, *image);
 }
 
 PixelPacketArrayProxy get_pixels(Magick::Image* image, int x, int y, unsigned int columns, unsigned int rows) {
     Magick::PixelPacket* cache = image->getPixels(x, y, columns, rows);
-    return PixelPacketArrayProxy(cache, columns*rows);
+    return PixelPacketArrayProxy(cache, columns*rows, *image);
 }
 
 PixelPacketArrayProxy set_pixels(Magick::Image* image, int x, int y, unsigned int columns, unsigned int rows) {
     Magick::PixelPacket* cache = image->setPixels(x, y, columns, rows);
-    return PixelPacketArrayProxy(cache, columns*rows);
+    return PixelPacketArrayProxy(cache, columns*rows, *image);
 }
 
 void __Image()

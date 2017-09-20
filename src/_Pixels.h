@@ -22,7 +22,7 @@ public:
     void set_opacity(Magick::Quantum value) { packet.opacity = value; }
 };
 
-typedef ArrayProxy<Magick::PixelPacket, PixelPacketProxy> PixelPacketArrayProxy;
-typedef ArrayProxy<const Magick::PixelPacket, Magick::PixelPacket> PixelPacketConstArrayProxy;
+typedef ArrayProxy<Magick::PixelPacket, PixelPacketProxy, Magick::Image> PixelPacketArrayProxy;
+typedef ArrayProxy<const Magick::PixelPacket, Magick::PixelPacket, Magick::Image> PixelPacketConstArrayProxy;
 
 #endif //_PIXELS_HEADER_

@@ -42,13 +42,13 @@ class TestImage(unittest.TestCase):
         self.assertEqual(0, pixels[0].blue)
         self.assertEqual(0, pixels[0].green)
         self.assertEqual(colorMax, pixels[0].opacity)
-        return img, pixels
+        return pixels
 
     def test_image_getpixels(self):
         self.getpixels_test_template(use_const=False)
 
     def test_image_getconstpixels(self):
-        _, pixels = self.getpixels_test_template(use_const=True)
+        pixels = self.getpixels_test_template(use_const=True)
         # either throw AttributeError (write to readonly field)
         # or at least don't update original data (elements returned by indexing are cloned)
         try:
