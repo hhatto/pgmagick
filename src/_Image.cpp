@@ -1,7 +1,10 @@
 #include <boost/python.hpp>
 #include <boost/cstdint.hpp>
+#include <boost/python/suite/indexing/map_indexing_suite.hpp>
+#include <map>
 
 #include <Magick++/Image.h>
+#include <Magick++/STL.h>
 
 #include "_Pixels.h"
 
@@ -57,9 +60,20 @@ PixelPacketArrayProxy set_pixels(Magick::Image* image, int x, int y, unsigned in
     return PixelPacketArrayProxy(cache, columns*rows, *image);
 }
 
+std::map<Magick::Color,unsigned long> get_color_histogram(const Magick::Image image) {
+    std::map<Magick::Color,unsigned long> histogram;
+    colorHistogram( &histogram, image );
+    return histogram;
+}
+
 void __Image()
 {
     def("InitializeMagick", Magick::InitializeMagick);
+
+    class_<std::map<Magick::Color, unsigned long> >("ColorHistogram")
+         .def(boost::python::map_indexing_suite<std::map<Magick::Color, unsigned long> >())
+    ;
+
     class_< Magick::Image >("Image", init<  >())
         .def(init< const std::string& >())
         .def(init< const Magick::Geometry&, const Magick::Color& >())
@@ -343,6 +357,7 @@ void __Image()
         .def("clipMask", (Magick::Image (Magick::Image::*)() const)&Magick::Image::clipMask)
         .def("colorFuzz", (void (Magick::Image::*)(const double) )&Magick::Image::colorFuzz)
         .def("colorFuzz", (double (Magick::Image::*)() const)&Magick::Image::colorFuzz)
+        .def("colorHistogram", &get_color_histogram)
 #ifdef PGMAGICK_LIB_IMAGEMAGICK
         .def("colorMap", (void (Magick::Image::*)(const size_t, const Magick::Color&) )&Magick::Image::colorMap)
         .def("colorMap", (Magick::Color (Magick::Image::*)(const size_t) const)&Magick::Image::colorMap)
