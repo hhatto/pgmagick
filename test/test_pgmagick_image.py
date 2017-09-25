@@ -30,9 +30,42 @@ class TestImage(unittest.TestCase):
         im.strokeLineJoin(LineJoin.RoundJoin)
         im.strokeLineJoin(LineJoin.BevelJoin)
 
-    #def test_image_getpixels(self):
-    #    img = Image(Geometry(300, 200), Color('transparent'))
-    #    img.getPixels(10, 10, 10, 10)
+    def getpixels_test_template(self, use_const):
+        img = Image(Geometry(300, 200), Color('transparent'))
+        getPixelsMethod = img.getConstPixels if use_const else img.getPixels
+        pixels = getPixelsMethod(40, 50, 10, 10)
+        self.assertEqual(10 * 10, len(pixels))
+        with self.assertRaises(IndexError):
+            pixels[2000]
+        colorMax = Color.scaleDoubleToQuantum(1.0)
+        self.assertEqual(0, pixels[0].red)
+        self.assertEqual(0, pixels[0].blue)
+        self.assertEqual(0, pixels[0].green)
+        self.assertEqual(colorMax, pixels[0].opacity)
+        return pixels
+
+    def test_image_getpixels(self):
+        self.getpixels_test_template(use_const=False)
+
+    def test_image_getconstpixels(self):
+        pixels = self.getpixels_test_template(use_const=True)
+        # either throw AttributeError (write to readonly field)
+        # or at least don't update original data (elements returned by indexing are cloned)
+        try:
+            pixels[0].red = 50
+            self.assertEqual(pixels[0].red, 0)
+        except AttributeError:
+            pass
+
+    def test_image_setpixels(self):
+        img = Image(Geometry(300, 200), Color('transparent'))
+        pixels = img.setPixels(40, 50, 5, 5)
+        for pixel in pixels:
+            pixel.red = 50
+        img.syncPixels()
+
+        for pixel in img.getPixels(40, 50, 5, 5):
+            self.assertEqual(50, pixel.red)
 
     def test_image_init_storagetype(self):
         data = ["0" for i in range(10000)]
