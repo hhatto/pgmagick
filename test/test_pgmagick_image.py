@@ -95,6 +95,19 @@ class TestImage(unittest.TestCase):
         im.resize(g, ft)
         im.resize(g)
 
+    def test_color_histogram(self):
+        redColor = Color('red')
+        im = Image(Geometry(30, 20), redColor)
+        histogram = im.colorHistogram()
+        self.assertEqual(1, len(histogram))
+        # test in, __getitem__
+        self.assertIn(redColor, histogram)
+        self.assertEqual(30 * 20, histogram[redColor])
+        # iteration example
+        for packet in histogram:
+            color, count = packet.key(), packet.data()
+            self.assertEqual(redColor, color)
+            self.assertEqual(30 * 20, count)
 
 class TestIMImage(unittest.TestCase):
 
