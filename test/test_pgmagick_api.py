@@ -49,14 +49,16 @@ class ImageTestCase(unittest.TestCase):
         img.scale(0.6, 'Catrom')
         img.write('t.jpg')
         m = hashlib.md5()
-        m.update(open('t.jpg').read())
-        scale_with_filtertype_digest = m.hexdigest()
+        with open('t.jpg', 'rb') as fp:
+            m.update(fp.read())
+            scale_with_filtertype_digest = m.hexdigest()
         img = Image((600, 400), 'gradient:#ffffff-#000000')
         img.scale(0.6)
         img.write('t.jpg')
         m = hashlib.md5()
-        m.update(open('t.jpg').read())
-        scale_digest = m.hexdigest()
+        with open('t.jpg', 'rb') as fp:
+            m.update(fp.read())
+            scale_digest = m.hexdigest()
         self.assertNotEqual(scale_with_filtertype_digest, scale_digest)
 
     def test_composite_arg_list(self):
