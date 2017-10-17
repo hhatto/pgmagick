@@ -1,9 +1,8 @@
 from __future__ import print_function
 
-import unittest
+import hashlib
 import sys
-sys.path.append('../')
-sys.path.append('./')
+import unittest
 import pgmagick
 from pgmagick.api import Image, Draw
 
@@ -41,9 +40,26 @@ class ImageTestCase(unittest.TestCase):
         self.img.write('t.jpg')
 
     def test_scale(self):
-        img = Image((600, 400), 'red')
+        img = Image((600, 400), 'gradient:#ffffff-#000000')
+        if sys.platform.lower() == 'darwin':
+            img.font("/Library/Fonts/Arial.ttf")
+        img.annotate("hello", (100, 100))
         img.scale(0.6)
         img.write('t.jpg')
+        m = hashlib.md5()
+        m.update(open('t.jpg').read())
+        self.assertEqual(m.hexdigest(), '253c3fae2bbd8eddfe060453158a2d40')
+
+    def test_scale_with_filtertype(self):
+        img = Image((600, 400), 'gradient:#ffffff-#000000')
+        if sys.platform.lower() == 'darwin':
+            img.font("/Library/Fonts/Arial.ttf")
+        img.annotate("hello", (100, 100))
+        img.scale(0.6, 'Catrom')
+        img.write('t.jpg')
+        m = hashlib.md5()
+        m.update(open('t.jpg').read())
+        self.assertEqual(m.hexdigest(), '2198c6b9540aeb1385fd410afd4f298e')
 
     def test_composite_arg_list(self):
         base = Image((300, 200), 'green')
