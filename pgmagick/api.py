@@ -717,7 +717,7 @@ class Image(object):
             filter_type = getattr(pgmagick.FilterTypes,
                                   "%sFilter" % filter_type.title())
             self.img.filterType(filter_type)
-            self.img.resize(geometry)
+            self.img.zoom(geometry)
         else:
             self.img.scale(geometry)
 
