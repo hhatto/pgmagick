@@ -712,12 +712,14 @@ class Image(object):
         elif isinstance(size, (list, tuple)):
             scaled_width, scaled_height = int(size[0]), int(size[1])
             size = "%dx%d" % (int(scaled_width), int(scaled_height))
+        geometry = pgmagick.Geometry(size)
         if filter_type:
             filter_type = getattr(pgmagick.FilterTypes,
                                   "%sFilter" % filter_type.title())
-            pgmagick.Image.filterType(self.img, filter_type)
-        geometry = pgmagick.Geometry(size)
-        self.img.scale(geometry)
+            self.img.filterType(filter_type)
+            self.img.resize(geometry)
+        else:
+            self.img.scale(geometry)
 
     # API of Set/Get Image
     def font_pointsize(self, point_size=None):
