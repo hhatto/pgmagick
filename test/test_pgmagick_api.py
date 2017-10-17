@@ -43,9 +43,6 @@ class ImageTestCase(unittest.TestCase):
         img = Image((600, 400), 'gradient:#ffffff-#000000')
         img.scale(0.6)
         img.write('t.jpg')
-        m = hashlib.md5()
-        m.update(open('t.jpg').read())
-        self.assertEqual(m.hexdigest(), '50e39d1d13c6b076f9c8b1b883b693fa')
 
     def test_scale_with_filtertype(self):
         img = Image((600, 400), 'gradient:#ffffff-#000000')
@@ -53,7 +50,14 @@ class ImageTestCase(unittest.TestCase):
         img.write('t.jpg')
         m = hashlib.md5()
         m.update(open('t.jpg').read())
-        self.assertEqual(m.hexdigest(), '55dbdca52d6fb70b315544de6941327b')
+        scale_with_filtertype_digest = m.hexdigest()
+        img = Image((600, 400), 'gradient:#ffffff-#000000')
+        img.scale(0.6)
+        img.write('t.jpg')
+        m = hashlib.md5()
+        m.update(open('t.jpg').read())
+        scale_digest = m.hexdigest()
+        self.assertNotEqual(scale_with_filtertype_digest, scale_digest)
 
     def test_composite_arg_list(self):
         base = Image((300, 200), 'green')
