@@ -41,25 +41,19 @@ class ImageTestCase(unittest.TestCase):
 
     def test_scale(self):
         img = Image((600, 400), 'gradient:#ffffff-#000000')
-        if sys.platform.lower() == 'darwin':
-            img.font("/Library/Fonts/Arial.ttf")
-        img.annotate("hello", (100, 100))
         img.scale(0.6)
         img.write('t.jpg')
         m = hashlib.md5()
         m.update(open('t.jpg').read())
-        self.assertEqual(m.hexdigest(), '253c3fae2bbd8eddfe060453158a2d40')
+        self.assertEqual(m.hexdigest(), '50e39d1d13c6b076f9c8b1b883b693fa')
 
     def test_scale_with_filtertype(self):
         img = Image((600, 400), 'gradient:#ffffff-#000000')
-        if sys.platform.lower() == 'darwin':
-            img.font("/Library/Fonts/Arial.ttf")
-        img.annotate("hello", (100, 100))
         img.scale(0.6, 'Catrom')
         img.write('t.jpg')
         m = hashlib.md5()
         m.update(open('t.jpg').read())
-        self.assertEqual(m.hexdigest(), '2198c6b9540aeb1385fd410afd4f298e')
+        self.assertEqual(m.hexdigest(), '55dbdca52d6fb70b315544de6941327b')
 
     def test_composite_arg_list(self):
         base = Image((300, 200), 'green')
