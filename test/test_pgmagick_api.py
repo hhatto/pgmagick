@@ -51,7 +51,14 @@ class ImageTestCase(unittest.TestCase):
         m = hashlib.md5()
         with open('t.jpg', 'rb') as fp:
             m.update(fp.read())
-            scale_with_filtertype_digest = m.hexdigest()
+            scale_with_filtertype_catrom_digest = m.hexdigest()
+        img = Image((600, 400), 'gradient:#ffffff-#000000')
+        img.scale(0.6, 'Cubic')
+        img.write('t.jpg')
+        m = hashlib.md5()
+        with open('t.jpg', 'rb') as fp:
+            m.update(fp.read())
+            scale_with_filtertype_cubic_digest = m.hexdigest()
         img = Image((600, 400), 'gradient:#ffffff-#000000')
         img.scale(0.6)
         img.write('t.jpg')
@@ -59,7 +66,8 @@ class ImageTestCase(unittest.TestCase):
         with open('t.jpg', 'rb') as fp:
             m.update(fp.read())
             scale_digest = m.hexdigest()
-        self.assertNotEqual(scale_with_filtertype_digest, scale_digest)
+        self.assertNotEqual(scale_with_filtertype_catrom_digest, scale_digest)
+        self.assertNotEqual(scale_with_filtertype_catrom_digest, scale_with_filtertype_cubic_digest)
 
     def test_composite_arg_list(self):
         base = Image((300, 200), 'green')
