@@ -38,12 +38,8 @@ private:
 
   size_type checkIndex(size_type index) const
   {
-    // Adjust negative index.
-    if (index < 0)
-        index += length;
-
     // Boundary check.
-    if (index < 0 || index >= length) {
+    if (index >= length) {
       PyErr_SetString(PyExc_IndexError, "Index out of range");
       boost::python::throw_error_already_set();
     }
