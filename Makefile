@@ -29,6 +29,14 @@ pypireg:
 	python setup.py register
 	python setup.py sdist upload
 
+build_bdist_wheel:
+	# NOTE: only available in my environment
+	workon py363
+	python setup.py bdist_wheel
+	workon py2714
+	pip install --upgrade pip
+	python setup.py bdist_wheel
+
 clean:
 	rm -rf pgmagick.* build dist temp
 	cd $(SRC_DIR) && make clean
