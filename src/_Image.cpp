@@ -110,6 +110,9 @@ void __Image()
         .def("annotate", (void (Magick::Image::*)(const std::string&, const Magick::Geometry&, const Magick::GravityType) )&Magick::Image::annotate)
         .def("annotate", (void (Magick::Image::*)(const std::string&, const Magick::Geometry&, const Magick::GravityType, const double) )&Magick::Image::annotate)
         .def("annotate", (void (Magick::Image::*)(const std::string&, const Magick::GravityType) )&Magick::Image::annotate)
+#ifdef PGMAGICK_LIB_GRAPHICSMAGICK_1_3_27
+        .def("autoOrient", &Magick::Image::autoOrient)
+#endif
         .def("blur", &Magick::Image::blur, Magick_Image_blur_overloads_0_2())
 #ifdef PGMAGICK_LIB_GRAPHICSMAGICK_1_3_x
         .def("blurChannel", &Magick::Image::blurChannel, Magick_Image_blurChannel_overloads_1_3())
