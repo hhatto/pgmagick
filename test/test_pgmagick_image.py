@@ -72,12 +72,12 @@ class TestImage(unittest.TestCase):
         img = Image(100, 100, "RGB", StorageType.CharPixel, "".join(data))
         del(img)
 
-    #def test_haldClut(self):
-    #    img = Image()
-    #    if hasattr(img, "haldClut"):
-    #        clutimg = Image(Geometry(400, 300), Color("transparent"))
-    #        clutimg.read("gradient:white-black")
-    #        img.haldClut(clutimg)
+    @unittest.skip("I'm not understanding to ImageHaldClut's usage")
+    def test_haldClut(self):
+        img = Image()
+        if hasattr(img, "haldClut"):
+            clutimg = Image(Geometry(512, 512), Color('transparent'))
+            img.haldClut(clutimg)
 
     @unittest.skipIf(libgm_version < [1, 3, 21], "not support gm version: %s" % str(libgm_version))
     def test_extent(self):
