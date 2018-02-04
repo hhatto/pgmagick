@@ -115,6 +115,7 @@ class TestImage(unittest.TestCase):
             self.assertEqual(redColor, color)
             self.assertEqual(30 * 20, count)
 
+
 class TestIMImage(unittest.TestCase):
 
     def setUp(self):
