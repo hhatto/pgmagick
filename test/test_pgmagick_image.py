@@ -72,12 +72,18 @@ class TestImage(unittest.TestCase):
         img = Image(100, 100, "RGB", StorageType.CharPixel, "".join(data))
         del(img)
 
-    #def test_haldClut(self):
-    #    img = Image()
-    #    if hasattr(img, "haldClut"):
-    #        clutimg = Image(Geometry(400, 300), Color("transparent"))
-    #        clutimg.read("gradient:white-black")
-    #        img.haldClut(clutimg)
+    @unittest.skip("I'm not understanding to ImageHaldClut's usage")
+    def test_haldClut(self):
+        img = Image()
+        if hasattr(img, "haldClut"):
+            clutimg = Image(Geometry(512, 512), Color('transparent'))
+            img.haldClut(clutimg)
+
+    @unittest.skipIf(libgm_version < [1, 3, 21], "not support gm version: %s" % str(libgm_version))
+    def test_extent(self):
+        im = Image(Geometry(300, 200), Color('transparent'))
+        g = Geometry(10, 10)
+        im.extent(g)
 
     @unittest.skipIf(libgm_version < [1, 3, 19], "not support gm version: %s" % str(libgm_version))
     def test_image_thumbnail(self):
@@ -109,6 +115,7 @@ class TestImage(unittest.TestCase):
             self.assertEqual(redColor, color)
             self.assertEqual(30 * 20, count)
 
+
 class TestIMImage(unittest.TestCase):
 
     def setUp(self):
@@ -125,10 +132,6 @@ class TestIMImage(unittest.TestCase):
         if self.is_imagemagick:
             self.img.distort(DistortImageMethod.ScaleRotateTranslateDistortion,
                              1, 1.0, True)
-
-    def test_extent(self):
-        if self.is_imagemagick:
-            self.img.extent(Geometry(100, 100))
 
     def test_inverseFourierTransform(self):
         if self.is_imagemagick:

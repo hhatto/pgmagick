@@ -8,4 +8,5 @@ class TestImageList(unittest.TestCase):
         imgs = ImageList()
         self.assertEqual(type(imgs), ImageList)
 
+
 unittest.main()

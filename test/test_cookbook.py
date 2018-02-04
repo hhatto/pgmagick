@@ -89,5 +89,6 @@ class TestCookbook(unittest.TestCase):
                 img2.scale('200x200')
             img2.write(self.tmp_filename_jpg)
 
+
 if __name__ == '__main__':
     unittest.main()
