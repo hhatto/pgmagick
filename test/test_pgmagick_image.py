@@ -79,6 +79,12 @@ class TestImage(unittest.TestCase):
     #        clutimg.read("gradient:white-black")
     #        img.haldClut(clutimg)
 
+    @unittest.skipIf(libgm_version < [1, 3, 21], "not support gm version: %s" % str(libgm_version))
+    def test_extent(self):
+        im = Image(Geometry(300, 200), Color('transparent'))
+        g = Geometry(10, 10)
+        im.extent(g)
+
     @unittest.skipIf(libgm_version < [1, 3, 19], "not support gm version: %s" % str(libgm_version))
     def test_image_thumbnail(self):
         im = Image(Geometry(300, 200), Color('transparent'))
@@ -125,10 +131,6 @@ class TestIMImage(unittest.TestCase):
         if self.is_imagemagick:
             self.img.distort(DistortImageMethod.ScaleRotateTranslateDistortion,
                              1, 1.0, True)
-
-    def test_extent(self):
-        if self.is_imagemagick:
-            self.img.extent(Geometry(100, 100))
 
     def test_inverseFourierTransform(self):
         if self.is_imagemagick:
