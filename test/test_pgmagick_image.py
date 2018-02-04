@@ -72,7 +72,7 @@ class TestImage(unittest.TestCase):
         img = Image(100, 100, "RGB", StorageType.CharPixel, "".join(data))
         del(img)
 
-    @unittest.skip("I'm not understanding to ImageHaldClut's usage")
+    @unittest.skip("do not know how to use haldClut method")
     def test_haldClut(self):
         img = Image()
         if hasattr(img, "haldClut"):
