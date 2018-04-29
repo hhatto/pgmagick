@@ -132,9 +132,12 @@ boost_lib_target_files.append("boost_python-mt-py%s%s" % (_python_version[0], _p
 # gentoo appends the python version numbers to the boost_python libraries
 boost_lib_target_files.append("boost_python-%s.%s" % (_python_version[0], _python_version[1]))
 boost_lib_target_files.append("boost_python-mt")
+# Homebrew's boost_python
+boost_lib_target_files.append("boost_python%s%s" % (_python_version[0], _python_version[1]))
+boost_lib_target_files.append("boost_python%s%s-mt" % (_python_version[0], _python_version[1]))
 
 for boost_lib in boost_lib_target_files:
-    lib_path = find_file('lib' + boost_lib, search_library_dirs)
+    lib_path = find_file('lib%s.' % boost_lib, search_library_dirs)
     if lib_path:
         break
 
