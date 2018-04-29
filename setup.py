@@ -10,6 +10,16 @@ import io
 GMCPP_PC = 'GraphicsMagick++.pc'
 IMCPP_PC = 'ImageMagick++.pc'
 LIBRARY = 'GraphicsMagick'  # default value
+TESTED_API_VERSIONS = (
+    (1, 3, 27),
+    (1, 3, 26),
+    (1, 3, 24),
+    (1, 3, 22),
+    (1, 3, 20),
+    (1, 3, 19),
+    (1, 3, 6),
+    (1, 3, 'x')
+)
 include_dirs = [get_python_inc()]
 library_dirs = []
 
@@ -111,6 +121,7 @@ def library_supports_api(library_version, api_version, different_major_breaks_su
     assert len(api_version) <= 3     # otherwise following comparision won't work as intended, e.g. (2, 0, 0) > (2, 0, 0, 0)
     return library_version >= api_version
 
+
 # find to header path
 header_path = find_file('Magick++.h', search_include_dirs)
 if not header_path:
@@ -179,8 +190,7 @@ if _version:
         _version.append(0)
     if LIBRARY == 'GraphicsMagick':
         # 1.3.6 for not Ubuntu10.04
-        _tested_api_versions = ((1,3,27), (1,3,26), (1,3,24), (1,3,22), (1,3,20), (1,3,19), (1,3,6), (1,3,'x'))
-        _supported_api_versions = (v for v in _tested_api_versions if library_supports_api(_version, v))
+        _supported_api_versions = (v for v in TESTED_API_VERSIONS if library_supports_api(_version, v))
         ext_compile_args = ["-DPGMAGICK_LIB_GRAPHICSMAGICK_" + '_'.join(map(str, version)) for version in _supported_api_versions]
     elif LIBRARY == 'ImageMagick':
         ext_compile_args = ["-DPGMAGICK_LIB_IMAGEMAGICK"]
