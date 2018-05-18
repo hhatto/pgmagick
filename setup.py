@@ -218,7 +218,7 @@ setup(name='pgmagick',
       packages=find_packages(),
       ext_modules=[
           Extension('pgmagick._pgmagick',
-                    sources=glob.glob('./src/*.cpp'),
+                    sources=sorted(glob.glob('./src/*.cpp')),
                     include_dirs=include_dirs,
                     library_dirs=library_dirs,
                     libraries=libraries,
