@@ -58,17 +58,20 @@ with `--with-python3` option::
 
 via homebrew and pip with Python3
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-on MacOSX 10.11.6::
+*update 2018.07.04*
+on MacOSX 10.13.5::
 
+    $ brew install python
     $ brew install graphicsmagick
-    $ brew install boost-python --with-python3
+    $ brew install boost-python3
     $ pip install pgmagick
 
 via homebrew and pip with Python2
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-*update 2017.05.17*
-on MacOSX 10.11.6::
+*update 2018.07.04*
+on MacOSX 10.13.5::
 
+    $ brew install python@2
     $ brew install graphicsmagick
     $ brew install boost-python
     $ pip install pgmagick
