@@ -66,6 +66,15 @@ std::map<Magick::Color,unsigned long> get_color_histogram(const Magick::Image im
     return histogram;
 }
 
+#if PY_MAJOR_VERSION >= 3
+// enable passing bytes as pixels, they aren't autoconverted bytes -> const char/void*
+static boost::shared_ptr<Magick::Image> initImageFromStorage(const unsigned int width, const unsigned int height, const std::string& map,
+                                                             const Magick::StorageType type, const std::string& pixels)
+{
+  return boost::shared_ptr<Magick::Image>(new Magick::Image(width, height, map, type, pixels.c_str()));
+}
+#endif
+
 void __Image()
 {
     def("InitializeMagick", Magick::InitializeMagick);
@@ -91,6 +100,9 @@ void __Image()
         .def(init< const size_t, const size_t, const std::string&, const Magick::StorageType, const char* >())
 #else
         .def(init< const unsigned int, const unsigned int, const std::string&, const Magick::StorageType, const char* >())
+        #if PY_MAJOR_VERSION >= 3
+            .def("__init__", make_constructor(initImageFromStorage))
+        #endif
 #endif
         .def(init< const Magick::Image& >())
 #ifdef PGMAGICK_LIB_IMAGEMAGICK
