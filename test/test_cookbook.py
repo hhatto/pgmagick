@@ -47,7 +47,7 @@ class TestCookbook(unittest.TestCase):
     def test_annotate_with_japanese_font(self):
         img = api.Image((300, 200))
         if sys.platform.lower() == 'darwin':
-            img.font("/System/Library/Fonts/Hiragino Sans GB W3.ttc")
+            img.font("/System/Library/Fonts/Hiragino Sans GB.ttc")
         else:
             # TODO: not support windows
             img.font("/usr/share/fonts/truetype/ttf-japanese-gothic.ttf")
