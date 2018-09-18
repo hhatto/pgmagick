@@ -72,6 +72,12 @@ class TestImage(unittest.TestCase):
         img = Image(100, 100, "RGB", StorageType.CharPixel, "".join(data))
         del(img)
 
+    def test_image_init_RGBA_XWD_header(self):
+        data = b"\0\0\0\0\4\0\0\0" + 92 * b"\0"
+        img = Image(5, 5, "RGBA", StorageType.CharPixel, data)
+        self.assertEqual(5, img.size().height())
+        self.assertEqual(5, img.size().width())
+
     @unittest.skip("do not know how to use haldClut method")
     def test_haldClut(self):
         img = Image()
