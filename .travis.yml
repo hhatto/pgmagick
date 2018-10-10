@@ -13,7 +13,7 @@ matrix:
         - python: "3.4"
           language: python
           env: TARGET=linux
-        - python: "3.7"
+        - python: "3.5"
           language: python
           env: TARGET=linux
           dist: xenial      # use python3.5
