@@ -1,6 +1,10 @@
 About
 =====
 
+.. image:: https://img.shields.io/pypi/v/pgmagick.svg
+    :target: https://pypi.org/project/pgmagick/
+    :alt: PyPI Version
+
 .. image:: https://travis-ci.org/hhatto/pgmagick.svg?branch=master
     :target: https://travis-ci.org/hhatto/pgmagick
     :alt: Build status
