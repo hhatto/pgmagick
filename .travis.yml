@@ -13,6 +13,11 @@ matrix:
         - python: "3.4"
           language: python
           env: TARGET=linux
+        - python: "3.7"
+          language: python
+          env: TARGET=linux
+          dist: xenial
+          sudo: required
     allow_failures:
         - python: "3.2"
 
