@@ -27,6 +27,7 @@ addons:
             - libboost-python-dev
             - libgraphicsmagick++1-dev
             - python3-setuptools
+            - gsfonts
 
 before_install:
     - if [[ "$TARGET" == "macosx"* ]]; then
