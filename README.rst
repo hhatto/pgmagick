@@ -21,7 +21,7 @@ install to::
 
 Requirements
 ============
-Python2.5++, GraphicsMagick and Boost.Python.
+Python3.5++ (or Python2.7), GraphicsMagick and Boost.Python.
 
 package install on Ubuntu(test on Ubuntu10.04+)::
 
@@ -45,7 +45,7 @@ GraphicsMagick from source package::
 MacOSX
 ------
 
-via homebrew-cask(homebrew-pgmagick) with Python2
+via homebrew-cask(homebrew-pgmagick) with Python3
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 use `homebrew-pgmagick`_ ::
 
@@ -55,37 +55,15 @@ use `homebrew-pgmagick`_ ::
 .. _`homebrew-pgmagick`: https://github.com/hhatto/homebrew-pgmagick
 
 via homebrew-cask(homebrew-pgmagick) with Python3
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-with `--with-python3` option::
-
-    $ brew install pgmagick --with-python3
 
 via homebrew and pip with Python3
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-*update 2018.07.04*
-on MacOSX 10.13.5::
+on MacOSX (10.13.5~10.15.x)::
 
     $ brew install python
     $ brew install graphicsmagick
     $ brew install boost-python3
     $ pip install pgmagick
-
-via homebrew and pip with Python2
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-*update 2018.07.04*
-on MacOSX 10.13.5::
-
-    $ brew install python@2
-    $ brew install graphicsmagick
-    $ brew install boost-python
-    $ pip install pgmagick
-
-*update 2014.05.12*
-on MacOSX 10.9.2 (add ARCHFLAGS)::
-
-    $ brew install graphicsmagick
-    $ brew install boost --with-python
-    $ ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future pip install pgmagick
 
 
 Windows
