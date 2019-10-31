@@ -10,9 +10,6 @@ matrix:
         - python: "2.7"
           language: python
           env: TARGET=linux
-        - python: "3.4"
-          language: python
-          env: TARGET=linux
         - python: "3.5"
           language: python
           env: TARGET=linux
