@@ -56,7 +56,6 @@ class ImageTestCase(unittest.TestCase):
             else:
                 img.scale(0.6)
             img.write('t.jpg')
-            img.write('t_{}.jpg'.format(k))
             m = hashlib.md5()
             with open('t.jpg', 'rb') as fp:
                 m.update(fp.read())
