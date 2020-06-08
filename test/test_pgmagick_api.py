@@ -45,29 +45,26 @@ class ImageTestCase(unittest.TestCase):
         img.write('t.jpg')
 
     def test_scale_with_filtertype(self):
-        img = Image((600, 400), 'gradient:#ffffff-#000000')
-        img.scale(0.6, 'Catrom')
-        img.write('t.jpg')
-        m = hashlib.md5()
-        with open('t.jpg', 'rb') as fp:
-            m.update(fp.read())
-            scale_with_filtertype_catrom_digest = m.hexdigest()
-        img = Image((600, 400), 'gradient:#ffffff-#000000')
-        img.scale(0.6, 'Cubic')
-        img.write('t.jpg')
-        m = hashlib.md5()
-        with open('t.jpg', 'rb') as fp:
-            m.update(fp.read())
-            scale_with_filtertype_cubic_digest = m.hexdigest()
-        img = Image((600, 400), 'gradient:#ffffff-#000000')
-        img.scale(0.6)
-        img.write('t.jpg')
-        m = hashlib.md5()
-        with open('t.jpg', 'rb') as fp:
-            m.update(fp.read())
-            scale_digest = m.hexdigest()
-        self.assertNotEqual(scale_with_filtertype_catrom_digest, scale_digest)
-        self.assertNotEqual(scale_with_filtertype_catrom_digest, scale_with_filtertype_cubic_digest)
+        testset = {"Catrom": None, "Cubic": None, "None": None}
+        for k, v in testset.items():
+            img = Image((600, 400), 'gradient:#ffffff-#000000')
+            if sys.platform.lower() == 'darwin':
+                img.font("/Library/Fonts/Arial.ttf")
+            img.annotate("hello", (100, 100))
+            if k != "None":
+                img.scale(0.6, k)
+            else:
+                img.scale(0.6)
+            img.write('t.jpg')
+            img.write('t_{}.jpg'.format(k))
+            m = hashlib.md5()
+            with open('t.jpg', 'rb') as fp:
+                m.update(fp.read())
+                testset[k] = m.hexdigest()
+
+        self.assertNotEqual(testset["Catrom"], testset["None"])
+        self.assertNotEqual(testset["Cubic"], testset["None"])
+        self.assertNotEqual(testset["Catrom"], testset["Cubic"])
 
     def test_composite_arg_list(self):
         base = Image((300, 200), 'green')
