@@ -27,14 +27,17 @@ addons:
             - gsfonts
 
 before_install:
-    - if [[ "$TARGET" == "macosx"* ]]; then
+    - if [[ "$TARGET" == "macosx2" ]]; then
           brew update;
-          brew install boost-python boost-python3;
-          brew install graphicsmagick python python@2 python3;
+          brew install boost-python graphicsmagick;
           brew outdated boost-python || brew upgrade boost-python;
+          brew outdated graphicsmagick || brew upgrade graphicsmagick;
+          brew outdated python || brew upgrade python;
+      fi
+    - if [[ "$TARGET" == "macosx3" ]]; then
+          brew install boost-python3 graphicsmagick;
           brew outdated boost-python3 || brew upgrade boost-python3;
           brew outdated graphicsmagick || brew upgrade graphicsmagick;
-          brew outdated python@2 || brew upgrade python@2;
           brew outdated python3 || brew upgrade python3;
       fi
 
