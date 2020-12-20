@@ -23,6 +23,10 @@ Requirements
 ============
 Python3.5++ (or Python2.7), GraphicsMagick and Boost.Python.
 
+package install on Debian Buster::
+
+    $ apt-get install g++ libgraphicsmagick++1-dev libboost-python-dev
+
 package install on Ubuntu(test on Ubuntu10.04+)::
 
     ### Ubuntu11.10+ ###
