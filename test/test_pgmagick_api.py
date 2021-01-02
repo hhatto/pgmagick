@@ -6,6 +6,8 @@ import unittest
 import pgmagick
 from pgmagick.api import Image, Draw
 
+from utils import MACOSX_FONT
+
 
 print(pgmagick.gminfo().version)
 LIBGM_VERSION = [int(v) for v in pgmagick.gminfo().version.split('.')]
@@ -49,7 +51,7 @@ class ImageTestCase(unittest.TestCase):
         for k, v in testset.items():
             img = Image((600, 400), 'gradient:#ffffff-#000000')
             if sys.platform.lower() == 'darwin':
-                img.font("/Library/Fonts/Arial.ttf")
+                img.font(MACOSX_FONT)
             img.annotate("hello", (100, 100))
             if k != "None":
                 img.scale(0.6, k)
@@ -94,7 +96,7 @@ class ImageTestCase(unittest.TestCase):
         self.assertEqual(60, img.font_pointsize())
         self.assertEqual(float, type(img.font_pointsize()))
         if sys.platform.lower() == 'darwin':
-            img.font("/Library/Fonts/Arial.ttf")
+            img.font(MACOSX_FONT)
         img.annotate("hello", (100, 100))
         img.write('t.png')
 

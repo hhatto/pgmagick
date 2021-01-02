@@ -5,6 +5,8 @@ import unittest
 from pgmagick import api
 from pgmagick import Image, Geometry, Blob
 
+from utils import MACOSX_FONT
+
 
 class TestCookbook(unittest.TestCase):
 
@@ -33,14 +35,14 @@ class TestCookbook(unittest.TestCase):
     def test_annotate(self):
         img = api.Image((300, 200))
         if sys.platform.lower() == 'darwin':
-            img.font("/Library/Fonts/Arial.ttf")
+            img.font(MACOSX_FONT)
         img.annotate('Hello World')
         img.write(self.tmp_filename_png)
 
     def test_annotate_with_angle45(self):
         img = api.Image((300, 200))
         if sys.platform.lower() == 'darwin':
-            img.font("/Library/Fonts/Arial.ttf")
+            img.font(MACOSX_FONT)
         img.annotate('Hello World', angle=45)
         img.write(self.tmp_filename_png)
 
