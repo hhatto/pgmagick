@@ -10,11 +10,14 @@ on:
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
+        os: [macos-latest, ubuntu-latest]
         python-version: ['3.6', '3.7', '3.8', '3.9']
+        exclude:
+          - os: macos-latest
+            python-version: ['3.7', '3.8', '3.9']
 
     steps:
     - uses: actions/checkout@v2
@@ -22,8 +25,12 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Install requirements
+    - name: Install requirements on Linux
       run: sudo apt-get install libboost-python-dev libgraphicsmagick++1-dev
+      if: matrix.os == 'ubuntu-latest'
+    - name: Install requirements on macOSX
+      run: HOMEBREW_NO_AUTO_UPDATE=1 brew install graphicsmagick boost-python3
+      if: matrix.os == 'macOS-latest'
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
