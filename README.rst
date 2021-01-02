@@ -5,8 +5,8 @@ About
     :target: https://pypi.org/project/pgmagick/
     :alt: PyPI Version
 
-.. image:: https://travis-ci.org/hhatto/pgmagick.svg?branch=master
-    :target: https://travis-ci.org/hhatto/pgmagick
+.. image:: https://github.com/hhatto/pgmagick/workflows/Python%20package/badge.svg
+    :target: https://github.com/hhatto/pgmagick/actions
     :alt: Build status
 
 pgmagick is a yet another boost.python based wrapper for GraphicsMagick.
