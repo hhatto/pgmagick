@@ -29,11 +29,15 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+      if: matrix.os == 'ubuntu-latest'
     - name: Install requirements on Linux
       run: sudo apt-get install libboost-python-dev libgraphicsmagick++1-dev
       if: matrix.os == 'ubuntu-latest'
     - name: Install requirements on macOSX
-      run: HOMEBREW_NO_AUTO_UPDATE=1 brew install python@3.9 graphicsmagick boost-python3
+      run: |
+        HOMEBREW_NO_AUTO_UPDATE=1 brew install python@3.9 graphicsmagick boost-python3
+        which python
+        which python3
       if: matrix.os == 'macOS-latest'
     - name: Install dependencies
       run: |
