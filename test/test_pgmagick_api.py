@@ -96,7 +96,7 @@ class ImageTestCase(unittest.TestCase):
         self.assertEqual(60, img.font_pointsize())
         self.assertEqual(float, type(img.font_pointsize()))
         if sys.platform.lower() == 'darwin':
-            img.font("/Library/Fonts/Arial.ttf")
+            img.font(MACOSX_FONT)
         img.annotate("hello", (100, 100))
         img.write('t.png')
 
