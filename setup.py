@@ -151,11 +151,12 @@ boost_lib_target_files.append("boost_python%s%s-mt" % (_python_version[0], _pyth
 for boost_lib in boost_lib_target_files:
     lib_path = find_file('lib%s.' % boost_lib, search_library_dirs)
     if lib_path:
+        library_dirs.append(lib_path)
         break
 
 if not lib_path:
     boost_lib = "boost_python"
-print("boost lib: %s" % boost_lib)
+print("boost lib: %s, path: %s" % (boost_lib, lib_path)
 
 libraries = [boost_lib]
 
