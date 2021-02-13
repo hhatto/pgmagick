@@ -24,6 +24,8 @@ jobs:
       run: sudo apt-get install g++ libboost-python-dev libgraphicsmagick++1-dev
     - name: Install dependencies
       run: |
+        ls -ltr /usr/lib
+        find /usr/lib -name "*libboost-python*"
         python -m pip install --upgrade pip
         python setup.py install
     - name: Test
