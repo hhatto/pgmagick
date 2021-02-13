@@ -136,6 +136,7 @@ _python_version = sys.version_info
 boost_lib_target_files = []
 if _python_version >= (3, ):
     boost_lib_target_files.append("boost_python-py%s%s" % (_python_version[0], _python_version[1]))
+    boost_lib_target_files.append("boost_python%s%s" % (_python_version[0], _python_version[1]))
     # ArchLinux uses boost_python3
     boost_lib_target_files.append("boost_python3")
     boost_lib_target_files.append("boost_python3-mt")
