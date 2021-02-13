@@ -156,7 +156,7 @@ for boost_lib in boost_lib_target_files:
 
 if not lib_path:
     boost_lib = "boost_python"
-print("boost lib: %s, path: %s" % (boost_lib, lib_path)
+print("boost lib: %s, path: %s" % (boost_lib, lib_path))
 
 libraries = [boost_lib]
 
