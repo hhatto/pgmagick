@@ -9,8 +9,9 @@ About
     :target: https://github.com/hhatto/pgmagick/actions
     :alt: Build status
 
-pgmagick is a yet another boost.python based wrapper for GraphicsMagick.
+pgmagick is a yet another boost.python based wrapper for GraphicsMagick_ .
 
+.. _GraphicsMagick: http://www.graphicsmagick.org/
 
 Installation
 ============
