@@ -25,7 +25,7 @@ jobs:
     - name: Install dependencies
       run: |
         ls -ltr /usr/lib
-        find /usr/lib -name "*libboost-python*"
+        find /usr/lib -name "*libboost_python*"
         python -m pip install --upgrade pip
         python setup.py install
     - name: Test
