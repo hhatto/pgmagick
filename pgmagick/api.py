@@ -847,7 +847,7 @@ class Draw(object):
         else:
             stretch = "%sStretch" % stretch.title()
         stretch = getattr(pgmagick.StretchType, "%s" % stretch)
-        if weight is 'bold':
+        if weight == 'bold':
             weight = 800
         font = pgmagick.DrawableFont(family, style, weight, stretch)
         self.drawer.append(font)
