@@ -27,8 +27,13 @@ search_include_dirs = ['/usr/local/include/GraphicsMagick/',
                        '/usr/include/GraphicsMagick/']
 search_library_dirs = ['/usr/local/lib64/', '/usr/lib64/',
                        '/usr/local/lib/', '/usr/lib/']
-search_pkgconfig_dirs = ['/usr/local/lib/pkgconfig/', '/usr/local/lib64/pkgconfig/',
-                         '/usr/lib/pkgconfig/', '/usr/lib64/pkgconfig']
+search_pkgconfig_dirs = [
+    '/opt/homebrew/lib/pkgconfig',
+    '/usr/local/lib/pkgconfig/',
+    '/usr/local/lib64/pkgconfig/',
+    '/usr/lib/pkgconfig/',
+    '/usr/lib64/pkgconfig',
+]
 if sys.platform.lower() == 'darwin':
     if os.path.exists('/opt/local/include'):
         include_dirs.append('/opt/local/include/')
@@ -36,8 +41,10 @@ if sys.platform.lower() == 'darwin':
         include_dirs.append('/usr/local/include/')
     search_include_dirs.extend(['/opt/local/include/GraphicsMagick/',
                                 '/opt/local/include/',
+                                '/opt/homebrew/include/GraphicsMagick',
                                 '/usr/local/Cellar/graphicsmagick'])
     search_library_dirs.extend(['/opt/local/lib/',
+                                '/opt/homebrew/lib',
                                 '/usr/local/Cellar/graphicsmagick'])
 # for ImageMagick
 search_include_dirs.extend(['/usr/local/include/ImageMagick/',
