@@ -52,17 +52,17 @@ Development
 pgmagick is written by `Hideo Hattori`_.
 contact the author by e-mail to hhatto.jp@gmail.com
 
-- `Source Code (on bitbucket)`_
-- `Issue Tracker (on bitbucket)`_
+- `Source Code (on GitHub)`_
+- `Issue Tracker (on GitHub)`_
 
 .. _`Hideo Hattori`: http://www.hexacosa.net/
-.. _`Source Code (on bitbucket)`: https://bitbucket.org/hhatto/pgmagick/src
-.. _`Issue Tracker (on bitbucket)`: https://bitbucket.org/hhatto/pgmagick/issues
+.. _`Source Code (on GitHub)`: https://github.com/hhatto/pgmagick
+.. _`Issue Tracker (on GitHub)`: https://github.com/hhatto/pgmagick/issues
 
 
 License
 =======
 pgmagick is under the MIT License. see the `LICENSE file`_.
 
-.. _`LICENSE file`: https://bitbucket.org/hhatto/pgmagick/src/tip/LICENSE
+.. _`LICENSE file`: https://github.com/hhatto/pgmagick/blob/master/LICENSE
 

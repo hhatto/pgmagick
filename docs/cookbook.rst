@@ -120,14 +120,14 @@ scaling a JPEG image
 
 .. code-block:: python
 
-    from pgmagick import Image, Blob
+    from pgmagick import Image, Blob, Geometry
 
-    img = Image(Blob(open('lena_std.jpg').read()), Geometry(200, 200))
+    img = Image(Blob(open('ouroku.jpg', 'rb').read()), Geometry(200, 200))
     img.scale('200x200')
-    img.write('lena_scale.jpg')
+    img.write('ouroku_scale.jpg')
 
-.. image:: _images/lena_std.jpg
-.. image:: _images/lena_scale.jpg
+.. image:: _images/ouroku.jpg
+.. image:: _images/ouroku_scale.jpg
 
 
 
@@ -157,12 +157,12 @@ get image size
 ..
 ..        from pgmagick.api import Image
 ..
-..        img = Image('lena.jpg')
+..        img = Image('ouroku.jpg')
 ..        img.opacity(80)
-..        img.write('lena_opacity80.jpg')
+..        img.write('ouroku_opacity80.jpg')
 ..
-..    .. image:: _images/lena.jpg
-..    .. image:: _images/lena_opacity80.png
+..    .. image:: _images/ouroku.jpg
+..    .. image:: _images/ouroku_opacity80.png
 
 
 sharpen filtering
@@ -172,12 +172,12 @@ sharpen filtering
 
     from pgmagick.api import Image
 
-    img = Image('lena.jpg')
+    img = Image('ouroku.jpg')
     img.sharpen(1)
-    img.write('lena_sharpen1.jpg')
+    img.write('ouroku_sharpen1.jpg')
 
-.. image:: _images/lena.jpg
-.. image:: _images/lena_sharpen1.jpg
+.. image:: _images/ouroku.jpg
+.. image:: _images/ouroku_sharpen1.jpg
 
 
 blur filtering
@@ -187,12 +187,12 @@ blur filtering
 
     from pgmagick.api import Image
 
-    img = Image('lena.jpg')
+    img = Image('ouroku.jpg')
     img.blur(10, 5)
-    img.write('lena_blur.jpg')
+    img.write('ouroku_blur.jpg')
 
-.. image:: _images/lena.jpg
-.. image:: _images/lena_blur.jpg
+.. image:: _images/ouroku.jpg
+.. image:: _images/ouroku_blur.jpg
 
 
 Edge extraction
@@ -202,12 +202,12 @@ Edge extraction
 
     from pgmagick.api import Image
 
-    img = Image('lena.jpg')
+    img = Image('ouroku.jpg')
     img.edge(2)
-    img.write('lena_edge.jpg')
+    img.write('ouroku_edge.jpg')
 
-.. image:: _images/lena.jpg
-.. image:: _images/lena_edge.jpg
+.. image:: _images/ouroku.jpg
+.. image:: _images/ouroku_edge.jpg
 
 
 removing a EXIF information
