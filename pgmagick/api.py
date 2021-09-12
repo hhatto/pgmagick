@@ -656,7 +656,7 @@ class Image(object):
         if len(geometry) == 4:
             width, height = geometry[0], geometry[1]
             x, y = geometry[2], geometry[3]
-            g = pgmagick.Geometry(x, y, width, height)
+            g = pgmagick.Geometry(width, height, x, y)
         elif len(geometry) == 1 and isinstance(geometry[0], pgmagick.Geometry):
             g = geometry[0]
         else:
@@ -847,7 +847,7 @@ class Draw(object):
         else:
             stretch = "%sStretch" % stretch.title()
         stretch = getattr(pgmagick.StretchType, "%s" % stretch)
-        if weight is 'bold':
+        if weight == 'bold':
             weight = 800
         font = pgmagick.DrawableFont(family, style, weight, stretch)
         self.drawer.append(font)

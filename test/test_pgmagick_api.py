@@ -6,6 +6,8 @@ import unittest
 import pgmagick
 from pgmagick.api import Image, Draw
 
+from utils import MACOSX_FONT
+
 
 print(pgmagick.gminfo().version)
 LIBGM_VERSION = [int(v) for v in pgmagick.gminfo().version.split('.')]
@@ -45,29 +47,25 @@ class ImageTestCase(unittest.TestCase):
         img.write('t.jpg')
 
     def test_scale_with_filtertype(self):
-        img = Image((600, 400), 'gradient:#ffffff-#000000')
-        img.scale(0.6, 'Catrom')
-        img.write('t.jpg')
-        m = hashlib.md5()
-        with open('t.jpg', 'rb') as fp:
-            m.update(fp.read())
-            scale_with_filtertype_catrom_digest = m.hexdigest()
-        img = Image((600, 400), 'gradient:#ffffff-#000000')
-        img.scale(0.6, 'Cubic')
-        img.write('t.jpg')
-        m = hashlib.md5()
-        with open('t.jpg', 'rb') as fp:
-            m.update(fp.read())
-            scale_with_filtertype_cubic_digest = m.hexdigest()
-        img = Image((600, 400), 'gradient:#ffffff-#000000')
-        img.scale(0.6)
-        img.write('t.jpg')
-        m = hashlib.md5()
-        with open('t.jpg', 'rb') as fp:
-            m.update(fp.read())
-            scale_digest = m.hexdigest()
-        self.assertNotEqual(scale_with_filtertype_catrom_digest, scale_digest)
-        self.assertNotEqual(scale_with_filtertype_catrom_digest, scale_with_filtertype_cubic_digest)
+        testset = {"Catrom": None, "Cubic": None, "None": None}
+        for k, v in testset.items():
+            img = Image((600, 400), 'gradient:#ffffff-#000000')
+            if sys.platform.lower() == 'darwin':
+                img.font(MACOSX_FONT)
+            img.annotate("hello", (100, 100))
+            if k != "None":
+                img.scale(0.6, k)
+            else:
+                img.scale(0.6)
+            img.write('t.jpg')
+            m = hashlib.md5()
+            with open('t.jpg', 'rb') as fp:
+                m.update(fp.read())
+                testset[k] = m.hexdigest()
+
+        self.assertNotEqual(testset["Catrom"], testset["None"])
+        self.assertNotEqual(testset["Cubic"], testset["None"])
+        self.assertNotEqual(testset["Catrom"], testset["Cubic"])
 
     def test_composite_arg_list(self):
         base = Image((300, 200), 'green')
@@ -98,7 +96,7 @@ class ImageTestCase(unittest.TestCase):
         self.assertEqual(60, img.font_pointsize())
         self.assertEqual(float, type(img.font_pointsize()))
         if sys.platform.lower() == 'darwin':
-            img.font("/Library/Fonts/Arial.ttf")
+            img.font(MACOSX_FONT)
         img.annotate("hello", (100, 100))
         img.write('t.png')
 

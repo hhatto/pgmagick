@@ -5,12 +5,13 @@ About
     :target: https://pypi.org/project/pgmagick/
     :alt: PyPI Version
 
-.. image:: https://travis-ci.org/hhatto/pgmagick.svg?branch=master
-    :target: https://travis-ci.org/hhatto/pgmagick
+.. image:: https://github.com/hhatto/pgmagick/workflows/Python%20package/badge.svg
+    :target: https://github.com/hhatto/pgmagick/actions
     :alt: Build status
 
-pgmagick is a yet another boost.python based wrapper for GraphicsMagick.
+pgmagick is a yet another boost.python based wrapper for GraphicsMagick_ .
 
+.. _GraphicsMagick: http://www.graphicsmagick.org/
 
 Installation
 ============
@@ -21,7 +22,11 @@ install to::
 
 Requirements
 ============
-Python2.5++, GraphicsMagick and Boost.Python.
+Python3.5++ (or Python2.7), GraphicsMagick and Boost.Python.
+
+package install on Debian Buster::
+
+    $ apt-get install g++ libgraphicsmagick++1-dev libboost-python-dev
 
 package install on Ubuntu(test on Ubuntu10.04+)::
 
@@ -45,7 +50,7 @@ GraphicsMagick from source package::
 MacOSX
 ------
 
-via homebrew-cask(homebrew-pgmagick) with Python2
+via homebrew-cask(homebrew-pgmagick) with Python3
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 use `homebrew-pgmagick`_ ::
 
@@ -55,37 +60,15 @@ use `homebrew-pgmagick`_ ::
 .. _`homebrew-pgmagick`: https://github.com/hhatto/homebrew-pgmagick
 
 via homebrew-cask(homebrew-pgmagick) with Python3
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-with `--with-python3` option::
-
-    $ brew install pgmagick --with-python3
 
 via homebrew and pip with Python3
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-*update 2018.07.04*
-on MacOSX 10.13.5::
+on MacOSX (10.13.5~10.15.x)::
 
     $ brew install python
     $ brew install graphicsmagick
     $ brew install boost-python3
     $ pip install pgmagick
-
-via homebrew and pip with Python2
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-*update 2018.07.04*
-on MacOSX 10.13.5::
-
-    $ brew install python@2
-    $ brew install graphicsmagick
-    $ brew install boost-python
-    $ pip install pgmagick
-
-*update 2014.05.12*
-on MacOSX 10.9.2 (add ARCHFLAGS)::
-
-    $ brew install graphicsmagick
-    $ brew install boost --with-python
-    $ ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future pip install pgmagick
 
 
 Windows
