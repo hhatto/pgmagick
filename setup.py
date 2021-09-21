@@ -66,6 +66,14 @@ if 'MAGICK_HOME' in os.environ:
     print('adding extra pkgconfig directory %s' % extra_pkgconfig_dir)
     search_pkgconfig_dirs.insert(0, extra_pkgconfig_dir)
 
+if 'INCLUDE_PATH' in os.environ:
+    for include_path in os.environ['INCLUDE_PATH'].split(','):
+        include_dirs.append(include_path)
+
+if 'LIBRARY_PATH' in os.environ:
+    for library_path in os.environ['LIBRARY_PATH'].split(','):
+        library_dirs.append(library_path)
+
 
 def _grep(regex, filename):
     for line in open(filename):
