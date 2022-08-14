@@ -19,6 +19,7 @@ jobs:
     - name: Install requirements on macOSX
       run: |
         HOMEBREW_NO_AUTO_UPDATE=1 brew install python@3.10 graphicsmagick boost-python3
+        HOMEBREW_NO_AUTO_UPDATE=1 brew link python@3.10
     - name: Install dependencies
       run: |
         python3 -m pip install --upgrade pip
