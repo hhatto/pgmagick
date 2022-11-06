@@ -45,6 +45,7 @@ if sys.platform.lower() == 'darwin':
                                 '/usr/local/Cellar/graphicsmagick'])
     search_library_dirs.extend(['/opt/local/lib/',
                                 '/opt/homebrew/lib',
+                                '/usr/local/Cellar/boost-python3',
                                 '/usr/local/Cellar/graphicsmagick'])
 # for ImageMagick
 search_include_dirs.extend(['/usr/local/include/ImageMagick/',
