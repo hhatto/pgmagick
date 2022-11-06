@@ -84,7 +84,7 @@ def _grep(regex, filename):
 def get_version_from_devheaders(search_dirs):
     target_api_name = "addNoiseChannel"
     for dirname in search_dirs:
-        for root, dirs, files in os.walk(dirname):
+        for root, _, files in os.walk(dirname):
             for f in files:
                 if f == 'Image.h':
                     if _grep(target_api_name, os.path.join(root, 'Image.h')):
@@ -94,7 +94,7 @@ def get_version_from_devheaders(search_dirs):
 def get_version_from_pc(search_dirs, target):
     """similar to 'pkg-config --modversion GraphicsMagick++'"""
     for dirname in search_dirs:
-        for root, dirs, files in os.walk(dirname):
+        for root, _, files in os.walk(dirname):
             for f in files:
                 if f == target:
                     file_path = os.path.join(root, target)
@@ -133,7 +133,8 @@ def library_supports_api(library_version, api_version, different_major_breaks_su
     api_version = sequence_type(0 if num == 'x' else num for num in api_version)
     if different_major_breaks_support and library_version[0] != api_version[0]:
         return False
-    assert len(api_version) <= 3     # otherwise following comparision won't work as intended, e.g. (2, 0, 0) > (2, 0, 0, 0)
+    # otherwise following comparision won't work as intended, e.g. (2, 0, 0) > (2, 0, 0, 0)
+    assert len(api_version) <= 3
     return library_version >= api_version
 
 
@@ -162,16 +163,21 @@ boost_lib_target_files.append("boost_python-mt")
 boost_lib_target_files.append("boost_python%s%s" % (_python_version[0], _python_version[1]))
 boost_lib_target_files.append("boost_python%s%s-mt" % (_python_version[0], _python_version[1]))
 
+lib_path = None
+boost_library = None
 for boost_lib in boost_lib_target_files:
     lib_path = find_file('lib%s.' % boost_lib, search_library_dirs)
     if lib_path:
+        boost_library = boost_lib
+        print("lib_path=%s, boost_lib=%s", lib_path, boost_lib)
         break
 
 if not lib_path:
-    boost_lib = "boost_python"
-print("boost lib: %s" % boost_lib)
+    boost_library = "boost_python"
+    print("use default boost python lib")
+print("boost lib: %s" % boost_library)
 
-libraries = [boost_lib]
+libraries = [boost_library]
 
 # find to library path for Magick
 lib_path = find_file('libGraphicsMagick++', search_library_dirs)
@@ -206,7 +212,9 @@ if _version:
     if LIBRARY == 'GraphicsMagick':
         # 1.3.6 for not Ubuntu10.04
         _supported_api_versions = (v for v in TESTED_API_VERSIONS if library_supports_api(_version, v))
-        ext_compile_args = ["-DPGMAGICK_LIB_GRAPHICSMAGICK_" + '_'.join(map(str, version)) for version in _supported_api_versions]
+        ext_compile_args = [
+            "-DPGMAGICK_LIB_GRAPHICSMAGICK_" + '_'.join(map(str, version)) for version in _supported_api_versions
+        ]
     elif LIBRARY == 'ImageMagick':
         ext_compile_args = ["-DPGMAGICK_LIB_IMAGEMAGICK"]
     ext_compile_args.append("-D_LIBRARY_VERSION=\"%s\"" % (_str_version))
@@ -220,6 +228,7 @@ def version():
         for line in input_file:
             if line.startswith('__version__'):
                 return ast.parse(line).body[0].value.s
+    raise NotImplementedError("invalid version file")
 
 
 setup(name='pgmagick',
