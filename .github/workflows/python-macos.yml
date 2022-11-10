@@ -9,7 +9,7 @@ on:
     - cron: 0 15 * * *
 
 env:
-  PYTHON: python3
+  PYTHON: python3.10
 
 jobs:
   build:
