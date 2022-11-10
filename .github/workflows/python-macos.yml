@@ -23,8 +23,8 @@ jobs:
         HOMEBREW_NO_AUTO_UPDATE=1 brew link --overwrite boost-python3
     - name: Install dependencies
       run: |
-        python3 -m pip install --upgrade pip
-        python3 setup.py install
+        ${PYTHON} -m pip install --upgrade pip
+        ${PYTHON} setup.py install
     - name: Test
       run: |
         make test
