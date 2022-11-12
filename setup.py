@@ -164,6 +164,8 @@ boost_lib_target_files.append("boost_python-mt")
 boost_lib_target_files.append("boost_python%s%s" % (_python_version[0], _python_version[1]))
 boost_lib_target_files.append("boost_python%s%s-mt" % (_python_version[0], _python_version[1]))
 
+print("boost_lib_target_files:", boost_lib_target_files)
+
 lib_path = None
 boost_library = None
 for boost_lib in boost_lib_target_files:
