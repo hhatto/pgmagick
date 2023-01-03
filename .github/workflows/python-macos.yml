@@ -13,7 +13,7 @@ env:
 
 jobs:
   build:
-    runs-on: macos-10
+    runs-on: macos-12
     steps:
     - uses: actions/checkout@v3
     - name: Install requirements on macOSX
@@ -23,6 +23,7 @@ jobs:
         HOMEBREW_NO_AUTO_UPDATE=1 brew link --overwrite boost-python3
     - name: Install dependencies
       run: |
+        uname -a
         ${PYTHON} -m pip install --upgrade pip
         ${PYTHON} setup.py install
     - name: Test
