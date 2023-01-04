@@ -18,6 +18,7 @@ jobs:
     - uses: actions/checkout@v3
     - name: Install requirements on macOSX
       run: |
+        HOMEBREW_NO_AUTO_UPDATE=1 brew uninstall python@3.10
         brew update
         brew cleanup
         HOMEBREW_NO_AUTO_UPDATE=1 brew install python@3.11 graphicsmagick boost-python3
