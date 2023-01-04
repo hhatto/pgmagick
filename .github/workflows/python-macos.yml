@@ -18,8 +18,7 @@ jobs:
     - uses: actions/checkout@v3
     - name: Install requirements on macOSX
       run: |
-        brew update || true
-        brew cleanup || true
+        brew cleanup
         HOMEBREW_NO_AUTO_UPDATE=1 brew install python@3.11 graphicsmagick boost-python3
         HOMEBREW_NO_AUTO_UPDATE=1 brew link --overwrite python@3.11
         HOMEBREW_NO_AUTO_UPDATE=1 brew link --overwrite boost-python3
