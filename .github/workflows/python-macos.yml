@@ -25,8 +25,7 @@ jobs:
     - name: check env
       run: |
         uname -a
-        ls -a /opt/
-        ls -a /opt/local/bin/brew
+        which brew
     - name: Install dependencies
       run: |
         ${PYTHON} -m pip install --upgrade pip
