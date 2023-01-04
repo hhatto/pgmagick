@@ -21,9 +21,13 @@ jobs:
         HOMEBREW_NO_AUTO_UPDATE=1 brew install python@3.11 graphicsmagick boost-python3
         HOMEBREW_NO_AUTO_UPDATE=1 brew link --overwrite python@3.11
         HOMEBREW_NO_AUTO_UPDATE=1 brew link --overwrite boost-python3
-    - name: Install dependencies
+    - name: check env
       run: |
         uname -a
+        ls -a /opt/homebrew/bin/brew
+        ls -a /opt/local/bin/brew
+    - name: Install dependencies
+      run: |
         ${PYTHON} -m pip install --upgrade pip
         ${PYTHON} setup.py install
     - name: Test
