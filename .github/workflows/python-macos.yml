@@ -29,8 +29,8 @@ jobs:
     - name: Install dependencies
       run: |
         ${PYTHON} -m pip install --upgrade pip
-        ${PYTHON} setup.py clean
-        ${PYTHON} setup.py install
+        ${PYTHON} -m pip cache purge
+        ${PYTHON} -m pip install . -v
     - name: Test
       run: |
         make test
