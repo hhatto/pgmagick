@@ -19,7 +19,7 @@ jobs:
     - name: Install requirements on macOSX
       run: |
         brew cleanup
-        HOMEBREW_NO_AUTO_UPDATE=1 brew install python@3.11 graphicsmagick boost-python3
+        HOMEBREW_NO_AUTO_UPDATE=1 brew install freetype python@3.11 graphicsmagick boost-python3
         HOMEBREW_NO_AUTO_UPDATE=1 brew link --overwrite python@3.11
         HOMEBREW_NO_AUTO_UPDATE=1 brew link --overwrite boost-python3
     - name: check env
