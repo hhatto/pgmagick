@@ -30,7 +30,7 @@ jobs:
       run: |
         ${PYTHON} -m pip install --upgrade pip
         ${PYTHON} -m pip cache purge
-        ${PYTHON} -m pip install . -v
+        CXXFLAGS=-std=c++11 ${PYTHON} -m pip install . -v
     - name: Test
       run: |
         make test
