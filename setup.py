@@ -28,11 +28,11 @@ search_include_dirs = ['/usr/local/include/GraphicsMagick/',
 search_library_dirs = ['/usr/local/lib64/', '/usr/lib64/',
                        '/usr/local/lib/', '/usr/lib/']
 search_pkgconfig_dirs = [
-    '/opt/homebrew/lib/pkgconfig',
+    '/opt/homebrew/lib/pkgconfig/',
     '/usr/local/lib/pkgconfig/',
     '/usr/local/lib64/pkgconfig/',
     '/usr/lib/pkgconfig/',
-    '/usr/lib64/pkgconfig',
+    '/usr/lib64/pkgconfig/',
 ]
 if sys.platform.lower() == 'darwin':
     if os.path.exists('/opt/local/include'):
@@ -42,6 +42,7 @@ if sys.platform.lower() == 'darwin':
     search_include_dirs.extend(['/opt/local/include/GraphicsMagick/',
                                 '/opt/local/include/',
                                 '/opt/homebrew/include/GraphicsMagick',
+                                '/opt/homebrew/opt/boost/include/boost/',
                                 '/usr/local/Cellar/graphicsmagick'])
     search_library_dirs.extend(['/opt/local/lib/',
                                 '/opt/homebrew/lib',
@@ -119,6 +120,17 @@ def find_file(filename, search_dirs):
     return False
 
 
+def find_boost_python_hpp(search_dirs):
+    for dirname in search_dirs:
+        for root, _, files in os.walk(dirname):
+            for f in files:
+                if "python.hpp" == f and root.endswith("/boost/"):
+                    parent_dir = os.path.dirname(root[:-1])
+                    print("pd:", parent_dir)
+                    return parent_dir
+    return False
+
+
 def library_supports_api(library_version, api_version, different_major_breaks_support=True):
     """
     Returns whether api_version is supported by given library version.
@@ -143,6 +155,13 @@ def library_supports_api(library_version, api_version, different_major_breaks_su
 header_path = find_file('Magick++.h', search_include_dirs)
 if not header_path:
     raise Exception("Magick++ not found")
+print("include header path: %s" % header_path)
+include_dirs.append(header_path)
+
+# boost_python
+header_path = find_boost_python_hpp(search_include_dirs)
+if not header_path:
+    raise Exception("boost/python.hpp not found")
 print("include header path: %s" % header_path)
 include_dirs.append(header_path)
 
