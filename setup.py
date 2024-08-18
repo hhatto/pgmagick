@@ -126,7 +126,6 @@ def find_boost_python_hpp(search_dirs):
             for f in files:
                 if "python.hpp" == f and root.endswith("/boost/"):
                     parent_dir = os.path.dirname(root[:-1])
-                    print("pd:", parent_dir)
                     return parent_dir
     return False
 
