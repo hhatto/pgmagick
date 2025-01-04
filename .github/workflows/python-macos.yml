@@ -30,6 +30,8 @@ jobs:
         which brew
     - name: Install dependencies
       run: |
+        ${PYTHON} -m venv venv
+        source venv/bin/activate
         ${PYTHON} -m pip install --upgrade pip
         ${PYTHON} -m pip cache purge
         CXXFLAGS=-std=c++11 ${PYTHON} -m pip install . -v
