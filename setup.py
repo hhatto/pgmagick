@@ -216,6 +216,7 @@ else:
 library_dirs.append(lib_path)
 
 print("library_dirs: %s" % library_dirs)
+print("include_dirs: %s" % include_dirs)
 
 # get version and extra compile argument
 ext_compile_args = []
