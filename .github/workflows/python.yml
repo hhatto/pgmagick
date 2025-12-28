@@ -22,7 +22,7 @@ jobs:
       run: sudo apt-get update && sudo apt-get install g++ libboost-python-dev libgraphicsmagick++1-dev
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
+        python -m pip install --upgrade pip setuptools
         python setup.py install
     - name: Test
       run: |
