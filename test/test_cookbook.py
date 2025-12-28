@@ -1,11 +1,10 @@
-# coding: utf-8
 import os.path
 import sys
 import unittest
 from pgmagick import api
 from pgmagick import Image, Geometry, Blob
 
-from utils import MACOSX_FONT
+from utils import LINUX_FONT, MACOSX_FONT
 
 
 class TestCookbook(unittest.TestCase):
@@ -36,6 +35,8 @@ class TestCookbook(unittest.TestCase):
         img = api.Image((300, 200))
         if sys.platform.lower() == 'darwin':
             img.font(MACOSX_FONT)
+        elif sys.platform.lower() == 'linux':
+            img.font(LINUX_FONT)
         img.annotate('Hello World')
         img.write(self.tmp_filename_png)
 
@@ -43,6 +44,8 @@ class TestCookbook(unittest.TestCase):
         img = api.Image((300, 200))
         if sys.platform.lower() == 'darwin':
             img.font(MACOSX_FONT)
+        elif sys.platform.lower() == 'linux':
+            img.font(LINUX_FONT)
         img.annotate('Hello World', angle=45)
         img.write(self.tmp_filename_png)
 
@@ -50,9 +53,8 @@ class TestCookbook(unittest.TestCase):
         img = api.Image((300, 200))
         if sys.platform.lower() == 'darwin':
             img.font("/System/Library/Fonts/Hiragino Sans GB.ttc")
-        else:
-            # TODO: not support windows
-            img.font("/usr/share/fonts/truetype/ttf-japanese-gothic.ttf")
+        elif sys.platform.lower() == 'linux':
+            img.font(LINUX_FONT)
         img.annotate('ようこそpgmagickへ!!')
         img.write(self.tmp_filename_png)
 

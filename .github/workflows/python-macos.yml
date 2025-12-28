@@ -7,18 +7,18 @@ on:
     branches: [ master ]
 
 env:
-  PYTHON: python3.11
+  PYTHON: python3.12
 
 jobs:
   build:
-    runs-on: macos-12
+    runs-on: macos-15
     steps:
     - uses: actions/checkout@v6
     - name: Install requirements on macOSX
       run: |
         brew cleanup
-        HOMEBREW_NO_AUTO_UPDATE=1 brew install python@3.11 graphicsmagick boost-python3
-        HOMEBREW_NO_AUTO_UPDATE=1 brew link --overwrite python@3.11
+        HOMEBREW_NO_AUTO_UPDATE=1 brew install python@3.12 graphicsmagick boost-python3
+        HOMEBREW_NO_AUTO_UPDATE=1 brew link --overwrite python@3.12
         HOMEBREW_NO_AUTO_UPDATE=1 brew link --overwrite boost-python3
     - name: check env
       run: |
@@ -26,9 +26,8 @@ jobs:
         which brew
     - name: Install dependencies
       run: |
-        ${PYTHON} -m pip install --upgrade pip
         ${PYTHON} -m pip cache purge
-        CXXFLAGS=-std=c++11 ${PYTHON} -m pip install . -v
+        CXXFLAGS=-std=c++11 ${PYTHON} -m pip install . --break-system-packages -v
     - name: Test
       run: |
         make test
