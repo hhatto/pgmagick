@@ -26,7 +26,8 @@ jobs:
         which brew
     - name: Install dependencies
       run: |
-        CXXFLAGS=-std=c++11 ${PYTHON} -m pip install . -v
+        ${PYTHON} -m pip cache purge
+        CXXFLAGS=-std=c++11 ${PYTHON} -m pip install . --break-system-packages -v
     - name: Test
       run: |
         make test
