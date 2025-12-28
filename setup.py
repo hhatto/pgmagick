@@ -1,11 +1,9 @@
-from setuptools import setup, find_packages, Extension
-from distutils.sysconfig import get_python_inc
+from setuptools import setup, Extension
+from sysconfig import get_path
 import glob
 import os
 import re
 import sys
-import ast
-import io
 
 GMCPP_PC = 'GraphicsMagick++.pc'
 IMCPP_PC = 'ImageMagick++.pc'
@@ -20,7 +18,7 @@ TESTED_API_VERSIONS = (
     (1, 3, 6),
     (1, 3, 'x')
 )
-include_dirs = [get_python_inc()]
+include_dirs = [get_path('include')]
 library_dirs = []
 
 search_include_dirs = ['/usr/local/include/GraphicsMagick/',
@@ -35,6 +33,8 @@ search_pkgconfig_dirs = [
     '/usr/lib64/pkgconfig',
 ]
 if sys.platform.lower() == 'darwin':
+    include_dirs.append('/opt/homebrew/include/')
+    library_dirs.append('/opt/homebrew/lib')
     if os.path.exists('/opt/local/include'):
         include_dirs.append('/opt/local/include/')
     else:
@@ -147,22 +147,18 @@ print("include header path: %s" % header_path)
 include_dirs.append(header_path)
 
 # find to library path for boost_python
-# TODO: only test on Ubuntu11.10
 _python_version = sys.version_info
 
-boost_lib_target_files = []
-if _python_version >= (3, ):
-    boost_lib_target_files.append("boost_python-py%s%s" % (_python_version[0], _python_version[1]))
-    # ArchLinux uses boost_python3
-    boost_lib_target_files.append("boost_python3")
-    boost_lib_target_files.append("boost_python3-mt")
-boost_lib_target_files.append("boost_python-mt-py%s%s" % (_python_version[0], _python_version[1]))
-# gentoo appends the python version numbers to the boost_python libraries
-boost_lib_target_files.append("boost_python-%s.%s" % (_python_version[0], _python_version[1]))
-boost_lib_target_files.append("boost_python-mt")
-# Homebrew's boost_python
-boost_lib_target_files.append("boost_python%s%s" % (_python_version[0], _python_version[1]))
-boost_lib_target_files.append("boost_python%s%s-mt" % (_python_version[0], _python_version[1]))
+boost_lib_target_files = [
+    "boost_python-py%s%s" % (_python_version[0], _python_version[1]),
+    "boost_python3",
+    "boost_python3-mt",
+    "boost_python-mt-py%s%s" % (_python_version[0], _python_version[1]),
+    "boost_python-%s.%s" % (_python_version[0], _python_version[1]),
+    "boost_python-mt",
+    "boost_python%s%s" % (_python_version[0], _python_version[1]),
+    "boost_python%s%s-mt" % (_python_version[0], _python_version[1]),
+]
 
 print("boost_lib_target_files:", boost_lib_target_files)
 
@@ -227,38 +223,13 @@ else:
     _version = '%s version: ???' % (LIBRARY)
 
 
-def version():
-    """Return version string."""
-    with io.open('pgmagick/_version.py') as input_file:
-        for line in input_file:
-            if line.startswith('__version__'):
-                return ast.parse(line).body[0].value.value
-    raise NotImplementedError("invalid version file")
-
-
-setup(name='pgmagick',
-      version=version(),
-      description="Yet Another Python wrapper for GraphicsMagick",
-      long_description=open('README.rst').read(),
-      author='Hideo Hattori',
-      author_email='hhatto.jp@gmail.com',
-      url='https://github.com/hhatto/pgmagick',
-      license='MIT',
-      packages=find_packages(),
-      ext_modules=[
-          Extension('pgmagick._pgmagick',
-                    sources=sorted(glob.glob('./src/*.cpp')),
-                    include_dirs=include_dirs,
-                    library_dirs=library_dirs,
-                    libraries=libraries,
-                    extra_compile_args=ext_compile_args)],
-      classifiers=[
-          'Development Status :: 4 - Beta',
-          'Intended Audience :: Developers',
-          'License :: OSI Approved :: MIT License',
-          'Operating System :: POSIX',
-          'Programming Language :: C++',
-          'Programming Language :: Python',
-          'Programming Language :: Python :: 3',
-          'Topic :: Multimedia :: Graphics'],
-      keywords="GraphicsMagick ImageMagick graphics boost image")
+setup(
+    ext_modules=[
+        Extension('pgmagick._pgmagick',
+                  sources=sorted(glob.glob('./src/*.cpp')),
+                  include_dirs=include_dirs,
+                  library_dirs=library_dirs,
+                  libraries=libraries,
+                  extra_compile_args=ext_compile_args)
+    ]
+)
