@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 env:
-  PYTHON: python3.12
+  PYTHON: python3.14
 
 jobs:
   build:
@@ -17,9 +17,7 @@ jobs:
     - name: Install requirements on macOSX
       run: |
         brew cleanup
-        HOMEBREW_NO_AUTO_UPDATE=1 brew install python@3.12 graphicsmagick boost-python3
-        HOMEBREW_NO_AUTO_UPDATE=1 brew link --overwrite python@3.12
-        HOMEBREW_NO_AUTO_UPDATE=1 brew link --overwrite boost-python3
+        HOMEBREW_NO_AUTO_UPDATE=1 brew install graphicsmagick boost-python3
     - name: check env
       run: |
         uname -a
